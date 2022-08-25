@@ -1,9 +1,12 @@
-const express = require('express');
-const app = express()
-const path = require('path')
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const path = require("path");
 
-app.use(express.json())
-app.use(express.static(path.join(__dirname, '../client/dist')))
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.listen(3000)
-console.log('Listening in port 3000')
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
+console.log(`Listening at http://localhost:${PORT}`);
