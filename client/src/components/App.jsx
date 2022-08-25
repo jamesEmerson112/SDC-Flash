@@ -3,6 +3,7 @@ import axios from "axios";
 import config from "../../../env/config.js";
 import QuestionList from "./QuestionList.jsx";
 import Ratings_Reviews from "./Ratings_Reviews.jsx";
+import ProductOverview from "./ProductOverview.jsx";
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -27,6 +28,8 @@ const App = () => {
       </h1>
       <QuestionList />
       <Ratings_Reviews />
+      <ProductOverview />
+
     </div>
   );
 };
