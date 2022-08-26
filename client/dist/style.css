@@ -2,6 +2,10 @@ body {
   font-family: sans-serif, arial;
 }
 
+.qAndASearchBar {
+  margin-bottom: 20px;
+}
+
 .qAndA {
   display: flex;
   flex-direction: row;
@@ -9,6 +13,15 @@ body {
 
 .qAndA > * {
   margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.aAndAAns {
+  margin-bottom: 10px;
+}
+
+.aAndAAns > * {
+  margin-bottom: 1px;
 }
 
 

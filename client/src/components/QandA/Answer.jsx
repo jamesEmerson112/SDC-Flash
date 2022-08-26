@@ -11,7 +11,7 @@ const Answer = ({ answer }) => {
   });
 
   return (
-    <div>
+    <div className="aAndAAns">
       <div>{body}</div>
       <small>
         by {answerer_name}, {hrDt} | Helpful? <a>Yes</a>{" "}

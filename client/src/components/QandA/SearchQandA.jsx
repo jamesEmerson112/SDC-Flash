@@ -5,6 +5,7 @@ import config from "../../../../env/config.js";
 const SearchQandA = ({ search }) => {
   return (
     <input
+      className="qAndASearchBar"
       type="text"
       placeholder="Have a question? Search for answers..."
       onChange={search}

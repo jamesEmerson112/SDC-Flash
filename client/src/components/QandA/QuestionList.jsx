@@ -43,7 +43,7 @@ const QuestionList = ({ product }) => {
 
   return (
     <div>
-      <div>{"QUESTIONS & ANSWERS"}</div>
+      <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
       {!qList.length ? <button>Submit a new question</button> : null}
       {filtList.map((question) => (
