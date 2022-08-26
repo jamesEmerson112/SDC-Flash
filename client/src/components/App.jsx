@@ -5,7 +5,6 @@ import QuestionList from "./QuestionList.jsx";
 import Ratings_Reviews from "./Ratings_Reviews.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 
-
 const App = () => {
   const [product, setProduct] = useState({});
 
@@ -22,17 +21,19 @@ const App = () => {
       });
   }, []);
 
-  return (
-    <div>
-      <h1>
-        {product.id}: this is the product id that we can pass to each component
-      </h1>
-      <QuestionList />
-      <Ratings_Reviews />
-      <ProductOverview product={product}/>
-
-    </div>
-  );
+  if ("id" in product) {
+    return (
+      <div>
+        <h1>
+          {product.id}: this is the product id that we can pass to each
+          component
+        </h1>
+        <QuestionList />
+        <Ratings_Reviews />
+        <ProductOverview id={product.id} />
+      </div>
+    );
+  }
 };
 
 export default App;
