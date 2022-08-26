@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../../env/config.js";
 import QuestionList from "./QuestionList.jsx";
-import Ratings_Reviews from "./Ratings_Reviews.jsx";
+import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview.jsx";
 
 const App = () => {
@@ -26,10 +26,9 @@ const App = () => {
       <h1>
         {product.id}: this is the product id that we can pass to each component
       </h1>
-      <QuestionList />
-      <Ratings_Reviews />
-      <ProductOverview />
-
+      {/* <ProductOverview />
+      <QuestionList /> */}
+      <RRIndex id={product.id} />
     </div>
   );
 };
