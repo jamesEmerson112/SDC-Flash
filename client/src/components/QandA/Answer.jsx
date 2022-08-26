@@ -14,8 +14,12 @@ const Answer = ({ answer }) => {
     <div className="aAndAAns">
       <div>{body}</div>
       <small>
-        by {answerer_name}, {hrDt} | Helpful? <a>Yes</a>{" "}
-        {"(" + helpfulness + ")"} | <a>Report</a>
+        {"by "}
+        {answerer_name === "Seller" ? <b>{answerer_name}</b> : answerer_name}
+        {", " + hrDt + " | Helpful? "}
+        <a>Yes</a>
+        {" (" + helpfulness + ") | "}
+        <a>Report</a>
       </small>
     </div>
   );
