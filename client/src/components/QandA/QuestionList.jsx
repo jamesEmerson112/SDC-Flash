@@ -49,7 +49,10 @@ const QuestionList = ({ product }) => {
       {filtList.map((question) => (
         <Question question={question} key={question.question_id} />
       ))}
-      <button>More Answered Questions</button>
+      <div>
+        <button>More Answered Questions</button>
+        <button>Add a Question +</button>
+      </div>
     </div>
   );
 };
