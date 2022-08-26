@@ -30,7 +30,7 @@ const App = () => {
         </h1>
         <QuestionList product={product} />
         <RRIndex id={product.id} />
-        <ProductOverview />
+        <ProductOverview id={product.id} />
       </div>
     );
   } else {
