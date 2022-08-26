@@ -15,11 +15,9 @@ const QuestionList = ({ product }) => {
     axios
       .get(`/qa/questions?product_id=${id}`, config)
       .then((response) => {
-        console.log(response.data.results);
         response.data.results.sort(
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
-        console.log(response.data.results);
         setQList(response.data.results);
         setFiltList(response.data.results);
       })
@@ -38,6 +36,7 @@ const QuestionList = ({ product }) => {
         }
         return ques.question_body.toLowerCase().includes(query.toLowerCase());
       });
+      filtQ.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
     }
     setFiltList(filtQ);
   };
@@ -50,6 +49,7 @@ const QuestionList = ({ product }) => {
       {filtList.map((question) => (
         <Question question={question} key={question.question_id} />
       ))}
+      <button>More Answered Questions</button>
     </div>
   );
 };

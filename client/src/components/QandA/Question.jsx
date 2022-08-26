@@ -13,13 +13,24 @@ const Question = ({ question }) => {
     report,
   } = question;
 
+  let ansArr = [];
+  for (let id in answers) {
+    ansArr.push(answers[id]);
+  }
+  ansArr.sort((a, b) => b.helpfulness - a.helpfulness);
+  const sellArr = ansArr.filter((ans) => ans.answerer_name === "Seller");
+  ansArr = ansArr.filter((ans) => ans.answerer_name !== "Seller");
+  ansArr = sellArr.concat(ansArr);
+
   return (
     <div>
       <br />
       <div className="qAndA">
         <b>Q:</b>
         <b>{question_body}</b>
-        <small>Helpful? Yes {"(" + question_helpfulness + ")"}</small>
+        <small>
+          Helpful? Yes {"(" + question_helpfulness + ")"} | Add Answer
+        </small>
       </div>
       <br />
       <div className="qAndA">
@@ -27,7 +38,7 @@ const Question = ({ question }) => {
           <b>A:</b>
         </div>
         <div>
-          {_.map(answers, (answer) => (
+          {ansArr.map((answer) => (
             <Answer answer={answer} key={answer.id} />
           ))}
         </div>
