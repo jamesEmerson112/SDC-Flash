@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../../env/config.js";
 import QuestionList from "./QandA/QuestionList.jsx";
-import Ratings_Reviews from "./Ratings_Reviews.jsx";
+import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview.jsx";
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
           component
         </h1>
         <QuestionList product={product} />
-        <Ratings_Reviews />
+        <RRIndex id={product.id} />
         <ProductOverview />
       </div>
     );
