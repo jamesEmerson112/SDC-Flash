@@ -15,10 +15,12 @@ const AnswerList = ({ answers }) => {
   ansArr = ansArr.filter((ans) => ans.answerer_name !== "Seller");
   ansArr = sellArr.concat(ansArr);
 
+  // on initial render of product
   useEffect(() => {
     setFiltAList(ansArr.slice(0, 2));
   }, [answers]);
 
+  // methods
   const toggleAns = (event) => {
     let last = filtAList.length;
     if (last === ansArr.length) {
