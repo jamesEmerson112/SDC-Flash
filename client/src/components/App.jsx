@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../../env/config.js";
-import QuestionList from "./QuestionList.jsx";
-import Ratings_Reviews from "./Ratings_Reviews.jsx";
-import ProductOverview from "./ProductOverview/ProductOverview.jsx";
+import QuestionList from "./QandA/QuestionList.jsx";
+import RRIndex from "./Ratings_Reviews/index.jsx";
+import ProductOverview from "./ProductOverview.jsx";
 
 const App = () => {
   const [product, setProduct] = useState({});
@@ -14,7 +14,7 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[0]);
+        setProduct(response.data[1]);
       })
       .catch((err) => {
         console.log(err);
@@ -28,11 +28,13 @@ const App = () => {
           {product.id}: this is the product id that we can pass to each
           component
         </h1>
-        <QuestionList />
-        <Ratings_Reviews />
+        <QuestionList product={product} />
+        <RRIndex id={product.id} />
         <ProductOverview id={product.id} />
       </div>
     );
+  } else {
+    return <div>loading</div>;
   }
 };
 

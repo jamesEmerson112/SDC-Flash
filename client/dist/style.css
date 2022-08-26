@@ -2,6 +2,16 @@ body {
   font-family: sans-serif, arial;
 }
 
+.qAndA {
+  display: flex;
+  flex-direction: row;
+}
+
+.qAndA > * {
+  margin-right: 10px;
+}
+
+
 .product-overview {
   display: grid;
   grid-template-columns: [first] 75% [second] 25% ;
