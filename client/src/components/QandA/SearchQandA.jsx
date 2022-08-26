@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../../../env/config.js";
 
-const SearchQandA = (props) => {
-  console.log(props);
-  const [query, setQuery] = useState("");
+const SearchQandA = ({ search }) => {
+  // const [query, setQuery] = useState("");
 
   // useEffect(() => {
   //   axios
@@ -12,10 +11,6 @@ const SearchQandA = (props) => {
   //     .then((response) => setQList(response.data.results))
   //     .catch((err) => console.log(err));
   // }, [product]);
-
-  const search = (e) => {
-    setQuery(e.target.value);
-  };
 
   return (
     <input

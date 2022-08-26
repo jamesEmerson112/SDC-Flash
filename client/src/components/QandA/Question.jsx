@@ -15,10 +15,13 @@ const Question = ({ question }) => {
 
   return (
     <div>
+      <br />
       <div className="qAndA">
         <b>Q:</b>
         <b>{question_body}</b>
+        <small>Helpful? Yes {"(" + question_helpfulness + ")"}</small>
       </div>
+      <br />
       <div className="qAndA">
         <div>
           <b>A:</b>
@@ -29,6 +32,7 @@ const Question = ({ question }) => {
           ))}
         </div>
       </div>
+      <br />
     </div>
   );
 };
