@@ -3,14 +3,15 @@ import axios from "axios";
 import config from "../../../../env/config.js";
 import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";
-import _ from "underscore";
 
 const QuestionList = ({ product }) => {
   const { id } = product;
 
+  // state
   const [qList, setQList] = useState([]);
   const [filtList, setFiltList] = useState([]);
 
+  // on load
   useEffect(() => {
     axios
       .get(`/qa/questions?product_id=${id}`, config)
@@ -19,16 +20,16 @@ const QuestionList = ({ product }) => {
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
         setQList(response.data.results);
-        setFiltList(response.data.results);
+        setFiltList(response.data.results.slice(0, 2));
       })
       .catch((err) => console.log(err));
   }, [product]);
 
+  // methods
   const search = (event) => {
     let query = event.target.value;
-    let filtQ = qList;
     if (query.length > 2) {
-      filtQ = _.filter(filtQ, (ques) => {
+      let filtQ = qList.filter((ques) => {
         let ans = ques.answers;
         for (let id in ans) {
           if (ans[id].body.toLowerCase().includes(query.toLowerCase()))
@@ -37,8 +38,15 @@ const QuestionList = ({ product }) => {
         return ques.question_body.toLowerCase().includes(query.toLowerCase());
       });
       filtQ.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+      setFiltList(filtQ);
+    } else {
+      setFiltList(qList.slice(0, 2));
     }
-    setFiltList(filtQ);
+  };
+
+  const expandQs = (event) => {
+    let last = filtList.length;
+    setFiltList(qList.slice(0, last + 2));
   };
 
   return (
@@ -50,7 +58,9 @@ const QuestionList = ({ product }) => {
         <Question question={question} key={question.question_id} />
       ))}
       <div>
-        <button>More Answered Questions</button>
+        {filtList.length < qList.length ? (
+          <button onClick={expandQs}>More Answered Questions</button>
+        ) : null}
         <button>Add a Question +</button>
       </div>
     </div>

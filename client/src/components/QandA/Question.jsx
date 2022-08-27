@@ -1,6 +1,5 @@
 import React from "react";
 import AnswerList from "./AnswerList.jsx";
-import _ from "underscore";
 
 const Question = ({ question }) => {
   const {

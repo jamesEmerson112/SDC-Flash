@@ -11,8 +11,15 @@ const Answer = ({ answer }) => {
   });
 
   return (
-    <div className="aAndAAns">
+    <div className="qAndAAns">
       <div>{body}</div>
+      {photos.length ? (
+        <div>
+          {photos.map((photo, i) => (
+            <img src={photo} key={id + i} className="ansPhotos" />
+          ))}
+        </div>
+      ) : null}
       <small>
         {"by "}
         {answerer_name === "Seller" ? <b>{answerer_name}</b> : answerer_name}
