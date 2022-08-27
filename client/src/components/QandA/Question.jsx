@@ -21,6 +21,7 @@ const Question = ({ question }) => {
   // state
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
 
+  // methods
   const incHelp = () => {
     if (!ques.helpf_click) {
       axios

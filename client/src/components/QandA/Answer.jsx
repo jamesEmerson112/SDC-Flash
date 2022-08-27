@@ -18,30 +18,45 @@ const Answer = ({ answer, question_id }) => {
 
   // state
   const [a_helpf, setHelpfulness] = useState(helpfulness);
+  const [modal, setModal] = useState(false);
 
   // methods
   const incHelp = () => {
-    console.log(answ.helpf_click);
     if (!answ.helpf_click) {
       axios
         .put(`/qa/answers/${id}/helpful`, {}, config)
         .then(() => {
           answ.helpf_click = true;
-          console.log(answ.helpf_click);
           setHelpfulness(a_helpf + 1);
         })
         .catch((err) => console.log(err));
     }
-    console.log(a_helpf);
+  };
+
+  const imgZoom = (event) => {
+    setModal(event.target.src);
   };
 
   return (
     <div className="qAndAAns">
+      {modal ? (
+        <div className="modalOverlay">
+          <img src={modal} className="modal" />
+          <div className="modalClose" onClick={imgZoom}>
+            X
+          </div>
+        </div>
+      ) : null}
       <div>{body}</div>
       {photos.length ? (
         <div>
           {photos.map((photo, i) => (
-            <img src={photo} key={id + i} className="ansPhotos" />
+            <img
+              src={photo}
+              key={id + i}
+              onClick={imgZoom}
+              className="ansPhotos"
+            />
           ))}
         </div>
       ) : null}
