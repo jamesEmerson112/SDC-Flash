@@ -3,6 +3,7 @@ import axios from "axios";
 import config from "../../../../env/config.js";
 import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";
+import questList from "./qAndA.js";
 
 const QuestionList = ({ product }) => {
   const { id } = product;
@@ -19,7 +20,20 @@ const QuestionList = ({ product }) => {
         response.data.results.sort(
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
-        setQList(response.data.results);
+        // tracker
+        response.data.results.forEach((q) => {
+          let exists = questList.find(
+            (quest) => quest.question_id === q.question_id
+          );
+          if (!exists) {
+            q.helpf_click = false;
+            for (const id in q.answers) {
+              q.answers[id].helpf_click = false;
+            }
+            questList.push(q);
+          }
+        });
+        setQList(response.data.results.slice(0, 2));
         setFiltList(response.data.results.slice(0, 2));
       })
       .catch((err) => console.log(err));
@@ -29,7 +43,7 @@ const QuestionList = ({ product }) => {
   const search = (event) => {
     let query = event.target.value;
     if (query.length > 2) {
-      let filtQ = qList.filter((ques) => {
+      let filtQ = questList.filter((ques) => {
         let ans = ques.answers;
         for (let id in ans) {
           if (ans[id].body.toLowerCase().includes(query.toLowerCase()))
@@ -40,25 +54,25 @@ const QuestionList = ({ product }) => {
       filtQ.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
       setFiltList(filtQ);
     } else {
-      setFiltList(qList.slice(0, 2));
+      setFiltList(qList);
     }
   };
 
   const expandQs = (event) => {
     let last = filtList.length;
-    setFiltList(qList.slice(0, last + 2));
+    setQList(questList.slice(0, last + 2));
+    setFiltList(questList.slice(0, last + 2));
   };
 
   return (
-    <div>
+    <div className="qList">
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
-      {!qList.length ? <button>Submit a new question</button> : null}
       {filtList.map((question) => (
         <Question question={question} key={question.question_id} />
       ))}
       <div>
-        {filtList.length < qList.length ? (
+        {filtList.length < questList.length ? (
           <button onClick={expandQs}>More Answered Questions</button>
         ) : null}
         <button>Add a Question +</button>

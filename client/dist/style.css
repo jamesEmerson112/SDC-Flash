@@ -2,7 +2,14 @@ body {
   font-family: sans-serif, arial;
 }
 
+/* Q and A */
+.qList {
+  margin: auto;
+  max-width: 800px;
+}
+
 .qAndASearchBar {
+  width: 800px;
   margin-bottom: 20px;
 }
 
@@ -11,8 +18,13 @@ body {
   flex-direction: row;
 }
 
+.question {
+  display: flex;
+  justify-content: space-between;
+}
+
 .qAndA > * {
-  margin-right: 10px;
+  margin-right: 5px;
   margin-bottom: 10px;
 }
 
@@ -29,7 +41,7 @@ body {
   height: 50px;
   margin-right: 10px;
 }
-
+/* Q and A */
 
 .product-overview {
   display: grid;
