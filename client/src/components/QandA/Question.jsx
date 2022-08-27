@@ -50,7 +50,7 @@ const Question = ({ question }) => {
         <div>
           <b>A:</b>
         </div>
-        <AnswerList answers={answers} />
+        <AnswerList answers={answers} question_id={question_id} />
       </div>
     </div>
   );

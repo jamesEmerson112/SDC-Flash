@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Answer from "./Answer.jsx";
 
-const AnswerList = ({ answers }) => {
+const AnswerList = ({ answers, question_id }) => {
   // State
   const [filtAList, setFiltAList] = useState([]);
 
@@ -33,7 +33,7 @@ const AnswerList = ({ answers }) => {
   return (
     <div>
       {filtAList.map((answer) => (
-        <Answer answer={answer} key={answer.id} />
+        <Answer answer={answer} question_id={question_id} key={answer.id} />
       ))}
       {filtAList.length < ansArr.length ? (
         <small onClick={toggleAns}>SEE MORE ANSWERS</small>
