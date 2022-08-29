@@ -3,7 +3,7 @@ import axios from "axios";
 import config from "../../../env/config.js";
 import QuestionList from "./QandA/QuestionList.jsx";
 import RRIndex from "./Ratings_Reviews/index.jsx";
-import ProductOverview from "./ProductOverview.jsx";
+import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 
 const App = () => {
   const [product, setProduct] = useState({});

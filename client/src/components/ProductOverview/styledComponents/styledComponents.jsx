@@ -19,4 +19,4 @@ const Wrapper = styled.section`
   background: papayawhip;
 `;
 
-export { Box };
+export default { Box };

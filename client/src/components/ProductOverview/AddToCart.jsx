@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "./styledComponents/styledComponents.jsx";
+// import Box from "./styledComponents/styledComponents.jsx";
 // import styled from "styled-components";
 
 const AddToCart = () => {
