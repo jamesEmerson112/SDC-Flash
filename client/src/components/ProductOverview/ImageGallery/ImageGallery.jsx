@@ -7,14 +7,16 @@ const ImageGallery = ({ styles }) => {
   // console.log(styles)
   if (styles) {
     const photos = styles[1].photos;
+    const mainPic = photos[3].url;
+    console.log(mainPic);
 
     return (
-      <div>
-        <div className="main-pic">
-          <MainPic photos={photos} />
-        </div>
-        <div className="item image-gallery">
+      <div className="image-gallery">
+        <div className="thumbnails">
           <Thumbnail photos={photos} />
+        </div>
+        <div className="main-pic">
+          <MainPic mainPic={mainPic} />
         </div>
       </div>
     );

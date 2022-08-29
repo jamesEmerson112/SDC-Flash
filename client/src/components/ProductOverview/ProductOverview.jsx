@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ImageGallery from "./ImageGallery.jsx";
-import ProductInfo from "./ProductInfo.jsx";
-import StyleSelector from "./StyleSelector.jsx";
+import ImageGallery from "./ImageGallery/ImageGallery.jsx";
+import ProductInfo from "./ProductInfo/ProductInfo.jsx";
+import StyleSelector from "./StyleSelector/StyleSelector.jsx";
 import AddToCart from "./AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
@@ -25,8 +25,8 @@ const ProductOverview = ({ id }) => {
       <h1>Product Overview</h1>
       <div className="product-overview">
         <ImageGallery styles={styles} />
-        <ProductInfo />
-        <StyleSelector />
+        <ProductInfo id={id} />
+        <StyleSelector styles={styles} />
         <AddToCart />
       </div>
     </div>

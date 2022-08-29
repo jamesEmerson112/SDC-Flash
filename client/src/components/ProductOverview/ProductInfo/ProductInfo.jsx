@@ -1,6 +1,7 @@
 import React from "react";
 
-const ProductInfo = () => {
+const ProductInfo = ({ id }) => {
+  console.log(id);
   return <h3 className="item product-info">Product Info</h3>;
 };
 
