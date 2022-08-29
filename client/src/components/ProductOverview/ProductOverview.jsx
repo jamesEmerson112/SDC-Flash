@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ImageGallery from "./ImageGallery.jsx";
-import ProductInfo from "./ProductInfo.jsx";
-import StyleSelector from "./StyleSelector.jsx";
+import ImageGallery from "./ImageGallery/ImageGallery.jsx";
+import ProductInfo from "./ProductInfo/ProductInfo.jsx";
+import StyleSelector from "./StyleSelector/StyleSelector.jsx";
 import AddToCart from "./AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
 
-const ProductOverview = ({ id }) => {
+const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState();
 
   useEffect(() => {
@@ -20,17 +20,19 @@ const ProductOverview = ({ id }) => {
       });
   }, [id]);
 
-  return (
-    <div>
-      <h1>Product Overview</h1>
-      <div className="product-overview">
-        <ImageGallery styles={styles} />
-        <ProductInfo />
-        <StyleSelector />
-        <AddToCart />
+  if (styles) {
+    return (
+      <div>
+        <h1>Product Overview</h1>
+        <div className="product-overview">
+          <ImageGallery styles={styles} />
+          <ProductInfo product={product} />
+          <StyleSelector styles={styles} />
+          <AddToCart />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ProductOverview;

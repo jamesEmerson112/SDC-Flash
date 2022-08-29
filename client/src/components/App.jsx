@@ -14,23 +14,28 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[0].id);
+        setProduct(response.data[3]);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  return (
-    <div>
-      <h1>
-        {product}: this is the product id that we can pass to each component
-      </h1>
-      {/* <QuestionList product={product} />
-        <ProductOverview id={product.id} /> */}
-      <RRIndex id={product} />
-    </div>
-  );
+  if ("id" in product) {
+    return (
+      <div>
+        <h1>
+          {product.id}: this is the product id that we can pass to each
+          component
+        </h1>
+        {/* <QuestionList product={product} />
+        <RRIndex id={product.id} /> */}
+        <ProductOverview id={product.id} product={product} />
+      </div>
+    );
+  } else {
+    return <div>loading</div>;
+  }
 };
 
 export default App;

@@ -4,17 +4,18 @@ import Thumbnail from "./Thumbnail.jsx";
 import MainPic from "./MainPic.jsx";
 
 const ImageGallery = ({ styles }) => {
-  // console.log(styles)
+  // console.log(styles, "in image");
   if (styles) {
     const photos = styles[1].photos;
+    const mainPic = photos[0].url;
 
     return (
-      <div>
-        <div className="main-pic">
-          <MainPic photos={photos} />
-        </div>
-        <div className="item image-gallery">
+      <div className="image-gallery">
+        <div className="thumbnails">
           <Thumbnail photos={photos} />
+        </div>
+        <div className="main-pic">
+          <MainPic mainPic={mainPic} />
         </div>
       </div>
     );

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const AddToCart = () => {
   return <h3 className="item add-to-cart">Add To Cart</h3>;
+  <box></box>;
 };
 
 export default AddToCart;
