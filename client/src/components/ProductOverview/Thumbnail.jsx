@@ -1,7 +1,7 @@
 import React from "react";
 
 const Thumbnail = ({ photos }) => {
-  console.log(photos);
+  // console.log(photos);
   let height = 500 / photos.length + "vh";
   return photos.map((photo, i) => {
     return (
