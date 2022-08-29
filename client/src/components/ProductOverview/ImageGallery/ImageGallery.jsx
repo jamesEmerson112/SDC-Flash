@@ -8,7 +8,6 @@ const ImageGallery = ({ styles }) => {
   if (styles) {
     const photos = styles[1].photos;
     const mainPic = photos[0].url;
-    console.log(mainPic);
 
     return (
       <div className="image-gallery">

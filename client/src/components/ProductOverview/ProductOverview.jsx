@@ -8,7 +8,6 @@ import axios from "axios";
 
 const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState();
-  console.log(styles);
 
   useEffect(() => {
     axios

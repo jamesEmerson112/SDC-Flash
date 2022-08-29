@@ -1,7 +1,6 @@
 import React from "react";
 
 const Thumbnail = ({ photos }) => {
-  console.log(photos);
   return photos.map((photo, i) => {
     return (
       <div key={i} className="thumbnail-parent">

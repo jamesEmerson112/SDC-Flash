@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProductInfo = ({ product }) => {
-  console.log(product.category);
   return (
     <div className="item product-info">
       <p>Make some stupid stars</p>

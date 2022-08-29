@@ -14,7 +14,7 @@ body {
 
 .product-overview {
   display: grid;
-  grid-template-columns: [first] 75% [second] 25% ;
+  grid-template-columns: [first] 65% [second] 35% ;
   grid-template-rows: [first-row] 225px [second-row] 150px [third-row] 150px;
   box-sizing: border-box;
 }
