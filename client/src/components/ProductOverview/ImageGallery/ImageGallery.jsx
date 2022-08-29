@@ -4,10 +4,10 @@ import Thumbnail from "./Thumbnail.jsx";
 import MainPic from "./MainPic.jsx";
 
 const ImageGallery = ({ styles }) => {
-  // console.log(styles)
+  // console.log(styles, "in image");
   if (styles) {
     const photos = styles[1].photos;
-    const mainPic = photos[3].url;
+    const mainPic = photos[0].url;
     console.log(mainPic);
 
     return (

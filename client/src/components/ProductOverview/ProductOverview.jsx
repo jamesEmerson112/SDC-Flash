@@ -6,8 +6,9 @@ import AddToCart from "./AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
 
-const ProductOverview = ({ id }) => {
+const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState();
+  console.log(styles);
 
   useEffect(() => {
     axios
@@ -20,17 +21,19 @@ const ProductOverview = ({ id }) => {
       });
   }, [id]);
 
-  return (
-    <div>
-      <h1>Product Overview</h1>
-      <div className="product-overview">
-        <ImageGallery styles={styles} />
-        <ProductInfo id={id} />
-        <StyleSelector styles={styles} />
-        <AddToCart />
+  if (styles) {
+    return (
+      <div>
+        <h1>Product Overview</h1>
+        <div className="product-overview">
+          <ImageGallery styles={styles} />
+          <ProductInfo product={product} />
+          <StyleSelector styles={styles} />
+          <AddToCart />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ProductOverview;
