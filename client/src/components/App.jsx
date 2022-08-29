@@ -6,7 +6,7 @@ import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 
 const App = () => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState();
 
   // will set product to the first product in list
   // maybe set this up to be random later

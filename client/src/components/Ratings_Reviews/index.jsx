@@ -4,13 +4,17 @@ import config from "../../../../env/config.js";
 import axios from "axios";
 
 const Ratings_Reviews = (props) => {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]); //reviews held in this state to pass down
 
-  useEffect(() => {
+  useEffect(() => { //using passed down productid to fetch reviews for this product
     if (props.id) {
-      axios.get(`/reviews?product_id=${props.id}`, config).then((response) => {
-        setReviews(response.data.results);
-      });
+      axios.get(`/reviews?product_id=${props.id}`, config)
+        .then((response) => {
+          setReviews(response.data.results);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [props.id]);
 
