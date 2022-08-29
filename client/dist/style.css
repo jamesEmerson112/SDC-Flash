@@ -127,7 +127,6 @@ body {
   height:75px;
   justify-content: center;
   align-items: center;
-
 }
 
 .thumbnail {
@@ -151,6 +150,13 @@ body {
   display:flex;
   flex-direction: row;
   margin-top: 10px;
+}
+
+.selected {
+  background-color: grey;
+}
+.not-selected {
+  background-color: white;
 }
 
 .add-to-cart{

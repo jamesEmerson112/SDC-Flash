@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Thumbnail from "./Thumbnail.jsx";
 import MainPic from "./MainPic.jsx";
 
-const ImageGallery = ({ styles }) => {
+const ImageGallery = ({ style }) => {
   // console.log(styles, "in image");
-  if (styles) {
-    const photos = styles[1].photos;
+  if (style) {
+    const photos = style.photos;
     const mainPic = photos[0].url;
 
     return (

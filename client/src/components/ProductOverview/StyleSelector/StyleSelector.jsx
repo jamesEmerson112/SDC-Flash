@@ -1,12 +1,16 @@
 import React from "react";
-import Thumbnail from "../ImageGallery/Thumbnail.jsx";
+import Style from "./Style.jsx";
+import styled from "styled-components";
 
-const StyleSelector = ({ styles }) => {
+const StyleSelector = ({ styles, choseStyle }) => {
   // Create variable to hold specific photos for style
   let stylePhotos = [];
   for (let i = 0; i < styles.length; i++) {
     // get the first picture for each style que and creat thumbnail
-    stylePhotos.push(styles[i].photos[0]);
+    let style = {};
+    style["style_id"] = styles[i].style_id;
+    style["photo"] = styles[i].photos[0];
+    stylePhotos.push(style);
   }
   //create a variable to group them into four
   let groupedStylePhotos = [];
@@ -22,11 +26,10 @@ const StyleSelector = ({ styles }) => {
   let styleList = groupedStylePhotos.map((photos, i) => {
     return (
       <div className="styles" key={i}>
-        <Thumbnail photos={photos} />
+        <Style click={choseStyle} photos={photos} />
       </div>
     );
   });
-  console.log(styleList);
   return (
     <div className="item style-selector">
       <div>{styleList}</div>

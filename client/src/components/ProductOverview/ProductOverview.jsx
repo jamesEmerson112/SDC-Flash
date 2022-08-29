@@ -7,27 +7,39 @@ import config from "../../../../env/config.js";
 import axios from "axios";
 
 const ProductOverview = ({ id, product }) => {
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState([]);
+  const [style, setStyle] = useState({});
+
+  const choseStyle = (styleId) => {
+    for (let i = 0; i < styles.length; i++) {
+      if (styles[i].style_id === styleId) {
+        console.log(styles[i], "line 16");
+        setStyle(styles[i]);
+      }
+    }
+  };
 
   useEffect(() => {
     axios
       .get(`/products/${id}/styles`, config)
       .then((response) => {
+        console.log(response.data.results);
         setStyles(response.data.results);
+        setStyle(response.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
 
-  if (styles) {
+  if (styles.length > 0) {
     return (
       <div>
         <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery styles={styles} />
-          <ProductInfo product={product} />
-          <StyleSelector styles={styles} />
+          <ImageGallery style={style} />
+          <ProductInfo product={product} stylePrice={style.original_price} />
+          <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart />
         </div>
       </div>
