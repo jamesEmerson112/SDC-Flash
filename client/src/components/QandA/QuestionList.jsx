@@ -72,7 +72,11 @@ const QuestionList = ({ product }) => {
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
       {filtList.map((question) => (
-        <Question question={question} key={question.question_id} />
+        <Question
+          question={question}
+          product={product}
+          key={question.question_id}
+        />
       ))}
       <div>
         {filtList.length < questList.length ? (

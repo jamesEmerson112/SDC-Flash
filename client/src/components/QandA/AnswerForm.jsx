@@ -3,8 +3,9 @@ import axios from "axios";
 import styled from "styled-components";
 import config from "../../../../env/config.js";
 
-const QuestionForm = ({ product, setShowQForm }) => {
+const AnswerForm = ({ question, product, setShowAForm }) => {
   // variable
+  const { question_id, question_body } = question;
   let emailValid = false;
 
   // state
@@ -13,24 +14,26 @@ const QuestionForm = ({ product, setShowQForm }) => {
   // methods
   const chkEmailFormat = (event) => {
     emailValid = /\S+@\S+\.\S+/.test(event.target.value);
+    console.log(emailValid);
   };
 
-  const postQuestion = (event) => {
+  const postAnswer = (event) => {
     event.preventDefault();
     setEmailWarn(!emailValid);
     if (emailValid) {
       const data = {
-        body: event.target.elements.question.value,
+        body: event.target.elements.answer.value,
         name: event.target.elements.nickname.value,
         email: event.target.elements.email.value,
-        product_id: product.id,
+        photos: [],
       };
+      console.log(data);
       axios
-        .post("/qa/questions", data, config)
+        .post(`/qa/questions/${question_id}/answers`, data, config)
         .then((response) => {
           console.log(response);
-          // should render new questions here: set state
-          setShowQForm(false);
+          // should render new answers here: set state
+          setShowAForm(false);
         })
         .catch((err) => console.log(err));
     }
@@ -39,14 +42,16 @@ const QuestionForm = ({ product, setShowQForm }) => {
   return (
     <div className="modalOverlay">
       <div className="modal">
-        <form className="modalForm" onSubmit={postQuestion}>
-          <QFHeader>Ask Your Question</QFHeader>
-          <small>About the {product.name}</small>
+        <form className="modalForm" onSubmit={postAnswer}>
+          <QFHeader>Submit your Answer</QFHeader>
+          <small>
+            {product.name}: {question_body}
+          </small>
           <br />
-          <label>Your Question*</label>
+          <label>Your Answer*</label>
           <br />
           <textarea
-            name="question"
+            name="answer"
             maxLength="1000"
             rows="4"
             cols="50"
@@ -58,7 +63,7 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <QFInput
             type="text"
             name="nickname"
-            placeholder="Example: jackson11!"
+            placeholder="Example: jackson543!"
             maxLength="60"
             required
           />
@@ -73,7 +78,7 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <QFInput
             type="email"
             name="email"
-            placeholder="Why did you like the product or not?"
+            placeholder="Example: jack@email.com"
             maxLength="60"
             onChange={chkEmailFormat}
             required
@@ -81,9 +86,11 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <br />
           <small>For authentication reasons, you will not be emailed</small>
           <br />
-          <input type="submit" value="Submit Question" />
+          <button>Upload your photos</button>
+          <br />
+          <input type="submit" value="Submit Answer" />
         </form>
-        <div className="modalFormClose" onClick={() => setShowQForm(false)}>
+        <div className="modalFormClose" onClick={() => setShowAForm(false)}>
           X
         </div>
       </div>
@@ -91,7 +98,7 @@ const QuestionForm = ({ product, setShowQForm }) => {
   );
 };
 
-export default QuestionForm;
+export default AnswerForm;
 
 const QFHeader = styled.h3`
   margin-top: 0px;

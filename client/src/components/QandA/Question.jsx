@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AnswerList from "./AnswerList.jsx";
+import AnswerForm from "./AnswerForm.jsx";
 import config from "../../../../env/config.js";
 import questList from "./qAndA.js";
 
-const Question = ({ question }) => {
+const Question = ({ question, product }) => {
   const {
     answers,
     asker_name,
@@ -20,6 +21,7 @@ const Question = ({ question }) => {
 
   // state
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
+  const [showAForm, setShowAForm] = useState(false);
 
   // methods
   const incHelp = () => {
@@ -44,7 +46,8 @@ const Question = ({ question }) => {
         <small>
           {" Helpful? "}
           {ques.helpf_click ? " Yes " : <u onClick={incHelp}>Yes</u>}
-          {" (" + helpfulness + ") "} | <u>Add Answer</u>
+          {" (" + helpfulness + ") "} |{" "}
+          <u onClick={() => setShowAForm(!showAForm)}>Add Answer</u>
         </small>
       </div>
       <div className="qAndA">
@@ -53,6 +56,13 @@ const Question = ({ question }) => {
         </div>
         <AnswerList answers={answers} question_id={question_id} />
       </div>
+      {showAForm ? (
+        <AnswerForm
+          question={question}
+          product={product}
+          setShowAForm={setShowAForm}
+        />
+      ) : null}
     </div>
   );
 };
