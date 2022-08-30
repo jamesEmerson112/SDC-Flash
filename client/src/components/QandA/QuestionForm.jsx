@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import config from "../../../../env/config.js";
+import questList from "./qAndA.js";
 
 const QuestionForm = ({ product, setShowQForm }) => {
   // variable
@@ -27,9 +28,26 @@ const QuestionForm = ({ product, setShowQForm }) => {
       };
       axios
         .post("/qa/questions", data, config)
+        .then(() =>
+          axios.get(`/qa/questions?product_id=${product.id}&count=100`, config)
+        )
         .then((response) => {
-          console.log(response);
-          // should render new questions here: set state
+          response.data.results.sort(
+            (a, b) => b.question_helpfulness - a.question_helpfulness
+          );
+          // tracker
+          response.data.results.forEach((q) => {
+            let exists = questList.find(
+              (quest) => quest.question_id === q.question_id
+            );
+            if (!exists) {
+              q.helpf_click = false;
+              for (const id in q.answers) {
+                q.answers[id].helpf_click = false;
+              }
+              questList.push(q);
+            }
+          });
           setShowQForm(false);
         })
         .catch((err) => console.log(err));

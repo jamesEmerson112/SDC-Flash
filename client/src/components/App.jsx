@@ -14,7 +14,7 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[2]);
+        setProduct(response.data[0]);
       })
       .catch((err) => {
         console.log(err);

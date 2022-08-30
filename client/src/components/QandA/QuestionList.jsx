@@ -10,6 +10,8 @@ const QuestionList = ({ product }) => {
   // variables
   const { id } = product;
 
+  console.log(questList);
+
   // state
   const [qList, setQList] = useState([]);
   const [filtList, setFiltList] = useState([]);
@@ -18,7 +20,7 @@ const QuestionList = ({ product }) => {
   // on load
   useEffect(() => {
     axios
-      .get(`/qa/questions?product_id=${id}`, config)
+      .get(`/qa/questions?product_id=${id}&count=100`, config)
       .then((response) => {
         response.data.results.sort(
           (a, b) => b.question_helpfulness - a.question_helpfulness
