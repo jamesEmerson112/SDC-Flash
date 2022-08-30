@@ -16,7 +16,7 @@ const Ratings = ({rating, hover, setHover, selectRating}) => {
 
   const displayRating = (index) => {
     selectRating(index)
-    setOverallRating(overallRatings[rating.toString()])
+    setOverallRating(overallRatings[index.toString()])
   }
 
   const starRating = [...Array(5)].map((_, index) => {
