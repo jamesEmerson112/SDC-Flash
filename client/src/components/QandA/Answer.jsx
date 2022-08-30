@@ -41,9 +41,11 @@ const Answer = ({ answer, question_id }) => {
     <div className="qAndAAns">
       {modal ? (
         <div className="modalOverlay">
-          <img src={modal} className="modal" />
-          <div className="modalClose" onClick={imgZoom}>
-            X
+          <div className="modal">
+            <img src={modal} className="modalImg" />
+            <div className="modalClose" onClick={imgZoom}>
+              X
+            </div>
           </div>
         </div>
       ) : null}

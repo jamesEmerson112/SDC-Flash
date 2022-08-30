@@ -26,7 +26,6 @@ const StyleSelector = ({ styles }) => {
       </div>
     );
   });
-  console.log(styleList);
   return (
     <div className="item style-selector">
       <div>{styleList}</div>

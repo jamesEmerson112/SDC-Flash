@@ -6,7 +6,7 @@ import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 
 const App = () => {
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -14,7 +14,7 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[3]);
+        setProduct(response.data[1]);
       })
       .catch((err) => {
         console.log(err);
@@ -28,9 +28,9 @@ const App = () => {
           {product.id}: this is the product id that we can pass to each
           component
         </h1>
-        {/* <QuestionList product={product} />
-        <RRIndex id={product.id} /> */}
+        <QuestionList product={product} />
         <ProductOverview id={product.id} product={product} />
+        <RRIndex id={product.id} />
       </div>
     );
   } else {

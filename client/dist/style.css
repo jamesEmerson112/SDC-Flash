@@ -44,7 +44,7 @@ body {
 
 .modalOverlay {
   background-color: rgba(0, 0, 0, .8);
-  position: absolute;
+  position: fixed; /*absolute*/
   top: 0;
   left: 0;
   width: 100%;
@@ -52,19 +52,36 @@ body {
 }
 
 .modal {
-  position: absolute;
-  left: 25%;
-  top: 25%;
+  position: fixed; /*absolute*/
+  left: 50%; /*25%*/
+  top: 50%; /*25%*/
+  transform: translate(-50%, -50%); /*new*/
   max-width: 50%;
   max-width: 50%;
+}
+
+.modalImg {
+  max-width: 100%;
+  max-width: 100%;
+}
+
+.modalForm {
+  background-color: white;
+}
+
+.modalFormClose {
+  border: 1px solid black;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .modalClose {
   border: 1px solid white;
   color: white;
-  position: absolute;
-  top: 25%;
-  right: 25%;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 /* Q and A */
