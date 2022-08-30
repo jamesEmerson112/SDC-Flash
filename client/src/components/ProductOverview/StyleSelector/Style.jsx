@@ -20,7 +20,7 @@ const Style = ({ photos, click }) => {
         <img
           className="thumbnail"
           src={photo.photo.thumbnail_url}
-          width="75px"
+          width="85px"
         />
       </StyleParent>
     );
@@ -38,7 +38,7 @@ const StyleParent = styled.div`
   border-radius: 100%;
   padding: 5px;
   width: 19%;
-  height: 75px;
+  height: 80px;
   overflow: hidden;
   justify-content: center;
   align-items: center;

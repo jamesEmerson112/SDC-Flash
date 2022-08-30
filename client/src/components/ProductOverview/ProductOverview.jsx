@@ -11,6 +11,7 @@ const ProductOverview = ({ id, product }) => {
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
+  console.log(product);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -44,7 +45,12 @@ const ProductOverview = ({ id, product }) => {
       <div>
         <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
+          <ImageGallery
+            style={style}
+            mainPic={mainPic}
+            click={ChooseMainPic}
+            // style={{ backgroundImage: `url(${mainPic})` }}
+          />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart />

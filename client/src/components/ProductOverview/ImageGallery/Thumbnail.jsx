@@ -13,7 +13,7 @@ const Thumbnail = ({ photos, click }) => {
         key={i}
         className={selected === i ? "selected" : "not_selected"}
       >
-        <img className="thumbnail" src={photo.thumbnail_url} width="70px" />
+        <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
       </ThumbnailParent>
     );
   });
@@ -26,14 +26,12 @@ export default Thumbnail;
 const ThumbnailParent = styled.div`
   display: flex;
   box-sizing: border-box;
-  flex-direction: column;
   grid-column-start: 1;
   grid-row-start: 1;
-  box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  height: 75px;
+  min-height: 81px;
   justify-content: center;
   align-items: center;
 `;

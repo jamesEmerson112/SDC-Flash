@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Thumbnail from "./Thumbnail.jsx";
-import MainPic from "./MainPic.jsx";
 
 const ImageGallery = ({ style, mainPic, click }) => {
   // console.log(styles, "in image");
@@ -14,9 +13,7 @@ const ImageGallery = ({ style, mainPic, click }) => {
         <div className="thumbnails">
           <Thumbnail photos={photos} click={click} />
         </div>
-        <div className="main-pic">
-          <MainPic mainPic={mainPic} />
-        </div>
+        <img className="pic" src={mainPic} />
       </div>
     );
   }
