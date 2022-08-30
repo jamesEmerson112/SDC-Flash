@@ -4,12 +4,11 @@ import ReviewModal from "./Modal/ReviewModal.jsx";
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
-  const [meta, setMeta] = useState({})
-  console.log('REVIEWS: ', reviews)
+  const [meta, setMeta] = useState({});
+  console.log("REVIEWS: ", reviews);
 
   const [count, setCount] = useState(2);
   const [openModal, setOpenModal] = useState(false);
-
 
   const addMore = () => {
     setCount(count + 2);
@@ -26,7 +25,7 @@ const ReviewList = (props) => {
   useEffect(() => {
     if (props.reviews && props.meta) {
       setReviews(props.reviews);
-      setMeta(props.meta)
+      setMeta(props.meta);
     }
   }, [props.reviews, props.meta]);
 
@@ -34,10 +33,16 @@ const ReviewList = (props) => {
     <>
       <div>{map}</div>
       <div>
-        {reviews.length > 2 && count < reviews.length && (<button onClick={addMore}>More Reviews</button>)}
+        {reviews.length > 2 && count < reviews.length && (
+          <button onClick={addMore}>More Reviews</button>
+        )}
         <button onClick={() => setOpenModal(true)}>Add Review +</button>
       </div>
-      <ReviewModal meta={meta} open={openModal} close={() => setOpenModal(false)}/>
+      <ReviewModal
+        meta={meta}
+        open={openModal}
+        close={() => setOpenModal(false)}
+      />
     </>
   );
 };

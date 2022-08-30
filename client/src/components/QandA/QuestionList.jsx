@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../../../../env/config.js";
+import QuestionForm from "./QuestionForm.jsx";
 import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";
 import questList from "./qAndA.js";
 
 const QuestionList = ({ product }) => {
+  // variables
   const { id } = product;
 
   // state
   const [qList, setQList] = useState([]);
   const [filtList, setFiltList] = useState([]);
+  const [showQForm, setShowQForm] = useState(false);
 
   // on load
   useEffect(() => {
@@ -69,14 +72,23 @@ const QuestionList = ({ product }) => {
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
       {filtList.map((question) => (
-        <Question question={question} key={question.question_id} />
+        <Question
+          question={question}
+          product={product}
+          key={question.question_id}
+        />
       ))}
       <div>
         {filtList.length < questList.length ? (
           <button onClick={expandQs}>More Answered Questions</button>
         ) : null}
-        <button>Add a Question +</button>
+        <button onClick={() => setShowQForm(!showQForm)}>
+          Add a Question +
+        </button>
       </div>
+      {showQForm ? (
+        <QuestionForm product={product} setShowQForm={setShowQForm} />
+      ) : null}
     </div>
   );
 };
