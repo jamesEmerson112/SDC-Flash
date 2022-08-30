@@ -43,7 +43,7 @@ body {
 }
 
 .modalOverlay {
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 0;
   left: 0;
@@ -71,7 +71,7 @@ body {
 
 .product-overview {
   display: grid;
-  grid-template-columns: [first] 65% [second] 35% ;
+  grid-template-columns: [first] 65% [second] 35%;
   grid-template-rows: [first-row] 225px [second-row] 150px [third-row] 150px;
   box-sizing: border-box;
 }
@@ -87,85 +87,84 @@ body {
 .main-pic {
   /* display:flex; */
   flex-direction: column;
-  max-width:100%;
+  max-width: 100%;
   max-height: 100%;
   justify-content: center;
   justify-items: center;
 }
 
-.image-gallery{
+.image-gallery {
   display: flex;
-  grid-column-start: 1 ;
+  grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: -1;
   justify-content: center;
-
 }
 
 .thumbnails {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  grid-column-start: 1 ;
+  grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 3;
   margin-right: 1vh;
   overflow: scroll;
 }
 
-
 .thumbnail-parent {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  grid-column-start: 1 ;
+  grid-column-start: 1;
   grid-row-start: 1;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  height:75px;
+  height: 75px;
   justify-content: center;
   align-items: center;
 }
 
 .thumbnail {
   box-sizing: border-box;
-  max-height:100% ;
+  max-height: 100%;
   max-width: 100%;
   justify-content: center;
 }
 
-.product-info{
-  grid-column-start:2 ;
+.product-info {
+  grid-column-start: 2;
   grid-row-start: 1;
 }
 
-.style-selector{
+.style-selector {
   grid-column-start: 2;
   grid-row-start: 2;
 }
 
 .styles {
-  display:flex;
+  display: flex;
   flex-direction: row;
   margin-top: 10px;
 }
 
-.selected {
-  background-color: grey;
-}
-.not-selected {
-  background-color: white;
-}
-
-.add-to-cart{
+.add-to-cart {
   grid-column-start: 2;
   grid-row-start: 3;
 }
 
 .title {
   box-sizing: border-box;
-  display:flex;
+  display: flex;
   justify-content: center;
+}
+
+/* Star */
+.star {
+  width: 18px;
+  display: flex;
+  color: #ffc107;
+  margin-right: 2px;
 }
