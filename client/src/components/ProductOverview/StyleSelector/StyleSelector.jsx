@@ -13,26 +13,40 @@ const StyleSelector = ({ styles, choseStyle }) => {
     stylePhotos.push(style);
   }
   //create a variable to group them into four
-  let groupedStylePhotos = [];
-  let groupOfFour = Math.floor(stylePhotos.length / 4);
-  for (let i = 0; i < groupOfFour; i++) {
-    groupedStylePhotos.push(stylePhotos.splice(0, 4));
-  }
-  // if there are any photos not grouped in four add it to the grouped photos
-  if (stylePhotos.length > 0) {
-    groupedStylePhotos.push(stylePhotos.splice(0, stylePhotos.length));
-  }
-  // create broken down components each holding four thumbnails
-  let styleList = groupedStylePhotos.map((photos, i) => {
-    return (
-      <div className="styles" key={i}>
-        <Style click={choseStyle} photos={photos} />
-      </div>
-    );
-  });
+  // let groupedStylePhotos = [];
+  // let groupOfFour = Math.floor(stylePhotos.length / 4);
+  // for (let i = 0; i < groupOfFour; i++) {
+  //   groupedStylePhotos.push(stylePhotos.splice(0, 4));
+  // }
+  // // if there are any photos not grouped in four add it to the grouped photos
+  // if (stylePhotos.length > 0) {
+  //   groupedStylePhotos.push(stylePhotos.splice(0, stylePhotos.length));
+  // }
+  // // create broken down components each holding four thumbnails
+  // let styleList = groupedStylePhotos.map((photos, i) => {
+  //   return (
+  //     <div className="styles" key={i}>
+  //       <Style click={choseStyle} photos={photos} />
+  //     </div>
+  //   );
+  // });
+  console.log(stylePhotos);
+  // let styleList = stylePhotos.map((photos, i) => {
+  //   return (
+  //     <div className="styles" key={i}>
+  //       <Style click={choseStyle} photos={photos} />
+  //     </div>
+  //   );
+  // });
+
+  //console.log(styleList);
+
+  // create a counter
+  // iterate over the style list
+
   return (
     <div className="item style-selector">
-      <div>{styleList}</div>
+      <Style photos={stylePhotos} click={choseStyle} />
     </div>
   );
 };
