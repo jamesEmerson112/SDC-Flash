@@ -29,24 +29,21 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
       };
       axios
         .post(`/qa/questions/${question_id}/answers`, data, config)
-        .then(() => {
-          // axios
-          //   .get(`/qa/questions/${question_id}/answers?count=100`, config)
-          //   .then((res) => {
-          //     const ques = questList.find((q) => q.question_id === question_id);
-          //     console.log(ques);
-          //     for (const ans of res.data.results) {
-          //       if (!(ans.answer_id.toString() in ques.answers)) {
-          //         ans.id = ans.answer_id;
-          //         ans.helpf_click = false;
-          //         delete ans.id;
-          //         ques.answers[ans.answer_id] = ans;
-          //       }
-          //     }
-          //     setAnsState(ques.answers);
+        .then(() =>
+          axios.get(`/qa/questions/${question_id}/answers?count=100`, config)
+        )
+        .then((res) => {
+          const ques = questList.find((q) => q.question_id === question_id);
+          for (const ans of res.data.results) {
+            if (!(ans.answer_id.toString() in ques.answers)) {
+              ans.id = ans.answer_id;
+              ans.helpf_click = false;
+              delete ans.answer_id;
+              ques.answers[ans.id] = ans;
+            }
+          }
+          setAnsState(ques.answers);
           setShowAForm(false);
-          // })
-          // .catch((err) => err);
         })
         .catch((err) => console.log(err));
     }
