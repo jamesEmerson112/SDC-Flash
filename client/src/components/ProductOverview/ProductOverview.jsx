@@ -11,7 +11,6 @@ const ProductOverview = ({ id, product }) => {
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
-  console.log(product);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {

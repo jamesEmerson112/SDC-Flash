@@ -5,7 +5,6 @@ import ReviewModal from "./Modal/ReviewModal.jsx";
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
-  console.log("REVIEWS: ", reviews);
 
   const [count, setCount] = useState(2);
   const [openModal, setOpenModal] = useState(false);

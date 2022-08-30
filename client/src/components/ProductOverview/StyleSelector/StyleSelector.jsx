@@ -30,7 +30,6 @@ const StyleSelector = ({ styles, choseStyle }) => {
   //     </div>
   //   );
   // });
-  console.log(stylePhotos);
   // let styleList = stylePhotos.map((photos, i) => {
   //   return (
   //     <div className="styles" key={i}>

@@ -28,8 +28,8 @@ const App = () => {
           {product.id}: this is the product id that we can pass to each
           component
         </h1>
-        <ProductOverview id={product.id} product={product} />
         <QuestionList product={product} />
+        <ProductOverview id={product.id} product={product} />
         <RRIndex id={product.id} />
       </div>
     );
