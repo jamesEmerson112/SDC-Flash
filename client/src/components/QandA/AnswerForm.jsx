@@ -15,7 +15,6 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
   // methods
   const chkEmailFormat = (event) => {
     emailValid = /\S+@\S+\.\S+/.test(event.target.value);
-    console.log(emailValid);
   };
 
   const postAnswer = (event) => {
@@ -30,21 +29,10 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
       };
       axios
         .post(`/qa/questions/${question_id}/answers`, data, config)
-        .then(() => {
-          setShowAForm(false);
-          return axios.get(`qa/questions/${question_id}/answers`, config);
-        })
         .then((response) => {
-          const ques = questList.find((q) => q.question_id === question_id);
-          for (const ans of response.data.results) {
-            if (!(ans.answer_id in ques.answers)) {
-              ans.helpf_click = false;
-              question.answers[ans.answer_id] = ans;
-            }
-          }
-          console.log(questList);
-
-          setAnsState(ques.answers);
+          console.log(response);
+          // need to update state with get request
+          setShowAForm(false);
         })
         .catch((err) => console.log(err));
     }

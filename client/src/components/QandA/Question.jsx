@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AnswerList from "./AnswerList.jsx";
 import AnswerForm from "./AnswerForm.jsx";
@@ -23,8 +23,6 @@ const Question = ({ question, product }) => {
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
   const [showAForm, setShowAForm] = useState(false);
   const [ansState, setAnsState] = useState(answers);
-  console.log(answers);
-  console.log(ansState);
 
   // methods
   const incHelp = () => {
