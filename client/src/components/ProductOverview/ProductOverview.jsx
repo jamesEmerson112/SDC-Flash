@@ -45,12 +45,7 @@ const ProductOverview = ({ id, product }) => {
       <div>
         <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery
-            style={style}
-            mainPic={mainPic}
-            click={ChooseMainPic}
-            // style={{ backgroundImage: `url(${mainPic})` }}
-          />
+          <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart />

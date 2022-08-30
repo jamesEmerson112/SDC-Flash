@@ -14,7 +14,7 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[2]);
+        setProduct(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -29,8 +29,8 @@ const App = () => {
           component
         </h1>
         <ProductOverview id={product.id} product={product} />
-        <QuestionList product={product} />
-        <RRIndex id={product.id} />
+        {/* <QuestionList product={product} />
+        <RRIndex id={product.id} /> */}
       </div>
     );
   } else {
