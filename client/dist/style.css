@@ -72,7 +72,7 @@ body {
 .product-overview {
   display: grid;
   grid-template-columns: [first] 65% [second] 35% ;
-  grid-template-rows: [first-row] 200px [second-row] 175px [third-row] 150px;
+  grid-template-rows: [first-row] 180px [second-row] 240px [third-row] 150px;
   box-sizing: border-box;
 }
 
@@ -114,20 +114,6 @@ body {
 }
 
 
-.thumbnail-parent {
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  grid-column-start: 1 ;
-  grid-row-start: 1;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  height:75px;
-  justify-content: center;
-  align-items: center;
-}
 
 .thumbnail {
   box-sizing: border-box;
@@ -151,7 +137,7 @@ body {
   margin-top: 10px;
   flex-wrap: wrap;
   margin: 15px;
-
+  align-items: center;
 }
 
 .styles {

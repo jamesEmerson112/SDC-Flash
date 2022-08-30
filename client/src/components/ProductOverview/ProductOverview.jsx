@@ -9,23 +9,30 @@ import axios from "axios";
 const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
+  const [mainPic, setMainPic] = useState({});
+  const [indexMainPic, setIndexMainPic] = useState(0);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
-        console.log(styles[i], "line 16");
         setStyle(styles[i]);
+        setMainPic(styles[i].photos[indexMainPic].url);
       }
     }
+  };
+
+  const ChooseMainPic = (url, index) => {
+    setMainPic(url);
+    setIndexMainPic(index);
   };
 
   useEffect(() => {
     axios
       .get(`/products/${id}/styles`, config)
       .then((response) => {
-        console.log(response.data.results);
         setStyles(response.data.results);
         setStyle(response.data.results[0]);
+        setMainPic(response.data.results[0].photos[0].url);
       })
       .catch((err) => {
         console.log(err);
@@ -37,7 +44,7 @@ const ProductOverview = ({ id, product }) => {
       <div>
         <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery style={style} />
+          <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart />

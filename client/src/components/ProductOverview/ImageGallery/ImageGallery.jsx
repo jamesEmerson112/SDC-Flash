@@ -3,16 +3,16 @@ import styled from "styled-components";
 import Thumbnail from "./Thumbnail.jsx";
 import MainPic from "./MainPic.jsx";
 
-const ImageGallery = ({ style }) => {
+const ImageGallery = ({ style, mainPic, click }) => {
   // console.log(styles, "in image");
+
   if (style) {
     const photos = style.photos;
-    const mainPic = photos[0].url;
 
     return (
       <div className="image-gallery">
         <div className="thumbnails">
-          <Thumbnail photos={photos} />
+          <Thumbnail photos={photos} click={click} />
         </div>
         <div className="main-pic">
           <MainPic mainPic={mainPic} />
