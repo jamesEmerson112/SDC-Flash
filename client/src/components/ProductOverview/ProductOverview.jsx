@@ -7,27 +7,52 @@ import config from "../../../../env/config.js";
 import axios from "axios";
 
 const ProductOverview = ({ id, product }) => {
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState([]);
+  const [style, setStyle] = useState({});
+  const [mainPic, setMainPic] = useState({});
+  const [indexMainPic, setIndexMainPic] = useState(0);
+  console.log(product);
+
+  const choseStyle = (styleId) => {
+    for (let i = 0; i < styles.length; i++) {
+      if (styles[i].style_id === styleId) {
+        setStyle(styles[i]);
+        setMainPic(styles[i].photos[indexMainPic].url);
+      }
+    }
+  };
+
+  const ChooseMainPic = (url, index) => {
+    setMainPic(url);
+    setIndexMainPic(index);
+  };
 
   useEffect(() => {
     axios
       .get(`/products/${id}/styles`, config)
       .then((response) => {
         setStyles(response.data.results);
+        setStyle(response.data.results[0]);
+        setMainPic(response.data.results[0].photos[0].url);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
 
-  if (styles) {
+  if (styles.length > 0) {
     return (
       <div>
         <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery styles={styles} />
-          <ProductInfo product={product} />
-          <StyleSelector styles={styles} />
+          <ImageGallery
+            style={style}
+            mainPic={mainPic}
+            click={ChooseMainPic}
+            // style={{ backgroundImage: `url(${mainPic})` }}
+          />
+          <ProductInfo product={product} stylePrice={style.original_price} />
+          <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart />
         </div>
       </div>

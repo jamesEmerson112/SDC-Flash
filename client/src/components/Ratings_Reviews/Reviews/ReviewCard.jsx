@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Stars from './Stars.jsx'
 import { parseISO } from "date-fns";
+import { FaStar, FaCheck } from 'react-icons/fa';
 import styled from "styled-components";
 
 const ReviewCard = ({ review }) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
+  const [seeMore, setSeeMore] = useState(true)
 
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
@@ -22,20 +25,22 @@ const ReviewCard = ({ review }) => {
   }
 
   const formatBody = (body) => {
-    if (body.length > 250) {
-      var showMore = false;
-      return (
-        <>
-          {!showMore && <p>Body: {body.slice(0, 251) + '...'}</p>}
-          {!showMore && <p onClick={() => showMore=true}>Show More</p>}
-          {showMore && <p>{body}</p>}
-        </>
-      )
-    } else {return <p>Body: {body}</p>}
+    if (seeMore === true) {
+      if (body.length > 251) {
+        return body.slice(0, 251) + '...'
+      }
+    } else return body
+    return body
+  }
+
+  const seeMoreBtn = () => {
+    setSeeMore(false)
   }
 
   const images = review.photos.map((photo) => {
-    return photo.url
+    return (
+      <img src={photo.url} key={photo.id} className="ansPhotos"/>
+    )
   })
 
   const helpful = () => {
@@ -45,15 +50,16 @@ const ReviewCard = ({ review }) => {
   return (
     <ReviewCardDiv>
       <div>
-        <h3>Rating: {review.rating}</h3>
+        <Stars rating={review.rating}/>
         <p>{review.reviewer_name}, {formatDate(review.date)}</p>
       </div>
       <p>Summary: {formatSummary(review.summary)}</p>
-      <div>{formatBody(review.body)}</div>
+      <p>Body: {formatBody(review.body)}</p>
+      {review.body.length > 251 && seeMore && <p onClick={seeMoreBtn}>See More</p>}
       <div>{images}</div>
-      <p>{review.recommend && "I recommend this product"}</p>
+      {review.recommend && <p><FaCheck /> I recommend this product</p>}
       <p>{review.response !== null && review.response}</p>
-      <p>Helpful? <span onClick={helpful}>Yes </span>{helpfullness}</p>
+      <p>Helpful? <span onClick={helpful}>Yes </span>{`(${helpfullness}) | `}<span>Report</span></p>
     </ReviewCardDiv>
   );
 };

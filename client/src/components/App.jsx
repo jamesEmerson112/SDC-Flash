@@ -14,7 +14,7 @@ const App = () => {
     axios
       .get("/products", config)
       .then((response) => {
-        setProduct(response.data[1]);
+        setProduct(response.data[2]);
       })
       .catch((err) => {
         console.log(err);
@@ -28,8 +28,8 @@ const App = () => {
           {product.id}: this is the product id that we can pass to each
           component
         </h1>
-        <QuestionList product={product} />
         <ProductOverview id={product.id} product={product} />
+        <QuestionList product={product} />
         <RRIndex id={product.id} />
       </div>
     );
