@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import config from "../../../../env/config.js";
+import questList from "./qAndA.js";
 
-const AnswerForm = ({ question, product, setShowAForm }) => {
+const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
   // variable
   const { question_id, question_body } = question;
   let emailValid = false;
@@ -27,13 +28,23 @@ const AnswerForm = ({ question, product, setShowAForm }) => {
         email: event.target.elements.email.value,
         photos: [],
       };
-      console.log(data);
       axios
         .post(`/qa/questions/${question_id}/answers`, data, config)
-        .then((response) => {
-          console.log(response);
-          // should render new answers here: set state
+        .then(() => {
           setShowAForm(false);
+          return axios.get(`qa/questions/${question_id}/answers`, config);
+        })
+        .then((response) => {
+          const ques = questList.find((q) => q.question_id === question_id);
+          for (const ans of response.data.results) {
+            if (!(ans.answer_id in ques.answers)) {
+              ans.helpf_click = false;
+              question.answers[ans.answer_id] = ans;
+            }
+          }
+          console.log(questList);
+
+          setAnsState(ques.answers);
         })
         .catch((err) => console.log(err));
     }

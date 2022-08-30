@@ -22,6 +22,9 @@ const Question = ({ question, product }) => {
   // state
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
   const [showAForm, setShowAForm] = useState(false);
+  const [ansState, setAnsState] = useState(answers);
+  console.log(answers);
+  console.log(ansState);
 
   // methods
   const incHelp = () => {
@@ -54,13 +57,14 @@ const Question = ({ question, product }) => {
         <div>
           <b>A:</b>
         </div>
-        <AnswerList answers={answers} question_id={question_id} />
+        <AnswerList answers={ansState} question_id={question_id} />
       </div>
       {showAForm ? (
         <AnswerForm
           question={question}
           product={product}
           setShowAForm={setShowAForm}
+          setAnsState={setAnsState}
         />
       ) : null}
     </div>
