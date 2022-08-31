@@ -89,7 +89,7 @@ body {
 .product-overview {
   display: grid;
   grid-template-columns: [first] 65% [second] 35% ;
-  grid-template-rows: [first-row] 180px [second-row] 240px [third-row] 150px;
+  grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 150px;
   box-sizing: border-box;
 }
 
@@ -101,6 +101,7 @@ body {
   align-items: center;
   z-index: 0;
   border: 1px solid black;
+  position: relative;
 }
 
 
@@ -112,6 +113,7 @@ body {
   /* justify-content: center;  This would center all components of image gallery */
   margin-left: 125px;
   margin-right: 10px;
+  max-height: 100%;
 
 }
 
@@ -129,9 +131,8 @@ body {
   grid-row-end: 3;
   overflow: scroll;
   z-index: 2;
+  max-height: 570px;
   position:absolute;
-
-
 }
 
 
@@ -161,6 +162,7 @@ body {
   flex-wrap: wrap;
   margin: 15px;
   align-items: center;
+  max-height: 100%;
 }
 
 .styles {

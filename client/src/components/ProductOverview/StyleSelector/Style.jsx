@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
-  // let height = Math.ceil(photos.length / 4);
-  // height = 100 / height + "%";
-  // console.log(typeof height);
   return photos.map((photo, i) => {
     return (
-      <StyleParent
-        onClick={(e) => {
-          click(photo.style_id);
-          setSelected(i);
-        }}
-        key={i}
-        className={selected === i ? "selected" : "not_selected"}
-        // height={height}
-      >
-        <img
-          className="thumbnail"
-          src={photo.photo.thumbnail_url}
-          width="85px"
-        />
-      </StyleParent>
+      <Container key={i}>
+        <StyleName>{photo.name}</StyleName>
+        <StyleParent
+          onClick={(e) => {
+            click(photo.style_id);
+            setSelected(i);
+          }}
+          className={selected === i ? "selected" : "not_selected"}
+        >
+          <Check>{selected === i ? <FaCheck /> : ""}</Check>
+          <img
+            className="thumbnail"
+            src={photo.photo.thumbnail_url}
+            width="85px"
+          />
+        </StyleParent>
+      </Container>
     );
   });
 };
@@ -37,11 +37,28 @@ const StyleParent = styled.div`
   border: 1px solid black;
   border-radius: 100%;
   padding: 5px;
-  width: 19%;
+  max-width: 100%;
   height: 80px;
   overflow: hidden;
   justify-content: center;
   align-items: center;
   margin-right: 15px;
   margin-bottom: 9px;
+  z-index: 1;
+`;
+
+const Container = styled.div`
+  width: 25%;
+  max-height: fit-content;
+`;
+
+const StyleName = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-right: 15px;
+`;
+
+const Check = styled.span`
+  font-size: 40px;
+  position: absolute;
 `;
