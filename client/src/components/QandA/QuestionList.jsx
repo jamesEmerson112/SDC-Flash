@@ -18,7 +18,7 @@ const QuestionList = ({ product }) => {
   // on load
   useEffect(() => {
     axios
-      .get(`/qa/questions?product_id=${id}`, config)
+      .get(`/qa/questions?product_id=${id}&count=100`, config)
       .then((response) => {
         response.data.results.sort(
           (a, b) => b.question_helpfulness - a.question_helpfulness
@@ -68,16 +68,18 @@ const QuestionList = ({ product }) => {
   };
 
   return (
-    <div className="qList">
+    <div>
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
-      {filtList.map((question) => (
-        <Question
-          question={question}
-          product={product}
-          key={question.question_id}
-        />
-      ))}
+      <div className="qList">
+        {filtList.map((question) => (
+          <Question
+            question={question}
+            product={product}
+            key={question.question_id}
+          />
+        ))}
+      </div>
       <div>
         {filtList.length < questList.length ? (
           <button onClick={expandQs}>More Answered Questions</button>

@@ -3,10 +3,22 @@ body {
 }
 
 /* Q and A */
-/* .qList {
-  margin: auto;
-  max-width: 800px;
+/* .clickable {
+color: rgb(28, 194, 9);
+text-shadow: 1px 1px rgb(222, 40, 185);
 } */
+
+.qList {
+  max-height: 80vh;
+  overflow: auto;
+  width: 80vw;
+}
+
+.ansList {
+  max-height: 50vh;
+  overflow: auto;
+  width: 70vw;
+}
 
 .qAndASearchBar {
   width: 800px;
