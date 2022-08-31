@@ -101,6 +101,7 @@ body {
   align-items: center;
   z-index: 0;
   border: 1px solid black;
+  position: relative;
 }
 
 
@@ -112,6 +113,7 @@ body {
   /* justify-content: center;  This would center all components of image gallery */
   margin-left: 125px;
   margin-right: 10px;
+  max-height: 100%;
 
 }
 
@@ -129,10 +131,8 @@ body {
   grid-row-end: 3;
   overflow: scroll;
   z-index: 2;
+  max-height: 570px;
   position:absolute;
-
-
-
 }
 
 
