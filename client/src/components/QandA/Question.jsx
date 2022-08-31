@@ -37,8 +37,6 @@ const Question = ({ question, product }) => {
     }
   };
 
-  console.log(ansState);
-
   return (
     <div>
       <div className="question">
