@@ -50,6 +50,7 @@ const StyleParent = styled.div`
 const Container = styled.div`
   width: 25%;
   max-height: fit-content;
+  algin-items: space-between;
 `;
 
 const StyleName = styled.div`
