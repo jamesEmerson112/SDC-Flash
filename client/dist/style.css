@@ -184,6 +184,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
 }
 
 .add-to-cart {
+  display: flex;
   grid-column-start: 2;
   grid-row-start: 3;
 }

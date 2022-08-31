@@ -6,7 +6,7 @@ import AddToCart from "./AddToCart/AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
 
-const ProductOverview = ({ id, product }) => {
+const ProductOverview = ({ id, product, addItemsToCart }) => {
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
@@ -47,7 +47,7 @@ const ProductOverview = ({ id, product }) => {
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
-          <AddToCart style={style} />
+          <AddToCart style={style} addItemsToCart={addItemsToCart} />
         </div>
       </div>
     );

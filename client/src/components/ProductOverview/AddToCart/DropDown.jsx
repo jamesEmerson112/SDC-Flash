@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 
 const DropDown = ({ label, options, onChange }) => {
   return (
-    <select onChange={onChange} defaultValue={label}>
+    <Select onChange={onChange} defaultValue={label}>
       <option value={label} disabled hidden>
         {label}
       </option>
@@ -12,8 +13,10 @@ const DropDown = ({ label, options, onChange }) => {
           {option.value}
         </option>
       ))}
-    </select>
+    </Select>
   );
 };
 
 export default DropDown;
+
+const Select = styled.select``;
