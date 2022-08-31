@@ -23,7 +23,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
         body: event.target.elements.answer.value,
         name: event.target.elements.nickname.value,
         email: event.target.elements.email.value,
-        photos: photos,
+        photos: photos.slice(0, 5),
       };
       axios
         .post(`/qa/questions/${question_id}/answers`, data, config)
