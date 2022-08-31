@@ -19,6 +19,7 @@ const Answer = ({ answer, question_id }) => {
   // state
   const [a_helpf, setHelpfulness] = useState(helpfulness);
   const [modal, setModal] = useState(false);
+  const [reportSt, setReportSt] = useState(false);
 
   // methods
   const incHelp = () => {
@@ -35,6 +36,13 @@ const Answer = ({ answer, question_id }) => {
 
   const imgZoom = (event) => {
     setModal(event.target.src);
+  };
+
+  const reportAns = () => {
+    axios
+      .put(`qa/answers/${id}/report`, {}, config)
+      .then(setReportSt(true))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -68,7 +76,7 @@ const Answer = ({ answer, question_id }) => {
         {", " + hrDt + " | Helpful? "}
         {answ.helpf_click ? " Yes " : <u onClick={incHelp}>Yes</u>}
         {" (" + a_helpf + ") | "}
-        <u>Report</u>
+        {reportSt ? " Reported " : <u onClick={reportAns}>Report</u>}
       </small>
     </div>
   );

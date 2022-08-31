@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { FaStar } from 'react-icons/fa';
 import styled from "styled-components";
 
-const Ratings = ({rating, hover, setHover, selectRating}) => {
+const Ratings = ({rating, hover, setHover, setRating, missing}) => {
 
   const [overallRating, setOverallRating] = useState(null)
 
@@ -15,7 +15,7 @@ const Ratings = ({rating, hover, setHover, selectRating}) => {
   }
 
   const displayRating = (index) => {
-    selectRating(index)
+    setRating(index)
     setOverallRating(overallRatings[index.toString()])
   }
 
@@ -34,6 +34,7 @@ const Ratings = ({rating, hover, setHover, selectRating}) => {
     <div>
       {starRating}
       <label>{overallRating}</label>
+      {missing && <Missing>* Required</Missing>}
     </div>
   );
 }
@@ -42,4 +43,8 @@ export default Ratings;
 
 const HideRadio = styled.input`
 display: none;
+`;
+
+const Missing = styled.span`
+color: red;
 `;

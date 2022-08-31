@@ -3,35 +3,44 @@ import axios from "axios";
 import styled from "styled-components";
 import config from "../../../../env/config.js";
 import questList from "./qAndA.js";
+import Upload from "../Ratings_Reviews/Reviews/Modal/Upload.jsx";
 
 const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
   // variable
   const { question_id, question_body } = question;
-  let emailValid = false;
 
   // state
   const [emailWarn, setEmailWarn] = useState(false);
+  const [photos, setPhotos] = useState([]);
 
   // methods
-  const chkEmailFormat = (event) => {
-    emailValid = /\S+@\S+\.\S+/.test(event.target.value);
-  };
-
   const postAnswer = (event) => {
     event.preventDefault();
+    const emailValid = /\S+@\S+\.\S+/.test(event.target.elements.email.value);
     setEmailWarn(!emailValid);
     if (emailValid) {
       const data = {
         body: event.target.elements.answer.value,
         name: event.target.elements.nickname.value,
         email: event.target.elements.email.value,
-        photos: [],
+        photos: photos.slice(0, 5),
       };
       axios
         .post(`/qa/questions/${question_id}/answers`, data, config)
-        .then((response) => {
-          console.log(response);
-          // need to update state with get request
+        .then(() =>
+          axios.get(`/qa/questions/${question_id}/answers?count=100`, config)
+        )
+        .then((res) => {
+          const ques = questList.find((q) => q.question_id === question_id);
+          for (const ans of res.data.results) {
+            if (!(ans.answer_id.toString() in ques.answers)) {
+              ans.id = ans.answer_id;
+              ans.helpf_click = false;
+              delete ans.answer_id;
+              ques.answers[ans.id] = ans;
+            }
+          }
+          setAnsState(ques.answers);
           setShowAForm(false);
         })
         .catch((err) => console.log(err));
@@ -79,13 +88,12 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
             name="email"
             placeholder="Example: jack@email.com"
             maxLength="60"
-            onChange={chkEmailFormat}
             required
           />
           <br />
           <small>For authentication reasons, you will not be emailed</small>
           <br />
-          <button>Upload your photos</button>
+          <Upload upload={setPhotos} />
           <br />
           <input type="submit" value="Submit Answer" />
         </form>
