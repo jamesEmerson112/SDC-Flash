@@ -10,8 +10,6 @@ const QuestionList = ({ product }) => {
   // variables
   const { id } = product;
 
-  console.log(questList);
-
   // state
   const [qList, setQList] = useState([]);
   const [filtList, setFiltList] = useState([]);

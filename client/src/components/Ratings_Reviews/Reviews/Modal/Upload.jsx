@@ -1,24 +1,29 @@
-import React from 'react';
+import React from "react";
 
 const Upload = (props) => {
+  var photoArray = [];
 
-  var photoArray = []
+  const upload = (event) => {
+    event.preventDefault();
+    let widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dyzzx6rsu",
+        uploadPreset: "x24l2ww8",
+      },
 
-  const upload = () => {
-    let widget = window.cloudinary.createUploadWidget({
-      cloudName: 'dyzzx6rsu',
-      uploadPreset: 'x24l2ww8'},
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          photoArray.push(result.info.url);
+          console.log(photoArray);
+          props.upload(photoArray);
+        }
+      }
+    );
 
-    (error, result) => {
-      if (!error && result && result.event === 'success') {
-        console.log(result.info.url)
-        photoArray.push(result.info.url)
-        props.upload(photoArray)
-      }})
-    widget.open()
-  }
+    widget.open();
+  };
 
-  return <button onClick={upload}>Open</button>
-}
+  return <button onClick={upload}>Open</button>;
+};
 
 export default Upload;
