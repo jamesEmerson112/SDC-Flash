@@ -139,7 +139,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 3;
-  overflow: scroll;
+  overflow: auto;
   z-index: 2;
   max-height: 570px;
   position: absolute;
