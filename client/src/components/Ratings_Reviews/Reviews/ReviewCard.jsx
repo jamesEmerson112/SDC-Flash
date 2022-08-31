@@ -7,6 +7,7 @@ import styled from "styled-components";
 const ReviewCard = ({ review }) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
   const [seeMore, setSeeMore] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
@@ -17,13 +18,6 @@ const ReviewCard = ({ review }) => {
     return date;
   };
 
-  const formatSummary = (summary) => {
-    if (summary.length > 60) {
-      summary = summary.slice(0, 61) + '...'
-    }
-    return summary
-  }
-
   const formatBody = (body) => {
     if (seeMore === true) {
       if (body.length > 251) {
@@ -33,13 +27,9 @@ const ReviewCard = ({ review }) => {
     return body
   }
 
-  const seeMoreBtn = () => {
-    setSeeMore(false)
-  }
-
   const images = review.photos.map((photo) => {
     return (
-      <img src={photo.url} key={photo.id} className="ansPhotos"/>
+      <img src={photo.url} key={photo.id} onClick={(e) => setModal(e.target.src)} className="ansPhotos"/>
     )
   })
 
@@ -49,13 +39,21 @@ const ReviewCard = ({ review }) => {
 
   return (
     <ReviewCardDiv>
+      {modal ? (
+        <div className="modalOverlay">
+          <div className="modal">
+            <img src={modal} className="modalImg" />
+            <div className="modalClose" onClick={() => setModal(false)}>X</div>
+          </div>
+        </div>
+      ) : null}
       <div>
         <Stars rating={review.rating}/>
         <p>{review.reviewer_name}, {formatDate(review.date)}</p>
       </div>
-      <p>Summary: {formatSummary(review.summary)}</p>
+      <p>Summary: {review.summary}</p>
       <p>Body: {formatBody(review.body)}</p>
-      {review.body.length > 251 && seeMore && <p onClick={seeMoreBtn}>See More</p>}
+      {review.body.length > 251 && seeMore && <p onClick={() => setSeeMore(false)}>See More</p>}
       <div>{images}</div>
       {review.recommend && <p><FaCheck /> I recommend this product</p>}
       <p>{review.response !== null && review.response}</p>
