@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ProductInfo from "./ProductInfo/ProductInfo.jsx";
 import StyleSelector from "./StyleSelector/StyleSelector.jsx";
-import AddToCart from "./AddToCart.jsx";
+import AddToCart from "./AddToCart/AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
 
@@ -11,7 +11,6 @@ const ProductOverview = ({ id, product }) => {
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
-  console.log(product);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -48,7 +47,7 @@ const ProductOverview = ({ id, product }) => {
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
-          <AddToCart />
+          <AddToCart style={style} />
         </div>
       </div>
     );

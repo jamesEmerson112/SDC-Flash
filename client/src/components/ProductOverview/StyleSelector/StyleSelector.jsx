@@ -13,9 +13,6 @@ const StyleSelector = ({ styles, choseStyle }) => {
     style["photo"] = styles[i].photos[0];
     stylePhotos.push(style);
   }
-
-  console.log(styles);
-
   return (
     <div className="item style-selector">
       <Style photos={stylePhotos} click={choseStyle} />
