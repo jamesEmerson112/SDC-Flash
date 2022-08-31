@@ -4,26 +4,49 @@ import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
+  console.log(photos);
   return photos.map((photo, i) => {
-    return (
-      <Container key={i}>
-        <StyleName>{photo.name}</StyleName>
-        <StyleParent
-          onClick={(e) => {
-            click(photo.style_id);
-            setSelected(i);
-          }}
-          className={selected === i ? "selected" : "not_selected"}
-        >
-          <Check>{selected === i ? <FaCheck /> : ""}</Check>
-          <img
-            className="thumbnail"
-            src={photo.photo.thumbnail_url}
-            width="85px"
-          />
-        </StyleParent>
-      </Container>
-    );
+    if (photo.photo.thumbnail_url === null) {
+      return (
+        <Container key={i}>
+          <StyleName>{photo.name}</StyleName>
+          <StyleParent
+            onClick={(e) => {
+              click(photo.style_id);
+              setSelected(i);
+            }}
+            className={selected === i ? "selected" : "not_selected"}
+          >
+            <Check>{selected === i ? <FaCheck /> : ""}</Check>
+            <img
+              className="thumbnail"
+              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              width="85px"
+            />
+          </StyleParent>
+        </Container>
+      );
+    } else {
+      return (
+        <Container key={i}>
+          <StyleName>{photo.name}</StyleName>
+          <StyleParent
+            onClick={(e) => {
+              click(photo.style_id);
+              setSelected(i);
+            }}
+            className={selected === i ? "selected" : "not_selected"}
+          >
+            <Check>{selected === i ? <FaCheck /> : ""}</Check>
+            <img
+              className="thumbnail"
+              src={photo.photo.thumbnail_url}
+              width="85px"
+            />
+          </StyleParent>
+        </Container>
+      );
+    }
   });
 };
 

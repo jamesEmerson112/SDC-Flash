@@ -24,6 +24,7 @@ const AddToCart = ({ style }) => {
     for (let i = 0; i < styleSkus.length; i++) {
       let currentSku = styleSkus[i];
       if (currentSku.value === size) {
+        console.log(currentSku, "current sku");
         const N = currentSku.quantity;
         const arr = Array.from({ length: N }, (_, index) => index + 1);
         const quantities = [];

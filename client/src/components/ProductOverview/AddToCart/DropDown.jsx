@@ -1,9 +1,10 @@
 import React from "react";
 
 const DropDown = ({ label, options, onChange }) => {
+  console.log(options);
   return (
     <select onChange={onChange} defaultValue={label}>
-      <option value={label} disabled hidden>
+      <option value={label} disabled>
         {label}
       </option>
       >
