@@ -98,7 +98,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <br />
           <input type="submit" value="Submit Answer" />
         </form>
-        <div className="modalFormClose" onClick={() => setShowAForm(false)}>
+        <div className="modalClose" onClick={() => setShowAForm(false)}>
           X
         </div>
       </div>

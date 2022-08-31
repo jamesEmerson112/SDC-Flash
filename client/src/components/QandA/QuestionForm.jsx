@@ -102,7 +102,7 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <br />
           <input type="submit" value="Submit Question" />
         </form>
-        <div className="modalFormClose" onClick={() => setShowQForm(false)}>
+        <div className="modalClose" onClick={() => setShowQForm(false)}>
           X
         </div>
       </div>
