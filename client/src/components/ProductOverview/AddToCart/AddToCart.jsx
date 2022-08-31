@@ -2,12 +2,16 @@ import React, { useState } from "react";
 // import { Box } from "./styledComponents/styledComponents.jsx";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
+import _ from "underscore";
 
 const AddToCart = ({ style }) => {
   const [value, setValue] = useState("");
   const [quantities, setQuantities] = useState([]);
   const [quantity, setQuantity] = useState(0);
-  console.log(style);
+
+  let sizesAvailable = _.map(style.skus, (sku) => {
+    return sku.size;
+  });
 
   // obtain all of the sizes from the current style and add to an array
   const styleSkus = [];
@@ -24,7 +28,6 @@ const AddToCart = ({ style }) => {
     for (let i = 0; i < styleSkus.length; i++) {
       let currentSku = styleSkus[i];
       if (currentSku.value === size) {
-        console.log(currentSku, "current sku");
         const N = currentSku.quantity;
         const arr = Array.from({ length: N }, (_, index) => index + 1);
         const quantities = [];
@@ -43,10 +46,17 @@ const AddToCart = ({ style }) => {
   };
 
   const selectQuantity = (e) => {
-    console.log(e.target.value);
     setQuantity(e.target.value);
   };
-
+  // will handle if no sizes available for this style
+  if (sizesAvailable.length === 1 && sizesAvailable[0] === null) {
+    return (
+      <div>
+        <h3 className="item add-to-cart">Add To Cart</h3>
+        <div>Out Of Stock</div>
+      </div>
+    );
+  }
   return (
     <div>
       <h3 className="item add-to-cart">Add To Cart</h3>

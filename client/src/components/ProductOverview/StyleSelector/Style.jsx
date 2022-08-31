@@ -4,7 +4,6 @@ import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
-  console.log(photos);
   return photos.map((photo, i) => {
     if (photo.photo.thumbnail_url === null) {
       return (
