@@ -5,21 +5,54 @@ import Upload from './Upload.jsx'
 import styled from "styled-components";
 
 const ReviewModal = ({meta, open, close}) => {
-console.log(meta)
-
+  const [missingReq, setMissingReq] = useState(false)
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(null)
 
-  const [recc, setRecc] = useState(false)
+  const [recc, setRecc] = useState(null)
 
   const [characteristics, setCharacteristics] = useState({
-    Size: '',
-    Width: '',
-    Comfort: '',
-    Quality: '',
-    Length: '',
-    Fit: ''
+    Size: null,
+    Width: null,
+    Comfort: null,
+    Quality: null,
+    Length: null,
+    Fit: null
   })
+
+  const [size, setSize] = useState(false)
+  const [width, setWidth] = useState(false)
+  const [comfort, setComfort] = useState(false)
+  const [quality, setQuality] = useState(false)
+  const [length, setLength] = useState(false)
+  const [fit, setFit] = useState(false)
+
+  const selectCharacteristic = (char, value) => {
+    if (char === 'Size') {
+      setCharacteristics({...characteristics, Size: value})
+      setSize(true)
+
+    } else if (char === 'Width') {
+      setCharacteristics({...characteristics, Width: value})
+      setWidth(true)
+
+    } else if (char === 'Comfort') {
+      setCharacteristics({...characteristics, Comfort: value})
+      setComfort(true)
+
+    } else if (char === 'Quality') {
+      setCharacteristics({...characteristics, Quality: value})
+      setQuality(true)
+
+    } else if (char === 'Length') {
+      setCharacteristics({...characteristics, Length: value})
+      setLength(true)
+
+    } else if (char === 'Fit') {
+      setCharacteristics({...characteristics, Fit: value})
+      setFit(true)
+    }
+  }
 
   const [summary, setSummary] = useState('')
   const [summRemain, setSummRemain] = useState(60)
@@ -27,31 +60,9 @@ console.log(meta)
   const [bodyRemain, setBodyRemain] = useState(50)
 
   const [photos, setPhotos] = useState([])
-  console.log('THIS IS PHOTOS: ', photos)
 
   const [nickname, setNickname] = useState('')
   const [email, setEmail] = useState('')
-
-
-  const selectRating = (index) => {
-    setRating(index)
-  }
-
-  const selectCharacteristic = (char, value) => {
-    if (char === 'Size') {
-      setCharacteristics({...characteristics, Size: value})
-    } else if (char === 'Width') {
-      setCharacteristics({...characteristics, Width: value})
-    } else if (char === 'Comfort') {
-      setCharacteristics({...characteristics, Comfort: value})
-    } else if (char === 'Quality') {
-      setCharacteristics({...characteristics, Quality: value})
-    } else if (char === 'Length') {
-      setCharacteristics({...characteristics, Length: value})
-    } else if (char === 'Fit') {
-      setCharacteristics({...characteristics, Fit: value})
-    }
-  }
 
   const summaryText = (e) => {
     setSummary(e.target.value)
@@ -63,10 +74,6 @@ console.log(meta)
     setBodyRemain(50 - e.target.value.length)
   }
 
-  const uploadPhoto = (urls) => {
-    setPhotos(urls)
-  }
-
   const nicknameText = (e) => {
     setNickname(e.target.value)
   }
@@ -75,12 +82,57 @@ console.log(meta)
     setEmail(e.target.value)
   }
 
-  const submitReview = (e) => {
+  const checkForm = (e) => {
     e.preventDefault()
-    console.log('Rating value: ', rating)
-    console.log('Summary value: ', summary)
-    console.log('Body value: ', body)
-    console.log('Recc check: ', recc)
+    if (rating === 0 || recc === null || email.indexOf('@') < 0 || email.indexOf('.com') < 0) {
+      console.log('MISSING DEETS')
+      return setMissingReq(true)
+
+    } else if (size === true && characteristics.Size === null || width === true && characteristics.Width === null ||
+      comfort === true && characteristics.Comfort === null || quality === true && characteristics.Quality === null ||
+      length === true && characteristics.Length === null || fit === true && characteristics.Fit === null) {
+      console.log('MISSING DEETS')
+      return setMissingReq(true)
+
+    } else {
+      console.log('Rating value: ', rating)
+      console.log('Recc check: ', recc)
+      console.log('Characteristics values: ', characteristics)
+      console.log('CHARS: ', size, width, comfort, quality, length, fit)
+      console.log('Summary value: ', summary)
+      console.log('Body value: ', body)
+      console.log('Photos urls: ', photos)
+      console.log('Nickname value: ', nickname)
+      console.log('Email value: ', email)
+      postData()
+    }
+  }
+
+  const postData = () => {
+    const data = {}
+    console.log('INSIDE POST: ', data)
+    setMissingReq(false)
+    setRating(0)
+    setRecc(null)
+    setCharacteristics({
+      Size: null,
+      Width: null,
+      Comfort: null,
+      Quality: null,
+      Length: null,
+      Fit: null
+    })
+    setSize(false)
+    setWidth(false)
+    setComfort(false)
+    setQuality(false)
+    setLength(false)
+    setFit(false)
+    setSummary('')
+    setBody('')
+    setPhotos([])
+    setNickname('')
+    setEmail('')
     close()
   }
 
@@ -89,40 +141,42 @@ console.log(meta)
   return (
     <Overlay>
       <ModalForm>
+        {missingReq && <Missing>Areas marked with * are potentially filled out incorrectly or need to be filled out!</Missing>}
         <button onClick={close}>X</button>
-        <form onSubmit={submitReview}>
-          <Ratings rating={rating} hover={hover} setHover={setHover} selectRating={selectRating}/>
+        <form onSubmit={checkForm}>
+          <Ratings rating={rating} hover={hover} setHover={setHover} setRating={setRating} missing={missingReq}/>
 
-          <label>Recommend:
+
+          <label>Recommend: {missingReq && <Missing>* Required</Missing>}
             <label><input type='radio' name='recc' value='Yes' onChange={() => setRecc(true)}/>Yes:</label>
             <label><input type='radio' name='recc' value='No' onChange={() => setRecc(false)}/>No:</label>
           </label>
 
-          <Sizes meta={meta} setChar={selectCharacteristic}/>
+          <Sizes meta={meta} setChar={selectCharacteristic} missing={missingReq}/>
 
           <label>Summary:
-            <input type='text' placeholder='Example: Best purchase ever!' value={summary}
-            required maxLength={60} onChange={summaryText}/>
+            <input type='text' placeholder='Example: Best purchase ever!' value={summary} required
+            maxLength={60} onChange={summaryText}/>
             <p>{summRemain} Characters remaining</p>
           </label>
 
           <label>Body:
             <input type='text' placeholder='Why did you like this product or not?' value={body} required
-            minLength={50} maxLength={1000} onChange={bodyText}/>
+            minLength={10} maxLength={1000} onChange={bodyText}/>
             {body.length < 50 ? <p>Minimum required characters left: {bodyRemain}</p> : <p>Minimum reached</p>}
           </label>
 
           <label>Upload Image: </label>
-          {<Upload upload={uploadPhoto}/>}
+          <Upload upload={setPhotos}/>
           <br/>
 
           <label>Set Nickname:
-            <input type='text' placeholder='Example: jackson11!' required maxLength={60} value={nickname} onChange={nicknameText}/>
+            <input type='text' placeholder='Example: jackson11!' value={nickname} required maxLength={60} onChange={nicknameText}/>
           </label>
           <p>For authentication reasons you will not be emailed</p>
 
-          <label>Set Email:
-            <input type='text' placeholder='jackson11@email.com' required maxLength={60} value={email} onChange={emailText}/>
+          <label>Set Email: {missingReq && <Missing>* Invalid email format</Missing>}
+            <input type='text' placeholder='jackson11@email.com' value={email} required maxLength={60}  onChange={emailText}/>
           </label>
           <br/>
           <input type='submit' value='Post Review'/>
@@ -151,6 +205,9 @@ left: 50%;
 transform: translate(-50%, -50%);
 background-color: #F4F0DB;
 padding: 50px;
-z-index: 3;
+`;
+
+const Missing = styled.span`
+color: red;
 `;
 
