@@ -64,6 +64,7 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <label>Your Question*</label>
           <br />
           <textarea
+            style={{ width: "90%" }}
             name="question"
             maxLength="1000"
             rows="4"
@@ -117,7 +118,7 @@ const QFHeader = styled.h3`
 `;
 
 const QFInput = styled.input`
-  width: 400px;
+  width: 90%;
 `;
 
 const EmailWarn = styled.small`

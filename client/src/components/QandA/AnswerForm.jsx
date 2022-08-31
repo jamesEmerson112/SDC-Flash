@@ -59,6 +59,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <label>Your Answer*</label>
           <br />
           <textarea
+            style={{ width: "90%" }}
             name="answer"
             maxLength="1000"
             rows="4"
@@ -113,7 +114,7 @@ const QFHeader = styled.h3`
 `;
 
 const QFInput = styled.input`
-  width: 400px;
+  width: 90%;
 `;
 
 const EmailWarn = styled.small`

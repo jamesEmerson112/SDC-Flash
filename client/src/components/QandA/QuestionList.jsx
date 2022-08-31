@@ -17,6 +17,7 @@ const QuestionList = ({ product }) => {
 
   // on load
   useEffect(() => {
+    questList.length = 0;
     axios
       .get(`/qa/questions?product_id=${id}&count=100`, config)
       .then((response) => {

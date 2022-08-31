@@ -7,7 +7,6 @@ const AddToCart = ({ style }) => {
   const [value, setValue] = useState("");
   const [quantities, setQuantities] = useState([]);
   const [quantity, setQuantity] = useState(0);
-  console.log(style);
 
   // obtain all of the sizes from the current style and add to an array
   const styleSkus = [];

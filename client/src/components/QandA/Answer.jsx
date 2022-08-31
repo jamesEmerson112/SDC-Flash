@@ -20,6 +20,7 @@ const Answer = ({ answer, question_id }) => {
   const [a_helpf, setHelpfulness] = useState(helpfulness);
   const [modal, setModal] = useState(false);
   const [reportSt, setReportSt] = useState(false);
+  const [clickable, setClickable] = useState({ yes: "", report: "" });
 
   // methods
   const incHelp = () => {
@@ -74,9 +75,31 @@ const Answer = ({ answer, question_id }) => {
         {"by "}
         {answerer_name === "Seller" ? <b>{answerer_name}</b> : answerer_name}
         {", " + hrDt + " | Helpful? "}
-        {answ.helpf_click ? " Yes " : <u onClick={incHelp}>Yes</u>}
+        {answ.helpf_click ? (
+          " Yes "
+        ) : (
+          <u
+            className={clickable.yes}
+            onMouseEnter={() => setClickable({ yes: "clickable" })}
+            onMouseLeave={() => setClickable({ yes: "" })}
+            onClick={incHelp}
+          >
+            Yes
+          </u>
+        )}
         {" (" + a_helpf + ") | "}
-        {reportSt ? " Reported " : <u onClick={reportAns}>Report</u>}
+        {reportSt ? (
+          " Reported "
+        ) : (
+          <u
+            className={clickable.report}
+            onMouseEnter={() => setClickable({ report: "clickable" })}
+            onMouseLeave={() => setClickable({ report: "" })}
+            onClick={reportAns}
+          >
+            Report
+          </u>
+        )}
       </small>
     </div>
   );
