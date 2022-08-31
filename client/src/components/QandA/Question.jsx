@@ -23,6 +23,7 @@ const Question = ({ question, product }) => {
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
   const [showAForm, setShowAForm] = useState(false);
   const [ansState, setAnsState] = useState(answers);
+  const [clickable, setClickable] = useState(true);
 
   // methods
   const incHelp = () => {
@@ -48,7 +49,9 @@ const Question = ({ question, product }) => {
           {" Helpful? "}
           {ques.helpf_click ? " Yes " : <u onClick={incHelp}>Yes</u>}
           {" (" + helpfulness + ") "} |{" "}
-          <u onClick={() => setShowAForm(!showAForm)}>Add Answer</u>
+          <u className="clickable" onClick={() => setShowAForm(!showAForm)}>
+            Add Answer
+          </u>
         </small>
       </div>
       <div className="qAndA">
