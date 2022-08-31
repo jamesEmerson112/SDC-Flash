@@ -7,9 +7,30 @@ import axios from "axios";
 const Ratings_Reviews = (props) => {
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({})
+  const [filter, setFilter] = useState('relavant')
+  const [oneStar, setOneStar] = useState(0)
+  const [twoStar, setTwoStar] = useState(0)
+  const [threeStar, setThreeStar] = useState(0)
+  const [fourStar, setFourStar] = useState(0)
+  const [fiveStar, setFiveStar] = useState(0)
+  const [totalStars, setTotalStars] = useState(0)
+  const [starFilter, setStarFilter] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  })
+
+  console.log('REVIEWS: ', reviews)
+  console.log('META: ', meta)
+
+  const sortReviews = (filter) => {
+    setFilter(filter)
+  }
 
   const getReviewData = () => {
-    axios.get(`/reviews?product_id=${props.id}`, config)
+    axios.get(`/reviews?product_id=${props.id}&sort=${filter}`, config)
     .then((response) => setReviews(response.data.results))
     .catch((err) => console.log(err));
   }
@@ -21,16 +42,14 @@ const Ratings_Reviews = (props) => {
   }
 
   useEffect(() => {
-    if (props.id) {
       getReviewData()
       getMetaData()
-    }
-  }, [props.id]);
+  }, [props.id, filter]);
 
   return (
     <>
       <h1>Ratings & Reviews</h1>
-      <ReviewList reviews={reviews} meta={meta.characteristics}/>
+      <ReviewList reviews={reviews} meta={meta.characteristics} sort={sortReviews}/>
     </>
   );
 };

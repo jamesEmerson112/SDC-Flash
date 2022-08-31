@@ -19,8 +19,6 @@ const Thumbnail = ({ photos, click }) => {
   });
 };
 
-//<img src={photo.thumbnail_url} height={height} />
-
 export default Thumbnail;
 
 const ThumbnailParent = styled.div`
@@ -28,7 +26,7 @@ const ThumbnailParent = styled.div`
   box-sizing: border-box;
   grid-column-start: 1;
   grid-row-start: 1;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   border-radius: 4px;
   padding: 5px;
   min-height: 81px;

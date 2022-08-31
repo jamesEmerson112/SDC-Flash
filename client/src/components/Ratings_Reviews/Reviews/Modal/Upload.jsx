@@ -3,6 +3,8 @@ import React from "react";
 const Upload = (props) => {
   var photoArray = [];
 
+  var photoArray = [];
+
   const upload = (event) => {
     event.preventDefault();
     let widget = window.cloudinary.createUploadWidget(
@@ -14,12 +16,10 @@ const Upload = (props) => {
       (error, result) => {
         if (!error && result && result.event === "success") {
           photoArray.push(result.info.url);
-          console.log(photoArray);
           props.upload(photoArray);
         }
       }
     );
-
     widget.open();
   };
 

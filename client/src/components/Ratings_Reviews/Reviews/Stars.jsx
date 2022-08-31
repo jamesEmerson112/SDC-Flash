@@ -22,7 +22,7 @@ export default Stars;
 const StarContainer = styled.div`
 display: inline-flex;
 align-items: center;
-position: relative;
+// position: relative;
 `;
 
 const OverlayStar = styled.div`
