@@ -5,7 +5,7 @@ body {
 /* Q and A */
 .clickable {
 color: rgb(28, 194, 9);
-text-shadow: 1px 1px rgb(222, 40, 285), -1px 1px rgb(222, 40, 185), 1px -1px rgb(222, 40, 185), -1px -1px rgb(222, 40, 185);
+text-shadow: 1px 1px rgb(222, 40, 285), 1px -1px rgb(222, 40, 185), -1px 1px rgb(222, 40, 185), -1px -1px rgb(222, 40, 185);
 cursor: pointer;
 }
 

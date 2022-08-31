@@ -3,6 +3,7 @@ import axios from "axios";
 import AnswerList from "./AnswerList.jsx";
 import AnswerForm from "./AnswerForm.jsx";
 import config from "../../../../env/config.js";
+import styled from "styled-components";
 import questList from "./qAndA.js";
 
 const Question = ({ question, product }) => {
@@ -43,7 +44,7 @@ const Question = ({ question, product }) => {
       <div className="question">
         <div className="qAndA">
           <b>Q:</b>
-          <b>{question_body}</b>
+          <Qbody>{question_body}</Qbody>
         </div>
         <small>
           {" Helpful? "}
@@ -89,3 +90,7 @@ const Question = ({ question, product }) => {
 };
 
 export default Question;
+
+const Qbody = styled.b`
+  max-width: 550px;
+`;
