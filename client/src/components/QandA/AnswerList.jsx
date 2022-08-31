@@ -31,7 +31,7 @@ const AnswerList = ({ answers, question_id }) => {
   };
 
   return (
-    <div>
+    <div className="ansList">
       {filtAList.map((answer) => (
         <Answer answer={answer} question_id={question_id} key={answer.id} />
       ))}

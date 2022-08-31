@@ -68,16 +68,18 @@ const QuestionList = ({ product }) => {
   };
 
   return (
-    <div className="qList">
+    <div>
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
-      {filtList.map((question) => (
-        <Question
-          question={question}
-          product={product}
-          key={question.question_id}
-        />
-      ))}
+      <div className="qList">
+        {filtList.map((question) => (
+          <Question
+            question={question}
+            product={product}
+            key={question.question_id}
+          />
+        ))}
+      </div>
       <div>
         {filtList.length < questList.length ? (
           <button onClick={expandQs}>More Answered Questions</button>

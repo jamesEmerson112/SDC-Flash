@@ -3,10 +3,17 @@ body {
 }
 
 /* Q and A */
-/* .qList {
-  margin: auto;
-  max-width: 800px;
-} */
+.qList {
+  max-height: 80vh;
+  overflow: auto;
+  width: 80vw;
+}
+
+.ansList {
+  max-height: 50vh;
+  overflow: auto;
+  width: 70vw;
+}
 
 .qAndASearchBar {
   width: 800px;
