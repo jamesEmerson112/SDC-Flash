@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Box } from "./styledComponents/styledComponents.jsx";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
 
-const AddToCart = ({ style, addItemsToCart }) => {
+const AddToCart = ({ style, addItemsToCart, setSuccess, success }) => {
   const [value, setValue] = useState("");
   const [quantities, setQuantities] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [alert, setAlert] = useState("");
   const [size, setSize] = useState("");
-  const [success, setSuccess] = useState(false);
   // set the style name to be returned with the cart purchase
   const styleName = style.name;
   // will be set to true upon successful addition to cart
@@ -20,16 +19,16 @@ const AddToCart = ({ style, addItemsToCart }) => {
   });
 
   // obtain all of the sizes from the current style and add to an array
-  const styleSkus = [];
+  const styles = [];
   for (let key in style.skus) {
     let skew = style.skus[key];
-    styleSkus.push({ key: key, value: skew.size, quantity: skew.quantity });
+    styles.push({ key: key, value: skew.size, quantity: skew.quantity });
   }
 
   const selectSize = (e) => {
     let size = e.target.value;
-    for (let i = 0; i < styleSkus.length; i++) {
-      let currentSku = styleSkus[i];
+    for (let i = 0; i < styles.length; i++) {
+      let currentSku = styles[i];
       if (currentSku.value === size) {
         const N = currentSku.quantity;
         const arr = Array.from({ length: N }, (_, index) => index + 1);
@@ -73,6 +72,8 @@ const AddToCart = ({ style, addItemsToCart }) => {
           setSuccess(true);
           let purchase = { style: styleName, size: size, quantity: quantity };
           setQuantity(0);
+          setSize("");
+          setValue("");
           return addItemsToCart(purchase);
         }}
       >
@@ -100,15 +101,14 @@ const AddToCart = ({ style, addItemsToCart }) => {
       </Button>
     );
   }
-  console.log(success);
+
   return (
     <div>
       {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
-
       <div className="item add-to-cart">
         <DropDown
-          label={"Select a Size"}
-          options={styleSkus}
+          label={"Select a size"}
+          options={styles}
           onChange={selectSize}
         />
         {value === "" ? (

@@ -11,12 +11,14 @@ const ProductOverview = ({ id, product, addItemsToCart }) => {
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
+  const [success, setSuccess] = useState(false);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
         setStyle(styles[i]);
         setMainPic(styles[i].photos[indexMainPic].url);
+        setSuccess(false);
       }
     }
   };
@@ -47,7 +49,12 @@ const ProductOverview = ({ id, product, addItemsToCart }) => {
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
-          <AddToCart style={style} addItemsToCart={addItemsToCart} />
+          <AddToCart
+            style={style}
+            addItemsToCart={addItemsToCart}
+            setSuccess={setSuccess}
+            success={success}
+          />
         </div>
       </div>
     );
