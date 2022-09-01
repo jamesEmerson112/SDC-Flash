@@ -1,13 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from "styled-components";
 
 const Sizes = ({meta, setChar, missing}) => {
-
-  useEffect(() => {
-    for (var key in meta) {
-      setChar(key, null)
-    }
-  }, [])
 
   const characteristics = {
     Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
@@ -24,9 +18,36 @@ const Sizes = ({meta, setChar, missing}) => {
   }
 
   const charChange = (e) => {
-    const name = e.target.getAttribute('name')
-    const value = Number(e.target.value)
-    setChar(name, value)
+    if (e.target.getAttribute('name') === 'Size') {
+      const id = meta.Size.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+
+    } else if ((e.target.getAttribute('name') === 'Width')) {
+      const id = meta.Width.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+
+    } else if ((e.target.getAttribute('name') === 'Comfort')) {
+      const id = meta.Comfort.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+
+    } else if ((e.target.getAttribute('name') === 'Quality')) {
+      const id = meta.Quality.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+
+    } else if ((e.target.getAttribute('name') === 'Length')) {
+      const id = meta.Length.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+
+    } else if ((e.target.getAttribute('name') === 'Fit')) {
+      const id = meta.Fit.id
+      const value = Number(e.target.value)
+      setChar(id, value)
+    }
   }
 
   const selectSize = characteristics.Size.map((data, index) => {
