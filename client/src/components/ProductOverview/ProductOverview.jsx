@@ -64,11 +64,7 @@ const ProductOverview = ({ id, product }) => {
       <div>
         <div className="product-overview">
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
-          <ProductInfo
-            product={product}
-            stylePrice={style.original_price}
-            reviews={reviews}
-          />
+          <ProductInfo product={product} style={style} reviews={reviews} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
           <Description>{product.description}</Description>

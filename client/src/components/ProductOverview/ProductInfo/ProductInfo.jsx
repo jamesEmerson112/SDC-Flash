@@ -2,8 +2,9 @@ import React from "react";
 import StarComponent from "../../StarComponent.jsx";
 import styled from "styled-components";
 
-const ProductInfo = ({ product, stylePrice, reviews }) => {
-  const price = "$" + stylePrice;
+const ProductInfo = ({ product, style, reviews }) => {
+  const price = "$" + style.original_price;
+  const salePrice = "$" + style.sale_price;
   const numberOfReviews = reviews.length;
   return (
     <div className="product-info">
@@ -17,7 +18,14 @@ const ProductInfo = ({ product, stylePrice, reviews }) => {
       </div>
       <Category>{product.category}</Category>
       <Title>{product.name}</Title>
-      <h2>{price}</h2>
+      {style.sale_price !== null ? (
+        <div>
+          <OldPrice>{price}</OldPrice>
+          <Sale>{salePrice}</Sale>
+        </div>
+      ) : (
+        <h2>{price}</h2>
+      )}
     </div>
   );
 };
@@ -37,4 +45,15 @@ const Title = styled.h1`
 
 const Category = styled.h3`
   font-style: italic;
+`;
+
+const OldPrice = styled.h2`
+  text-decoration: line-through;
+  display: inline;
+`;
+
+const Sale = styled.h2`
+  color: red;
+  display: inline;
+  padding-left: 20px;
 `;
