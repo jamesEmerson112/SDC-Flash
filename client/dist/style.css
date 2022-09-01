@@ -9,7 +9,9 @@ body {
 
 .darkMode {
   color: white;
-  background-color: rgba(128, 128, 128);
+  /* background-color: rgba(128, 128, 128); */
+  background-color:black
+
 }
 
 /* Q and A */
@@ -114,6 +116,7 @@ cursor: pointer;
   grid-template-columns: [first] 65% [second] 35%;
   grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 75px;
   box-sizing: border-box;
+  margin-top: 20px;
 }
 
 .pic {
@@ -125,7 +128,6 @@ cursor: pointer;
   z-index: 0;
   border: 1px solid black;
   position: relative;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 }
 
 .image-gallery {

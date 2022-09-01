@@ -13,6 +13,8 @@ const ProductOverview = ({ id, product }) => {
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [reviews, setReviews] = useState([]);
+
   console.log(product);
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -34,6 +36,15 @@ const ProductOverview = ({ id, product }) => {
     setIndexMainPic(index);
   };
 
+  const getReviewData = () => {
+    axios
+      .get(`/reviews?product_id=${id}`, config)
+      .then((response) => {
+        setReviews(response.data.results);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     axios
       .get(`/products/${id}/styles`, config)
@@ -45,15 +56,19 @@ const ProductOverview = ({ id, product }) => {
       .catch((err) => {
         console.log(err);
       });
+    getReviewData();
   }, [id]);
 
   if (styles.length > 0) {
     return (
       <div>
-        <h1>Product Overview</h1>
         <div className="product-overview">
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
-          <ProductInfo product={product} stylePrice={style.original_price} />
+          <ProductInfo
+            product={product}
+            stylePrice={style.original_price}
+            reviews={reviews}
+          />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
           <Description>{product.description}</Description>
@@ -71,7 +86,6 @@ const Description = styled.p`
   justify-content: center;
   align-items: center;
   grid-column-start: 1;
-  box-shadow: 3px 3px 10px rgb(0 0 0);
   margin: 5px 150px;
   font-size: large;
   box-sizing: content-box;

@@ -74,8 +74,8 @@ const App = () => {
           )}
         </TitleHeader>
         <button onClick={toggleClrMode}>{clrMode}</button>
-        <QuestionList product={product} />
         <ProductOverview id={product.id} product={product} />
+        <QuestionList product={product} />
         <RRIndex id={product.id} />
       </div>
     );

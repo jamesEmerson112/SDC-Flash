@@ -130,7 +130,7 @@ const Ratings_Reviews = (props) => {
   }, [props.id, filter, starFilter]);
 
   return (
-    <div>
+    <div id="Ratings_Reviews">
       <h1>Ratings & Reviews</h1>
       <Container>
         <RatingsOverview

@@ -146,7 +146,8 @@ const Alert = styled.div`
 `;
 
 const Success = styled.div`
-  box-shadow: 3px 3px 10px rgb(0 0 0 / 0.2);
+  border: 3px solid grey;
+  border-radius: 5px;
   box-sizing: border-box;
   margin-left: 5px;
   margin-bottom: 5px;
@@ -159,5 +160,4 @@ const Button = styled.button`
   margin-top: 5px;
   font-size: large;
   border-radius: 10px;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 `;

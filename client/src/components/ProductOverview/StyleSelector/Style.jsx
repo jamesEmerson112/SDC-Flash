@@ -72,7 +72,7 @@ const StyleParent = styled.div`
 
 const Container = styled.div`
   width: 25%;
-  max-height: fit-content;
+  max-height: 100%;
   algin-items: space-between;
 `;
 
