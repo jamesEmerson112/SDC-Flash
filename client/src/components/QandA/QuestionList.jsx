@@ -17,7 +17,6 @@ const QuestionList = ({ product }) => {
 
   // on load
   useEffect(() => {
-    questList.length = 0;
     axios
       .get(`/qa/questions?product_id=${id}&count=100`, config)
       .then((response) => {
@@ -25,6 +24,7 @@ const QuestionList = ({ product }) => {
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
         // tracker
+        questList.length = 0;
         response.data.results.forEach((q) => {
           let exists = questList.find(
             (quest) => quest.question_id === q.question_id
