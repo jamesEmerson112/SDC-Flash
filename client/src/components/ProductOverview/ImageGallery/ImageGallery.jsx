@@ -6,14 +6,28 @@ const ImageGallery = ({ style, mainPic, click }) => {
   if (style) {
     const photos = style.photos;
 
-    return (
-      <div className="image-gallery">
-        <div className="thumbnails">
-          <Thumbnail photos={photos} click={click} />
+    if (mainPic === null) {
+      return (
+        <div className="image-gallery">
+          <div className="thumbnails">
+            <Thumbnail photos={photos} click={click} />
+          </div>
+          <img
+            className="pic"
+            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          />
         </div>
-        <img className="pic" src={mainPic} />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="image-gallery">
+          <div className="thumbnails">
+            <Thumbnail photos={photos} click={click} />
+          </div>
+          <img className="pic" src={mainPic} />
+        </div>
+      );
+    }
   }
 };
 
