@@ -72,7 +72,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <QFInput
             type="text"
             name="nickname"
-            placeholder="Example: jackson543!"
+            placeholder="Example: jack543!"
             maxLength="60"
             required
           />
