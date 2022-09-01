@@ -4,13 +4,14 @@ import styled from "styled-components";
 
 const ProductInfo = ({ product, stylePrice, reviews }) => {
   const price = "$" + stylePrice;
+  const numberOfReviews = reviews.length;
   return (
     <div className="product-info">
       <div>
         <StarComponent reviews={reviews} />
         <Link>
           <a href="http://localhost:3000/index.html#Ratings_Reviews">
-            Read all reviews
+            Read all {numberOfReviews} reviews
           </a>
         </Link>
       </div>

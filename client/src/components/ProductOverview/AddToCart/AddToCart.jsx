@@ -77,7 +77,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
       <Button
         onClick={() => {
           setSuccess(true);
-          let purchase = { style: styleName, size: size, quantity: quantity };
           setQuantity(0);
           setSize("");
           setValue("");
