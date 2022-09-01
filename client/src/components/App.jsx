@@ -10,6 +10,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [index, setIndex] = useState(0);
+  const [clrMode, setClrMode] = useState("Light Mode");
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -43,6 +44,16 @@ const App = () => {
     }
   };
 
+  const toggleClrMode = () => {
+    if (clrMode === "Light Mode") {
+      document.body.className = "darkMode";
+      setClrMode("Dark Mode");
+    } else {
+      document.body.className = "";
+      setClrMode("Light Mode");
+    }
+  };
+
   if ("id" in product) {
     return (
       <div>
@@ -62,8 +73,9 @@ const App = () => {
             <div></div>
           )}
         </TitleHeader>
-        <ProductOverview id={product.id} product={product} />
+        <button onClick={toggleClrMode}>{clrMode}</button>
         <QuestionList product={product} />
+        <ProductOverview id={product.id} product={product} />
         <RRIndex id={product.id} />
       </div>
     );

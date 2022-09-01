@@ -3,6 +3,7 @@ import axios from "axios";
 import AnswerList from "./AnswerList.jsx";
 import AnswerForm from "./AnswerForm.jsx";
 import config from "../../../../env/config.js";
+import styled from "styled-components";
 import questList from "./qAndA.js";
 
 const Question = ({ question, product }) => {
@@ -23,7 +24,7 @@ const Question = ({ question, product }) => {
   const [helpfulness, setHelpfulness] = useState(question_helpfulness);
   const [showAForm, setShowAForm] = useState(false);
   const [ansState, setAnsState] = useState(answers);
-  const [clickable, setClickable] = useState(true);
+  const [clickable, setClickable] = useState({ yes: "", addAns: "" });
 
   // methods
   const incHelp = () => {
@@ -43,13 +44,29 @@ const Question = ({ question, product }) => {
       <div className="question">
         <div className="qAndA">
           <b>Q:</b>
-          <b>{question_body}</b>
+          <Qbody>{question_body}</Qbody>
         </div>
         <small>
           {" Helpful? "}
-          {ques.helpf_click ? " Yes " : <u onClick={incHelp}>Yes</u>}
+          {ques.helpf_click ? (
+            " Yes "
+          ) : (
+            <u
+              className={clickable.yes}
+              onMouseEnter={() => setClickable({ yes: "clickable" })}
+              onMouseLeave={() => setClickable({ yes: "" })}
+              onClick={incHelp}
+            >
+              Yes
+            </u>
+          )}
           {" (" + helpfulness + ") "} |{" "}
-          <u className="clickable" onClick={() => setShowAForm(!showAForm)}>
+          <u
+            className={clickable.addAns}
+            onMouseEnter={() => setClickable({ addAns: "clickable" })}
+            onMouseLeave={() => setClickable({ addAns: "" })}
+            onClick={() => setShowAForm(!showAForm)}
+          >
             Add Answer
           </u>
         </small>
@@ -73,3 +90,7 @@ const Question = ({ question, product }) => {
 };
 
 export default Question;
+
+const Qbody = styled.b`
+  max-width: 550px;
+`;

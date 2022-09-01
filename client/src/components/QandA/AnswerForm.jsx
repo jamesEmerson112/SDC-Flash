@@ -59,6 +59,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <label>Your Answer*</label>
           <br />
           <textarea
+            style={{ width: "90%" }}
             name="answer"
             maxLength="1000"
             rows="4"
@@ -71,7 +72,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <QFInput
             type="text"
             name="nickname"
-            placeholder="Example: jackson543!"
+            placeholder="Example: jack543!"
             maxLength="60"
             required
           />
@@ -97,7 +98,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <br />
           <input type="submit" value="Submit Answer" />
         </form>
-        <div className="modalFormClose" onClick={() => setShowAForm(false)}>
+        <div className="modalClose" onClick={() => setShowAForm(false)}>
           X
         </div>
       </div>
@@ -113,7 +114,7 @@ const QFHeader = styled.h3`
 `;
 
 const QFInput = styled.input`
-  width: 400px;
+  width: 90%;
 `;
 
 const EmailWarn = styled.small`

@@ -24,6 +24,7 @@ const QuestionList = ({ product }) => {
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
         // tracker
+        questList.length = 0;
         response.data.results.forEach((q) => {
           let exists = questList.find(
             (quest) => quest.question_id === q.question_id
