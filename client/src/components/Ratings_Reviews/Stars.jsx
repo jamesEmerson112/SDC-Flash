@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 
 const Stars = ({ rating }) => {
+  console.log("AGV RATING", rating);
   const width = 100 - Math.round((rating / 5) * 100);
   const starRating = [...Array(5)].map((_, index) => {
     return <FaStar key={index} className="star" />;

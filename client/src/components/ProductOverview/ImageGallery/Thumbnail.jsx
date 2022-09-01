@@ -4,18 +4,37 @@ import styled from "styled-components";
 const Thumbnail = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
   return photos.map((photo, i) => {
-    return (
-      <ThumbnailParent
-        onClick={() => {
-          click(photo.url, i);
-          setSelected(i);
-        }}
-        key={i}
-        className={selected === i ? "selected" : "not_selected"}
-      >
-        <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
-      </ThumbnailParent>
-    );
+    if (photo.thumbnail_url === null) {
+      return (
+        <ThumbnailParent
+          onClick={() => {
+            click(photo.url, i);
+            setSelected(i);
+          }}
+          key={i}
+          className={selected === i ? "selected" : "not_selected"}
+        >
+          <img
+            className="thumbnail"
+            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+            width="50px"
+          />
+        </ThumbnailParent>
+      );
+    } else {
+      return (
+        <ThumbnailParent
+          onClick={() => {
+            click(photo.url, i);
+            setSelected(i);
+          }}
+          key={i}
+          className={selected === i ? "selected" : "not_selected"}
+        >
+          <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
+        </ThumbnailParent>
+      );
+    }
   });
 };
 
