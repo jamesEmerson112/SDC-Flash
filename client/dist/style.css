@@ -1,11 +1,11 @@
 body {
   font-family: sans-serif, arial;
 }
-/*
+
 #root {
   max-width: 1200px;
   margin: auto;
-} */
+}
 
 /* Q and A */
 /* .clickable {
@@ -121,6 +121,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
   z-index: 0;
   border: 1px solid black;
   position: relative;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 }
 
 .image-gallery {
