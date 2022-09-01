@@ -70,4 +70,7 @@ const Description = styled.p`
   margin: 5px 150px;
   font-size: large;
   box-sizing: content-box;
+  padding: 8px;
+  border: 3px solid grey;
+  border-radius: 5px;
 `;
