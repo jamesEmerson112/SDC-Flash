@@ -14,7 +14,7 @@ const ReviewList = (props) => {
   };
 
   const map =  reviews?.slice(0, count).map((review, index) => {
-    return <ReviewCard key={index} review={review} />;
+    return <ReviewCard key={index} review={review}/>;
   });
 
   useEffect(() => {
@@ -23,8 +23,9 @@ const ReviewList = (props) => {
   }, [props.reviews, props.meta]);
 
   return (
-    <>
-      {reviews.length && <p>{reviews.length} reviews, sorted by       <select onChange={(e) => props.sort(e.target.value)}>
+    <div>
+      {reviews.length && <p>{reviews.length} reviews, sorted by
+      <select onChange={(e) => props.sort(e.target.value)}>
         <option value='relevant'>Relevant</option>
         <option value='helpful'>Helpful</option>
         <option value='newest'>Newest</option>
@@ -37,11 +38,13 @@ const ReviewList = (props) => {
         <button onClick={() => setOpenModal(true)}>Add Review +</button>
       </div>
       <ReviewModal
+        id={props.id}
         meta={meta}
         open={openModal}
         close={() => setOpenModal(false)}
+        post={props.post}
       />
-    </>
+    </div>
   );
 }
 
