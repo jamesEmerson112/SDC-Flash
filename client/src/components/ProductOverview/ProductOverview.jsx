@@ -30,7 +30,6 @@ const ProductOverview = ({ id, product }) => {
     if (indexMainPic === style.photos.length - 1) {
       return;
     }
-    console.log(selected);
     const nexPicUrl = style.photos[indexMainPic + 1].url;
     setSelected((current) => current + 1);
     setMainPic(nexPicUrl);
@@ -41,7 +40,6 @@ const ProductOverview = ({ id, product }) => {
     if (indexMainPic === 0) {
       return;
     }
-    console.log(selected);
     const previousPicUrl = style.photos[indexMainPic - 1].url;
     setSelected((current) => current - 1);
     setMainPic(previousPicUrl);

@@ -121,7 +121,7 @@ cursor: pointer;
 
 .pic {
   max-height: 570px;
-  max-width: 95%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

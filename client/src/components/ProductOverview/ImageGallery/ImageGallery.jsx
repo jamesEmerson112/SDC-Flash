@@ -19,14 +19,26 @@ const ImageGallery = ({
     if (mainPic === null) {
       return (
         <div className="image-gallery">
-          <div className="thumbnails">
-            <Thumbnail photos={photos} click={click} />
+          <button className="pic_button" onClick={BackArrow}>
+            <FaArrowLeft />
+          </button>
+          <div className="image-gallery">
+            <div className="thumbnails">
+              <Thumbnail
+                photos={photos}
+                click={click}
+                setSelected={setSelected}
+                selected={selected}
+              />
+            </div>
+            <img
+              className="pic"
+              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+            />
           </div>
-          <button></button>
-          <img
-            className="pic"
-            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-          />
+          <button className="pic_button" onClick={NextArrow}>
+            <FaArrowRight />
+          </button>
         </div>
       );
     } else {
