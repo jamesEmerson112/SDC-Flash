@@ -25,7 +25,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
     let skew = style.skus[key];
     styles.push({ key: key, value: skew.size, quantity: skew.quantity });
   }
-  console.log(styles);
 
   useEffect(() => {
     setStateStyles(styles);
@@ -148,6 +147,7 @@ const Success = styled.div`
   border: 3px solid grey;
   border-radius: 5px;
   box-sizing: border-box;
+  margin-top: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
   padding: 5px;

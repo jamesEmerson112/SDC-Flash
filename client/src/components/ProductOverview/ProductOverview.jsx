@@ -15,7 +15,6 @@ const ProductOverview = ({ id, product }) => {
   const [success, setSuccess] = useState(false);
   const [reviews, setReviews] = useState([]);
 
-  console.log(product);
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
