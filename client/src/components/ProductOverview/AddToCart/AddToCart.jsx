@@ -15,7 +15,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
   // set the style name to be returned with the cart purchase
   const styleName = style.name;
   // will be set to true upon successful addition to cart
-
   let sizesAvailable = _.map(style.skus, (sku) => {
     return sku.size;
   });
