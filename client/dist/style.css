@@ -2,6 +2,11 @@ body {
   font-family: sans-serif, arial;
 }
 
+#root {
+  max-width: 1200px;
+  margin: auto;
+}
+
 /* Q and A */
 /* .clickable {
 color: rgb(28, 194, 9);
@@ -28,6 +33,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
 .qAndA {
   display: flex;
   flex-direction: row;
+
 }
 
 .question {
@@ -102,19 +108,20 @@ text-shadow: 1px 1px rgb(222, 40, 185);
 .product-overview {
   display: grid;
   grid-template-columns: [first] 65% [second] 35%;
-  grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 150px;
+  grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 75px;
   box-sizing: border-box;
 }
 
 .pic {
   max-height: 570px;
-  max-width: 100%;
+  max-width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 0;
   border: 1px solid black;
   position: relative;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 }
 
 .image-gallery {
@@ -123,8 +130,8 @@ text-shadow: 1px 1px rgb(222, 40, 185);
   grid-row-start: 1;
   grid-row-end: -1;
   /* justify-content: center;  This would center all components of image gallery */
-  margin-left: 125px;
-  margin-right: 10px;
+  /* margin-left: 125px;
+  margin-right: 10px; */
   max-height: 100%;
 }
 
@@ -139,10 +146,11 @@ text-shadow: 1px 1px rgb(222, 40, 185);
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 3;
-  overflow: scroll;
+  overflow: auto;
   z-index: 2;
   max-height: 570px;
   position: absolute;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 }
 
 .thumbnail {
@@ -151,6 +159,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
   max-width: 100%;
   justify-content: center;
   align-items: center;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 }
 
 .product-info {
@@ -184,6 +193,7 @@ text-shadow: 1px 1px rgb(222, 40, 185);
 }
 
 .add-to-cart {
+  display: flex;
   grid-column-start: 2;
   grid-row-start: 3;
 }
