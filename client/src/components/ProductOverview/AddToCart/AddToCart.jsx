@@ -4,12 +4,14 @@ import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
 
-const AddToCart = ({ style, addItemsToCart, setSuccess, success }) => {
+const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
   const [quantities, setQuantities] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [alert, setAlert] = useState("");
   const [size, setSize] = useState("");
+  const [label, setLabel] = useState("Select a size");
+  const [stateStyles, setStateStyles] = useState([]);
   // set the style name to be returned with the cart purchase
   const styleName = style.name;
   // will be set to true upon successful addition to cart
@@ -24,6 +26,12 @@ const AddToCart = ({ style, addItemsToCart, setSuccess, success }) => {
     let skew = style.skus[key];
     styles.push({ key: key, value: skew.size, quantity: skew.quantity });
   }
+  console.log(styles);
+
+  useEffect(() => {
+    setStateStyles(styles);
+    setLabel("Select a size");
+  }, [size]);
 
   const selectSize = (e) => {
     let size = e.target.value;
@@ -74,7 +82,12 @@ const AddToCart = ({ style, addItemsToCart, setSuccess, success }) => {
           setQuantity(0);
           setSize("");
           setValue("");
-          return addItemsToCart(purchase);
+          setStateStyles([]);
+          setLabel("Select a size");
+
+          // Have to add an axios post request to cart API
+          // change structure fo data
+          // return addItemsToCart(purchase);
         }}
       >
         Add To Cart
@@ -106,11 +119,7 @@ const AddToCart = ({ style, addItemsToCart, setSuccess, success }) => {
     <div>
       {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
       <div className="item add-to-cart">
-        <DropDown
-          label={"Select a size"}
-          options={styles}
-          onChange={selectSize}
-        />
+        <DropDown label={label} options={stateStyles} onChange={selectSize} />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
         ) : (
@@ -134,6 +143,7 @@ const Alert = styled.div`
   font-weight: bold;
   margin-bottom: 5px;
   margin-left: 5px;
+  font-size: large;
 `;
 
 const Success = styled.div`
@@ -143,8 +153,11 @@ const Success = styled.div`
   margin-bottom: 5px;
   padding: 5px;
   width: fit-content;
+  font-size: large;
 `;
 
 const Button = styled.button`
   margin-top: 5px;
+  font-size: large;
+  border-radius: 10px;
 `;

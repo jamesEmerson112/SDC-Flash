@@ -67,6 +67,7 @@ const StyleParent = styled.div`
   margin-right: 15px;
   margin-bottom: 9px;
   z-index: 1;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 `;
 
 const Container = styled.div`

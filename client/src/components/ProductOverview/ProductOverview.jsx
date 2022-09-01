@@ -5,14 +5,15 @@ import StyleSelector from "./StyleSelector/StyleSelector.jsx";
 import AddToCart from "./AddToCart/AddToCart.jsx";
 import config from "../../../../env/config.js";
 import axios from "axios";
+import styled from "styled-components";
 
-const ProductOverview = ({ id, product, addItemsToCart }) => {
+const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
-
+  console.log(product);
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
@@ -49,12 +50,8 @@ const ProductOverview = ({ id, product, addItemsToCart }) => {
           <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
           <ProductInfo product={product} stylePrice={style.original_price} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
-          <AddToCart
-            style={style}
-            addItemsToCart={addItemsToCart}
-            setSuccess={setSuccess}
-            success={success}
-          />
+          <AddToCart style={style} setSuccess={setSuccess} success={success} />
+          <Description>{product.description}</Description>
         </div>
       </div>
     );
@@ -62,3 +59,15 @@ const ProductOverview = ({ id, product, addItemsToCart }) => {
 };
 
 export default ProductOverview;
+
+const Description = styled.p`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  grid-column-start: 1;
+  box-shadow: 3px 3px 10px rgb(0 0 0);
+  margin: 5px 150px;
+  font-size: large;
+  box-sizing: content-box;
+`;

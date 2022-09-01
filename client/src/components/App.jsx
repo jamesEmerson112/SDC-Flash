@@ -10,7 +10,6 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [index, setIndex] = useState(0);
-  const [cart, setCart] = useState([]);
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -25,11 +24,6 @@ const App = () => {
         console.log(err);
       });
   }, []);
-
-  // sets the cart to have items
-  const addItemsToCart = (purchase) => {
-    setCart((current) => [...current, purchase]); // pushes the current purchase to the array of cart items
-  };
 
   const prev = (e) => {
     e.preventDefault();
@@ -68,13 +62,9 @@ const App = () => {
             <div></div>
           )}
         </TitleHeader>
-        <ProductOverview
-          id={product.id}
-          product={product}
-          addItemsToCart={addItemsToCart}
-        />
-        {/* <QuestionList product={product} />
-        <RRIndex id={product.id} /> */}
+        <ProductOverview id={product.id} product={product} />
+        <QuestionList product={product} />
+        <RRIndex id={product.id} />
       </div>
     );
   } else {

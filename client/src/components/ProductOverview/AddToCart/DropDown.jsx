@@ -19,4 +19,7 @@ const DropDown = ({ label, options, onChange }) => {
 
 export default DropDown;
 
-const Select = styled.select``;
+const Select = styled.select`
+  font-size: large;
+  borer-raius: 10px;
+`;
