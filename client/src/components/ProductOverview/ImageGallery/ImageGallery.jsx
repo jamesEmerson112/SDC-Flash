@@ -44,9 +44,14 @@ const ImageGallery = ({
     } else {
       return (
         <div className="image-gallery">
-          <button className="pic_button" onClick={BackArrow}>
-            <FaArrowLeft />
-          </button>
+          {selected === 0 ? (
+            <div></div>
+          ) : (
+            <button className="pic_button" onClick={BackArrow}>
+              <FaArrowLeft />
+            </button>
+          )}
+
           <div className="image-gallery">
             <div className="thumbnails">
               <Thumbnail
@@ -56,11 +61,27 @@ const ImageGallery = ({
                 selected={selected}
               />
             </div>
-            <img className="pic" src={mainPic} />
+            <img
+              className="pic"
+              src={mainPic}
+              onMouseEnter={(e) => {
+                console.log(e.target);
+              }}
+              onMouseLeave={() => {
+                console.log("bye");
+              }}
+              onClick={() => {
+                console.log("hi");
+              }}
+            />
           </div>
-          <button className="pic_button" onClick={NextArrow}>
-            <FaArrowRight />
-          </button>
+          {selected === style.photos.length - 1 ? (
+            <div></div>
+          ) : (
+            <button className="pic_button" onClick={NextArrow}>
+              <FaArrowRight />
+            </button>
+          )}
         </div>
       );
     }

@@ -27,9 +27,6 @@ const ProductOverview = ({ id, product }) => {
   };
 
   const NextArrow = () => {
-    if (indexMainPic === style.photos.length - 1) {
-      return;
-    }
     const nexPicUrl = style.photos[indexMainPic + 1].url;
     setSelected((current) => current + 1);
     setMainPic(nexPicUrl);
@@ -37,9 +34,6 @@ const ProductOverview = ({ id, product }) => {
   };
 
   const BackArrow = () => {
-    if (indexMainPic === 0) {
-      return;
-    }
     const previousPicUrl = style.photos[indexMainPic - 1].url;
     setSelected((current) => current - 1);
     setMainPic(previousPicUrl);

@@ -128,6 +128,10 @@ cursor: pointer;
   z-index: 0;
   border: 1px solid black;
   position: relative;
+
+}
+.pic:hover {
+  cursor: zoom-in;
 }
 
 .pic_button {
