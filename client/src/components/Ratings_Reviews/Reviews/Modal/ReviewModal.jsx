@@ -4,49 +4,16 @@ import Sizes from "./Sizes.jsx";
 import Upload from "./Upload.jsx";
 import styled from "styled-components";
 
-const ReviewModal = ({ meta, open, close }) => {
+const ReviewModal = ({ id, meta, open, close, post }) => {
   const [missingReq, setMissingReq] = useState(false);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
 
   const [recc, setRecc] = useState(null);
 
-  const [characteristics, setCharacteristics] = useState({
-    Size: null,
-    Width: null,
-    Comfort: null,
-    Quality: null,
-    Length: null,
-    Fit: null,
-  });
-
-  const [size, setSize] = useState(false);
-  const [width, setWidth] = useState(false);
-  const [comfort, setComfort] = useState(false);
-  const [quality, setQuality] = useState(false);
-  const [length, setLength] = useState(false);
-  const [fit, setFit] = useState(false);
-
-  const selectCharacteristic = (char, value) => {
-    if (char === "Size") {
-      setCharacteristics({ ...characteristics, Size: value });
-      setSize(true);
-    } else if (char === "Width") {
-      setCharacteristics({ ...characteristics, Width: value });
-      setWidth(true);
-    } else if (char === "Comfort") {
-      setCharacteristics({ ...characteristics, Comfort: value });
-      setComfort(true);
-    } else if (char === "Quality") {
-      setCharacteristics({ ...characteristics, Quality: value });
-      setQuality(true);
-    } else if (char === "Length") {
-      setCharacteristics({ ...characteristics, Length: value });
-      setLength(true);
-    } else if (char === "Fit") {
-      setCharacteristics({ ...characteristics, Fit: value });
-      setFit(true);
-    }
+  const [characteristics, setCharacteristics] = useState({});
+  const selectCharacteristic = (id, value) => {
+    setCharacteristics({...characteristics, [id]: value})
   };
 
   const [summary, setSummary] = useState("");
@@ -79,29 +46,13 @@ const ReviewModal = ({ meta, open, close }) => {
 
   const checkForm = (e) => {
     e.preventDefault();
-    if (
-      rating === 0 ||
-      recc === null ||
-      email.indexOf("@") < 0 ||
-      email.indexOf(".com") < 0
-    ) {
-      console.log("MISSING DEETS");
-      return setMissingReq(true);
-    } else if (
-      (size === true && characteristics.Size === null) ||
-      (width === true && characteristics.Width === null) ||
-      (comfort === true && characteristics.Comfort === null) ||
-      (quality === true && characteristics.Quality === null) ||
-      (length === true && characteristics.Length === null) ||
-      (fit === true && characteristics.Fit === null)
-    ) {
+    if (rating === 0 || recc === null ||email.indexOf(".com") < 0 ) {
       console.log("MISSING DEETS");
       return setMissingReq(true);
     } else {
       console.log("Rating value: ", rating);
       console.log("Recc check: ", recc);
       console.log("Characteristics values: ", characteristics);
-      console.log("CHARS: ", size, width, comfort, quality, length, fit);
       console.log("Summary value: ", summary);
       console.log("Body value: ", body);
       console.log("Photos urls: ", photos);
@@ -112,25 +63,22 @@ const ReviewModal = ({ meta, open, close }) => {
   };
 
   const postData = () => {
-    const data = {};
-    console.log("INSIDE POST: ", data);
+    const data = {
+      product_id: id,
+      rating: rating,
+      summary: summary,
+      body: body,
+      recommend: recc,
+      name: nickname,
+      email: email,
+      photos: photos,
+      characteristics: characteristics
+    };
+    post(data)
     setMissingReq(false);
     setRating(0);
     setRecc(null);
-    setCharacteristics({
-      Size: null,
-      Width: null,
-      Comfort: null,
-      Quality: null,
-      Length: null,
-      Fit: null,
-    });
-    setSize(false);
-    setWidth(false);
-    setComfort(false);
-    setQuality(false);
-    setLength(false);
-    setFit(false);
+    setCharacteristics({});
     setSummary("");
     setBody("");
     setPhotos([]);
@@ -239,7 +187,7 @@ const ReviewModal = ({ meta, open, close }) => {
           <label>
             Set Email: {missingReq && <Missing>* Invalid email format</Missing>}
             <input
-              type="text"
+              type="email"
               placeholder="jackson11@email.com"
               value={email}
               required

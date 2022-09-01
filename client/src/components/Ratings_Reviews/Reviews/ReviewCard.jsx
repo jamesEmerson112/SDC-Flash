@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Stars from './Stars.jsx'
+import Stars from '../Stars.jsx'
 import { parseISO } from "date-fns";
 import { FaStar, FaCheck } from 'react-icons/fa';
+import axios from "axios";
+import config from "../../../../../env/config.js";
 import styled from "styled-components";
 
 const ReviewCard = ({ review }) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
+  const [helpfullClicked, setHelpfulClicked] = useState(false)
+  const [reportClicked, setReportClicked] = useState(false)
   const [seeMore, setSeeMore] = useState(true)
   const [modal, setModal] = useState(false)
 
@@ -34,7 +38,22 @@ const ReviewCard = ({ review }) => {
   })
 
   const helpful = () => {
-    setHelpfullness(helpfullness + 1)
+    if (!helpfullClicked) {
+      axios.put(`/reviews/${review.review_id}/helpful`, {}, config)
+        .then(() => {
+          setHelpfulClicked(true)
+          setHelpfullness(helpfullness + 1)
+        })
+        .catch((err) => console.log(err))
+    }
+  }
+
+  const report = () => {
+    if (!reportClicked) {
+      axios.put(`/reviews/${review.review_id}/report`, {}, config)
+      .then(() => setReportClicked(true))
+      .catch((err) => console.log(err))
+    }
   }
 
   return (
@@ -57,7 +76,7 @@ const ReviewCard = ({ review }) => {
       <div>{images}</div>
       {review.recommend && <p><FaCheck /> I recommend this product</p>}
       <p>{review.response !== null && review.response}</p>
-      <p>Helpful? <span onClick={helpful}>Yes </span>{`(${helpfullness}) | `}<span>Report</span></p>
+      <p>Helpful? <span onClick={helpful}>Yes </span>{`(${helpfullness}) | `}<span onClick={report}>Report</span></p>
     </ReviewCardDiv>
   );
 };

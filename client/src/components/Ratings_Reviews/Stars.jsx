@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import styled from "styled-components";
 
 const Stars = ({rating}) => {
-
+  console.log('AGV RATING', rating)
   const width = 100 - Math.round(rating / 5 * 100)
   const starRating = [...Array(5)].map((_, index) => {
     return <FaStar key={index} className='star'/>
@@ -22,7 +22,7 @@ export default Stars;
 const StarContainer = styled.div`
 display: inline-flex;
 align-items: center;
-// position: relative;
+position: relative;
 `;
 
 const OverlayStar = styled.div`
