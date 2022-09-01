@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const Thumbnail = ({ photos, click }) => {
-  const [selected, setSelected] = useState(0);
+const Thumbnail = ({ photos, click, selected, setSelected }) => {
+  console.log(selected);
   return photos.map((photo, i) => {
     if (photo.thumbnail_url === null) {
       return (

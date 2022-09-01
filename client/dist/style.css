@@ -130,6 +130,23 @@ cursor: pointer;
   position: relative;
 }
 
+.pic_button {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  z-index: 2;
+  border: white;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .image-gallery {
   display: flex;
   grid-column-start: 1;

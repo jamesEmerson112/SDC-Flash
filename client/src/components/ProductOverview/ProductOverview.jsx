@@ -14,6 +14,7 @@ const ProductOverview = ({ id, product }) => {
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [selected, setSelected] = useState(0);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -23,6 +24,28 @@ const ProductOverview = ({ id, product }) => {
         setSuccess(false);
       }
     }
+  };
+
+  const NextArrow = () => {
+    if (indexMainPic === style.photos.length - 1) {
+      return;
+    }
+    console.log(selected);
+    const nexPicUrl = style.photos[indexMainPic + 1].url;
+    setSelected((current) => current + 1);
+    setMainPic(nexPicUrl);
+    setIndexMainPic((current) => current + 1);
+  };
+
+  const BackArrow = () => {
+    if (indexMainPic === 0) {
+      return;
+    }
+    console.log(selected);
+    const previousPicUrl = style.photos[indexMainPic - 1].url;
+    setSelected((current) => current - 1);
+    setMainPic(previousPicUrl);
+    setIndexMainPic((current) => current - 1);
   };
 
   const ChooseMainPic = (url, index) => {
@@ -62,7 +85,15 @@ const ProductOverview = ({ id, product }) => {
     return (
       <div>
         <div className="product-overview">
-          <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
+          <ImageGallery
+            style={style}
+            mainPic={mainPic}
+            click={ChooseMainPic}
+            NextArrow={NextArrow}
+            BackArrow={BackArrow}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <ProductInfo product={product} style={style} reviews={reviews} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
