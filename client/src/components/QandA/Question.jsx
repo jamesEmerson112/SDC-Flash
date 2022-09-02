@@ -33,6 +33,7 @@ const Question = ({ question, product }) => {
         .put(`/qa/questions/${question_id}/helpful`, {}, config)
         .then(() => {
           ques.helpf_click = true;
+          ques.question_helpfulness += 1;
           setHelpfulness(helpfulness + 1);
         })
         .catch((err) => console.log(err));
