@@ -3,7 +3,7 @@ import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ProductInfo from "./ProductInfo/ProductInfo.jsx";
 import StyleSelector from "./StyleSelector/StyleSelector.jsx";
 import AddToCart from "./AddToCart/AddToCart.jsx";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import axios from "axios";
 import styled from "styled-components";
 

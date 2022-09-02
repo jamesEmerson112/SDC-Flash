@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Ratings from "./Ratings/RatingsOverview.jsx";
 import ReviewList from "./Reviews/ReviewList.jsx";
 import StarComponent from "../StarComponent.jsx";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import axios from "axios";
 import RatingsOverview from "./Ratings/RatingsOverview.jsx";
 import styled from "styled-components";

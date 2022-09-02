@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
-import config from "../../../../../env/config.js";
+import { config } from "../../../../../env/config.js";
 import axios from "axios";
 
 const AddToCart = ({ style, setSuccess, success }) => {
