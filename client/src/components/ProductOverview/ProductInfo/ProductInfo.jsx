@@ -11,9 +11,7 @@ const ProductInfo = ({ product, style, reviews }) => {
       <div>
         <StarComponent reviews={reviews} />
         <Link>
-          <a href="http://localhost:3000/index.html#Ratings_Reviews">
-            Read all {numberOfReviews} reviews
-          </a>
+          <a href="#Ratings_Reviews">Read all {numberOfReviews} reviews</a>
         </Link>
       </div>
       <Category>{product.category}</Category>
