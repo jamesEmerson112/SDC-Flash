@@ -35,6 +35,7 @@ const Answer = ({ answer, question_id }) => {
         .put(`/qa/answers/${id}/helpful`, {}, config)
         .then(() => {
           answ.helpf_click = true;
+          answ.helpfulness += 1;
           setHelpfulness(a_helpf + 1);
         })
         .catch((err) => console.log(err));
