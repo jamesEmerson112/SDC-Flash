@@ -13,7 +13,6 @@ const ProductOverview = ({ id, product }) => {
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
-  console.log(product);
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {

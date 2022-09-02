@@ -3,6 +3,12 @@ import axios from "axios";
 import config from "../../../../env/config.js";
 import { parseISO } from "date-fns";
 import questList from "./qAndA.js";
+import {
+  ModalClose,
+  ModalImg,
+  Modal,
+  ModalOverlay,
+} from "../../styleComponents.jsx";
 
 const Answer = ({ answer, question_id }) => {
   const { answerer_name, body, date, helpfulness, id, photos } = answer;
@@ -49,14 +55,12 @@ const Answer = ({ answer, question_id }) => {
   return (
     <div className="qAndAAns">
       {modal ? (
-        <div className="modalOverlay">
-          <div className="modal">
-            <img src={modal} className="modalImg" />
-            <div className="modalClose" onClick={imgZoom}>
-              X
-            </div>
-          </div>
-        </div>
+        <ModalOverlay>
+          <Modal>
+            <ModalImg src={modal} />
+            <ModalClose onClick={imgZoom}>X</ModalClose>
+          </Modal>
+        </ModalOverlay>
       ) : null}
       <div>{body}</div>
       {photos.length ? (

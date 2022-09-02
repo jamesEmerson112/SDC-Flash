@@ -5,6 +5,7 @@ import QuestionList from "./QandA/QuestionList.jsx";
 import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 import styled from "styled-components";
+import { Button } from "../styleComponents.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -59,7 +60,7 @@ const App = () => {
       <div>
         <TitleHeader>
           {index > 0 ? (
-            <button onClick={prev}>Previous Product</button>
+            <Button onClick={prev}>Previous Product</Button>
           ) : (
             <div></div>
           )}
@@ -68,12 +69,12 @@ const App = () => {
             component
           </h1>
           {index + 1 < products.length ? (
-            <button onClick={next}>Next Product</button>
+            <Button onClick={next}>Next Product</Button>
           ) : (
             <div></div>
           )}
         </TitleHeader>
-        <button onClick={toggleClrMode}>{clrMode}</button>
+        <Button onClick={toggleClrMode}>{clrMode}</Button>
         <QuestionList product={product} />
         <ProductOverview id={product.id} product={product} />
         <RRIndex id={product.id} />

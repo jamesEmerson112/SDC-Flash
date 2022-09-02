@@ -4,6 +4,13 @@ import styled from "styled-components";
 import config from "../../../../env/config.js";
 import questList from "./qAndA.js";
 import Upload from "../Ratings_Reviews/Reviews/Modal/Upload.jsx";
+import {
+  Modal,
+  ModalClose,
+  InputButton,
+  ModalOverlay,
+  ModalForm,
+} from "../../styleComponents.jsx";
 
 const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
   // variable
@@ -48,9 +55,9 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
   };
 
   return (
-    <div className="modalOverlay">
-      <div className="modal">
-        <form className="modalForm" onSubmit={postAnswer}>
+    <ModalOverlay>
+      <Modal>
+        <ModalForm onSubmit={postAnswer}>
           <QFHeader>Submit your Answer</QFHeader>
           <small>
             {product.name}: {question_body}
@@ -96,13 +103,11 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <br />
           <Upload upload={setPhotos} />
           <br />
-          <input type="submit" value="Submit Answer" />
-        </form>
-        <div className="modalClose" onClick={() => setShowAForm(false)}>
-          X
-        </div>
-      </div>
-    </div>
+          <InputButton type="submit" value="Submit Answer" />
+        </ModalForm>
+        <ModalClose onClick={() => setShowAForm(false)}>X</ModalClose>
+      </Modal>
+    </ModalOverlay>
   );
 };
 

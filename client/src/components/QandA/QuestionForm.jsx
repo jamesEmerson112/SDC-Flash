@@ -3,6 +3,13 @@ import axios from "axios";
 import styled from "styled-components";
 import config from "../../../../env/config.js";
 import questList from "./qAndA.js";
+import {
+  InputButton,
+  ModalClose,
+  Modal,
+  ModalOverlay,
+  ModalForm,
+} from "../../styleComponents.jsx";
 
 const QuestionForm = ({ product, setShowQForm }) => {
   // variable
@@ -55,9 +62,9 @@ const QuestionForm = ({ product, setShowQForm }) => {
   };
 
   return (
-    <div className="modalOverlay">
-      <div className="modal">
-        <form className="modalForm" onSubmit={postQuestion}>
+    <ModalOverlay>
+      <Modal>
+        <ModalForm onSubmit={postQuestion}>
           <QFHeader>Ask Your Question</QFHeader>
           <small>About the {product.name}</small>
           <br />
@@ -100,13 +107,11 @@ const QuestionForm = ({ product, setShowQForm }) => {
           <br />
           <small>For authentication reasons, you will not be emailed</small>
           <br />
-          <input type="submit" value="Submit Question" />
-        </form>
-        <div className="modalClose" onClick={() => setShowQForm(false)}>
-          X
-        </div>
-      </div>
-    </div>
+          <InputButton type="submit" value="Submit Question" />
+        </ModalForm>
+        <ModalClose onClick={() => setShowQForm(false)}>X</ModalClose>
+      </Modal>
+    </ModalOverlay>
   );
 };
 

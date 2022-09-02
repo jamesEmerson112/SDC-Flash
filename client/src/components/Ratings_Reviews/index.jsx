@@ -31,9 +31,6 @@ const Ratings_Reviews = (props) => {
     5: false,
   });
 
-  console.log("REVIEWS: ", reviews);
-  console.log("META: ", meta);
-
   const toggleStar = (value) => {
     if (value === "5") {
       setStarFilter({ ...starFilter, 5: !starFilter[value] });

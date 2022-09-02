@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "/client/src/styleComponents.jsx";
 
 const Upload = (props) => {
   var photoArray = [];
@@ -23,7 +24,7 @@ const Upload = (props) => {
     widget.open();
   };
 
-  return <button onClick={upload}>Open</button>;
+  return <Button onClick={upload}>Open</Button>;
 };
 
 export default Upload;

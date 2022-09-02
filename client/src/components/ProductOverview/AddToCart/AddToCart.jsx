@@ -26,7 +26,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
     let skew = style.skus[key];
     styles.push({ key: key, value: skew.size, quantity: skew.quantity });
   }
-  console.log(styles);
 
   useEffect(() => {
     setStateStyles(styles);

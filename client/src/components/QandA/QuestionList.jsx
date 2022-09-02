@@ -5,6 +5,7 @@ import QuestionForm from "./QuestionForm.jsx";
 import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";
 import questList from "./qAndA.js";
+import { Button } from "../../styleComponents.jsx";
 
 const QuestionList = ({ product }) => {
   // variables
@@ -83,11 +84,11 @@ const QuestionList = ({ product }) => {
       </div>
       <div>
         {filtList.length < questList.length ? (
-          <button onClick={expandQs}>More Answered Questions</button>
+          <Button onClick={expandQs}>More Answered Questions</Button>
         ) : null}
-        <button onClick={() => setShowQForm(!showQForm)}>
+        <Button onClick={() => setShowQForm(!showQForm)}>
           Add a Question +
-        </button>
+        </Button>
       </div>
       {showQForm ? (
         <QuestionForm product={product} setShowQForm={setShowQForm} />
