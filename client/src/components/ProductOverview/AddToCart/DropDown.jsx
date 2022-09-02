@@ -4,7 +4,7 @@ import styled from "styled-components";
 const DropDown = ({ label, options, onChange }) => {
   return (
     <Select onChange={onChange} defaultValue={label}>
-      <option value={label} disabled hidden>
+      <option value={label} hidden>
         {label}
       </option>
       >

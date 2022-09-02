@@ -160,6 +160,7 @@ cursor: pointer;
   /* margin-left: 125px;*/
   margin-right: 10px;
   max-height: 100%;
+
 }
 
 /* .image-gallery > * {
@@ -201,9 +202,9 @@ cursor: pointer;
   flex-direction: row;
   margin-top: 10px;
   flex-wrap: wrap;
-  margin: 15px;
-  align-items: center;
+  margin: 3px;
   max-height: 100%;
+  align-items: center;
 }
 
 .styles {

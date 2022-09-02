@@ -75,7 +75,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
 
   const addToCart = () => {
     const data = { sku_id: parseInt(value.key), count: parseInt(quantity) };
-    console.log(typeof data.sku_id, typeof data.count);
     axios
       .post("/cart", data, config)
       .then((success) => {
@@ -121,7 +120,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
     <div>
       {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
       <div className="item add-to-cart">
-        <DropDown label={label} options={stateStyles} onChange={selectSize} />
+        <DropDown label={label} options={styles} onChange={selectSize} />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
         ) : (
