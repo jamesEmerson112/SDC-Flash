@@ -48,9 +48,11 @@ const QuestionForm = ({ product, setShowQForm }) => {
               (quest) => quest.question_id === q.question_id
             );
             if (!exists) {
+              q.prodID = product.id;
               q.helpf_click = false;
               for (const id in q.answers) {
                 q.answers[id].helpf_click = false;
+                q.answers[id].reported = false;
               }
               questList.push(q);
             }
