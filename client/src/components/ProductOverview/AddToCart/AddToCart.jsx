@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
+import config from "../../../../../env/config.js";
+import axios from "axios";
 
 const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
@@ -70,26 +72,29 @@ const AddToCart = ({ style, setSuccess, success }) => {
       </div>
     );
   }
+
+  const addToCart = () => {
+    const data = { sku_id: parseInt(value.key), count: parseInt(quantity) };
+    console.log(typeof data.sku_id, typeof data.count);
+    axios
+      .post("/cart", data, config)
+      .then((success) => {
+        console.log(success);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setSuccess(true);
+    setQuantity(0);
+    setSize("");
+    setValue("");
+    setStateStyles([]);
+    setLabel("Select a size");
+  };
+
   // set values for what the button will do depending on the state
   if (value !== "" && quantity !== 0) {
-    var button = (
-      <Button
-        onClick={() => {
-          setSuccess(true);
-          setQuantity(0);
-          setSize("");
-          setValue("");
-          setStateStyles([]);
-          setLabel("Select a size");
-
-          // Have to add an axios post request to cart API
-          // change structure fo data
-          // return addItemsToCart(purchase);
-        }}
-      >
-        Add To Cart
-      </Button>
-    );
+    var button = <Button onClick={addToCart}>Add To Cart</Button>;
   } else if (value !== "" && quantity === 0) {
     var button = (
       <Button

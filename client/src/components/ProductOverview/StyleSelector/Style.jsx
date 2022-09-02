@@ -83,6 +83,8 @@ const StyleName = styled.div`
   display: flex;
   justify-content: center;
   margin-right: 15px;
+  font-size: small;
+  margin-bottom: 3px;
 `;
 
 const Check = styled.span`
