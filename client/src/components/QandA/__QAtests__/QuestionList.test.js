@@ -11,11 +11,9 @@ afterAll((done) => {
   done();
 });
 
-test("simple test", () => {
-  expect(true).toBe(true);
-});
-
 test("should render QuestionList component", () => {
-  const tree = renderer.create(<QuestionList product="product" />).toJSON();
+  const tree = renderer
+    .create(<QuestionList product={{ id: 65631 }} />)
+    .toJSON();
   expect(tree).not.toBeNull();
 });

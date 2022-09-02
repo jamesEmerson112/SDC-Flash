@@ -10,7 +10,6 @@ const Characteristics = ({ meta }) => {
     const widthLength = Math.round((meta.Length?.value / 5) * 100);
     const widthFit = Math.round((meta.Fit?.value / 5) * 100);
 
-    console.log(widthComfort, meta.Comfort.value);
     return (
       <div>
         {meta.Size && (
