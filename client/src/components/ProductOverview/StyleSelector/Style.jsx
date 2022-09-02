@@ -4,6 +4,9 @@ import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
+  if (selected > photos.length) {
+    setSelected(0);
+  }
   return photos.map((photo, i) => {
     if (photo.photo.thumbnail_url === null) {
       return (
@@ -68,18 +71,24 @@ const StyleParent = styled.div`
   margin-bottom: 9px;
   z-index: 1;
   box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  align-self: flex-end;
+  align-items: flex-end;
 `;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 25%;
-  max-height: fit-content;
-  algin-items: space-between;
+  max-height: 100%;
+  min-height: 152px;
 `;
 
 const StyleName = styled.div`
   display: flex;
   justify-content: center;
   margin-right: 15px;
+  font-size: small;
+  margin-bottom: 3px;
 `;
 
 const Check = styled.span`

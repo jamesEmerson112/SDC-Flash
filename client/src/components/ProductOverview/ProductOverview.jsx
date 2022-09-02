@@ -3,7 +3,7 @@ import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ProductInfo from "./ProductInfo/ProductInfo.jsx";
 import StyleSelector from "./StyleSelector/StyleSelector.jsx";
 import AddToCart from "./AddToCart/AddToCart.jsx";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -13,6 +13,9 @@ const ProductOverview = ({ id, product }) => {
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [selected, setSelected] = useState(0);
+
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
@@ -23,9 +26,37 @@ const ProductOverview = ({ id, product }) => {
     }
   };
 
+  const NextArrow = () => {
+    const nexPicUrl = style.photos[indexMainPic + 1].url;
+    setSelected((current) => current + 1);
+    setMainPic(nexPicUrl);
+    setIndexMainPic((current) => current + 1);
+  };
+
+  const BackArrow = () => {
+    const previousPicUrl = style.photos[indexMainPic - 1].url;
+    setSelected((current) => current - 1);
+    setMainPic(previousPicUrl);
+    setIndexMainPic((current) => current - 1);
+  };
+
   const ChooseMainPic = (url, index) => {
+    if (url === null) {
+      setMainPic(
+        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+      );
+    }
     setMainPic(url);
     setIndexMainPic(index);
+  };
+
+  const getReviewData = () => {
+    axios
+      .get(`/reviews?product_id=${id}`, config)
+      .then((response) => {
+        setReviews(response.data.results);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -39,15 +70,23 @@ const ProductOverview = ({ id, product }) => {
       .catch((err) => {
         console.log(err);
       });
+    getReviewData();
   }, [id]);
 
   if (styles.length > 0) {
     return (
       <div>
-        <h1>Product Overview</h1>
         <div className="product-overview">
-          <ImageGallery style={style} mainPic={mainPic} click={ChooseMainPic} />
-          <ProductInfo product={product} stylePrice={style.original_price} />
+          <ImageGallery
+            style={style}
+            mainPic={mainPic}
+            click={ChooseMainPic}
+            NextArrow={NextArrow}
+            BackArrow={BackArrow}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <ProductInfo product={product} style={style} reviews={reviews} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
           <Description>{product.description}</Description>
@@ -65,7 +104,6 @@ const Description = styled.p`
   justify-content: center;
   align-items: center;
   grid-column-start: 1;
-  box-shadow: 3px 3px 10px rgb(0 0 0);
   margin: 5px 150px;
   font-size: large;
   box-sizing: content-box;

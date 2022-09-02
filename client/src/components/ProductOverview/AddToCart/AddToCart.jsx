@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
+import { config } from "../../../../../env/config.js";
+import axios from "axios";
 
 const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
@@ -15,7 +17,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
   // set the style name to be returned with the cart purchase
   const styleName = style.name;
   // will be set to true upon successful addition to cart
-
   let sizesAvailable = _.map(style.skus, (sku) => {
     return sku.size;
   });
@@ -71,27 +72,28 @@ const AddToCart = ({ style, setSuccess, success }) => {
       </div>
     );
   }
+
+  const addToCart = () => {
+    const data = { sku_id: parseInt(value.key), count: parseInt(quantity) };
+    axios
+      .post("/cart", data, config)
+      .then((success) => {
+        console.log(success);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setSuccess(true);
+    setQuantity(0);
+    setSize("");
+    setValue("");
+    setStateStyles([]);
+    setLabel("Select a size");
+  };
+
   // set values for what the button will do depending on the state
   if (value !== "" && quantity !== 0) {
-    var button = (
-      <Button
-        onClick={() => {
-          setSuccess(true);
-          let purchase = { style: styleName, size: size, quantity: quantity };
-          setQuantity(0);
-          setSize("");
-          setValue("");
-          setStateStyles([]);
-          setLabel("Select a size");
-
-          // Have to add an axios post request to cart API
-          // change structure fo data
-          // return addItemsToCart(purchase);
-        }}
-      >
-        Add To Cart
-      </Button>
-    );
+    var button = <Button onClick={addToCart}>Add To Cart</Button>;
   } else if (value !== "" && quantity === 0) {
     var button = (
       <Button
@@ -118,7 +120,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
     <div>
       {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
       <div className="item add-to-cart">
-        <DropDown label={label} options={stateStyles} onChange={selectSize} />
+        <DropDown label={label} options={styles} onChange={selectSize} />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
         ) : (
@@ -146,8 +148,10 @@ const Alert = styled.div`
 `;
 
 const Success = styled.div`
-  box-shadow: 3px 3px 10px rgb(0 0 0 / 0.2);
+  border: 3px solid grey;
+  border-radius: 5px;
   box-sizing: border-box;
+  margin-top: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
   padding: 5px;
@@ -159,5 +163,4 @@ const Button = styled.button`
   margin-top: 5px;
   font-size: large;
   border-radius: 10px;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 `;

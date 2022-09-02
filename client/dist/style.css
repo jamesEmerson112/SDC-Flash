@@ -3,13 +3,15 @@ body {
 }
 
 #root {
-  max-width: 1200px;
+  max-width:75vw;
   margin: auto;
 }
 
 .darkMode {
   color: white;
-  background-color: rgba(128, 128, 128);
+  /* background-color: rgba(128, 128, 128); */
+  background-color:grey
+
 }
 
 /* Q and A */
@@ -74,18 +76,39 @@ cursor: pointer;
   grid-template-columns: [first] 65% [second] 35%;
   grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 75px;
   box-sizing: border-box;
+  margin-top: 20px;
 }
 
 .pic {
   max-height: 570px;
-  max-width: 95%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 0;
   border: 1px solid black;
   position: relative;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
+
+}
+.pic:hover {
+  cursor: zoom-in;
+}
+
+.pic_button {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  z-index: 2;
+  border: white;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .image-gallery {
@@ -94,9 +117,10 @@ cursor: pointer;
   grid-row-start: 1;
   grid-row-end: -1;
   /* justify-content: center;  This would center all components of image gallery */
-  /* margin-left: 125px;
-  margin-right: 10px; */
+  /* margin-left: 125px;*/
+  margin-right: 10px;
   max-height: 100%;
+
 }
 
 /* .image-gallery > * {
@@ -138,9 +162,9 @@ cursor: pointer;
   flex-direction: row;
   margin-top: 10px;
   flex-wrap: wrap;
-  margin: 15px;
-  align-items: center;
+  margin: 3px;
   max-height: 100%;
+  align-items: center;
 }
 
 .styles {
