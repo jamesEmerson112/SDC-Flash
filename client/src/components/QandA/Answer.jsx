@@ -25,7 +25,7 @@ const Answer = ({ answer, question_id }) => {
   // state
   const [a_helpf, setHelpfulness] = useState(helpfulness);
   const [modal, setModal] = useState(false);
-  const [reportSt, setReportSt] = useState(false);
+  const [reportSt, setReportSt] = useState(answ.reported);
   const [clickable, setClickable] = useState({ yes: "", report: "" });
 
   // methods
@@ -49,7 +49,10 @@ const Answer = ({ answer, question_id }) => {
   const reportAns = () => {
     axios
       .put(`qa/answers/${id}/report`, {}, config)
-      .then(() => setReportSt(true))
+      .then(() => {
+        answ.reported = true;
+        setReportSt(answ.reported);
+      })
       .catch((err) => console.log(err));
   };
 
