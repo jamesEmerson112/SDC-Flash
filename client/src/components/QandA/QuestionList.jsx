@@ -25,12 +25,13 @@ const QuestionList = ({ product }) => {
           (a, b) => b.question_helpfulness - a.question_helpfulness
         );
         // tracker
-        questList.length = 0;
+        // questList.length = 0;
         response.data.results.forEach((q) => {
           let exists = questList.find(
             (quest) => quest.question_id === q.question_id
           );
           if (!exists) {
+            q.prodID = id;
             q.helpf_click = false;
             for (const id in q.answers) {
               q.answers[id].helpf_click = false;
@@ -47,8 +48,9 @@ const QuestionList = ({ product }) => {
   // methods
   const search = (event) => {
     let query = event.target.value;
+    let list = questList.filter((q) => q.prodID === id);
     if (query.length > 2) {
-      let filtQ = questList.filter((ques) => {
+      let filtQ = list.filter((ques) => {
         let ans = ques.answers;
         for (let id in ans) {
           if (ans[id].body.toLowerCase().includes(query.toLowerCase()))
@@ -65,8 +67,9 @@ const QuestionList = ({ product }) => {
 
   const expandQs = (event) => {
     let last = filtList.length;
-    setQList(questList.slice(0, last + 2));
-    setFiltList(questList.slice(0, last + 2));
+    let list = questList.filter((q) => q.prodID === id);
+    setQList(list.slice(0, last + 2));
+    setFiltList(list.slice(0, last + 2));
   };
 
   return (

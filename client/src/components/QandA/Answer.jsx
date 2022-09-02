@@ -49,7 +49,7 @@ const Answer = ({ answer, question_id }) => {
   const reportAns = () => {
     axios
       .put(`qa/answers/${id}/report`, {}, config)
-      .then(setReportSt(true))
+      .then(() => setReportSt(true))
       .catch((err) => console.log(err));
   };
 
