@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AnswerList from "./AnswerList.jsx";
 import AnswerForm from "./AnswerForm.jsx";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import styled from "styled-components";
 import questList from "./qAndA.js";
 

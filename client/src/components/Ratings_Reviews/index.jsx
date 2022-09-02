@@ -31,9 +31,6 @@ const Ratings_Reviews = (props) => {
     5: false,
   });
 
-  console.log("REVIEWS: ", reviews);
-  console.log("META: ", meta);
-
   const toggleStar = (value) => {
     if (value === "5") {
       setStarFilter({ ...starFilter, 5: !starFilter[value] });
@@ -102,7 +99,7 @@ const Ratings_Reviews = (props) => {
 
   const getReviewData = () => {
     axios
-      .get(`/reviews?product_id=${id}&sort=${filter}`, config)
+      .get(`/reviews?product_id=${id}&count=${50}&sort=${filter}`, config)
       .then((response) => filterReviews(response.data.results))
       .catch((err) => console.log(err));
   };

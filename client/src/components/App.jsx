@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import config from "../../../env/config.js";
+import { config } from "../../../env/config.js";
 import QuestionList from "./QandA/QuestionList.jsx";
 import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 import styled from "styled-components";
+import { Button } from "../styleComponents.jsx";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -57,9 +58,9 @@ const App = () => {
   if ("id" in product) {
     return (
       <div>
-        <TitleHeader>
+        {/* <TitleHeader>
           {index > 0 ? (
-            <button onClick={prev}>Previous Product</button>
+            <Button onClick={prev}>Previous Product</Button>
           ) : (
             <div></div>
           )}
@@ -68,14 +69,14 @@ const App = () => {
             component
           </h1>
           {index + 1 < products.length ? (
-            <button onClick={next}>Next Product</button>
+            <Button onClick={next}>Next Product</Button>
           ) : (
             <div></div>
           )}
         </TitleHeader>
-        <button onClick={toggleClrMode}>{clrMode}</button>
-        <ProductOverview id={product.id} product={product} />
+        <Button onClick={toggleClrMode}>{clrMode}</Button>
         <QuestionList product={product} />
+        <ProductOverview id={product.id} product={product} /> */}
         <RRIndex id={product.id} />
       </div>
     );
