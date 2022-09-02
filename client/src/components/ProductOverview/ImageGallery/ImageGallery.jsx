@@ -13,6 +13,8 @@ const ImageGallery = ({
   setSelected,
   NextArrow,
 }) => {
+  const [expanded, setExpanded] = useState(false);
+
   if (style) {
     const photos = style.photos;
 
@@ -29,6 +31,7 @@ const ImageGallery = ({
                 click={click}
                 setSelected={setSelected}
                 selected={selected}
+                modal={false}
               />
             </div>
             <img
@@ -44,6 +47,34 @@ const ImageGallery = ({
     } else {
       return (
         <div className="image-gallery">
+          {expanded ? (
+            <div className="modalOverlay">
+              <div className="modal">
+                <div className="modalForm">
+                  <div className="modal">
+                    {/* <Thumbnail
+                      photos={photos}
+                      click={click}
+                      setSelected={setSelected}
+                      selected={selected}
+                      modal={true}
+                    /> */}
+                  </div>
+                  <ModalImage src={mainPic} />
+                </div>
+                <div
+                  className="modalClose"
+                  onClick={() => {
+                    setExpanded(false);
+                  }}
+                >
+                  X
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
           {selected === 0 ? (
             <div></div>
           ) : (
@@ -59,18 +90,14 @@ const ImageGallery = ({
                 click={click}
                 setSelected={setSelected}
                 selected={selected}
+                modal={false}
               />
             </div>
             <img
               className="pic"
               src={mainPic}
-              onMouseEnter={(e) => {
-                console.log(e.target);
-              }}
-              onMouseLeave={() => {
-                console.log("bye");
-              }}
               onClick={() => {
+                setExpanded(true);
                 console.log("hi");
               }}
             />
@@ -89,3 +116,8 @@ const ImageGallery = ({
 };
 
 export default ImageGallery;
+
+const ModalImage = styled.img`
+  display: inline-block;
+  max-width: 100%;
+`;

@@ -157,8 +157,8 @@ cursor: pointer;
   grid-row-start: 1;
   grid-row-end: -1;
   /* justify-content: center;  This would center all components of image gallery */
-  /* margin-left: 125px;
-  margin-right: 10px; */
+  /* margin-left: 125px;*/
+  margin-right: 10px;
   max-height: 100%;
 }
 
