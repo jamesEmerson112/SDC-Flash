@@ -57,7 +57,7 @@ const App = () => {
   if ("id" in product) {
     return (
       <div>
-        <TitleHeader>
+        {/* <TitleHeader>
           {index > 0 ? (
             <button onClick={prev}>Previous Product</button>
           ) : (
@@ -75,7 +75,7 @@ const App = () => {
         </TitleHeader>
         <button onClick={toggleClrMode}>{clrMode}</button>
         <QuestionList product={product} />
-        <ProductOverview id={product.id} product={product} />
+        <ProductOverview id={product.id} product={product} /> */}
         <RRIndex id={product.id} />
       </div>
     );

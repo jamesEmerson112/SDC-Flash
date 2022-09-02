@@ -20,5 +20,9 @@ const RatingsOverview = (props) => {
 export default RatingsOverview;
 
 const Container = styled.div`
+display: flex;
+flex-direction: column;
+padding: 20px;
+width: 400px;
 `;
 

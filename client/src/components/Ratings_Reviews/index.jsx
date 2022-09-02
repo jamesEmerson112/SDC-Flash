@@ -102,7 +102,7 @@ const Ratings_Reviews = (props) => {
 
   const getReviewData = () => {
     axios
-      .get(`/reviews?product_id=${id}&sort=${filter}`, config)
+      .get(`/reviews?product_id=${id}&count=${50}&sort=${filter}`, config)
       .then((response) => filterReviews(response.data.results))
       .catch((err) => console.log(err));
   };
@@ -130,7 +130,7 @@ const Ratings_Reviews = (props) => {
   }, [props.id, filter, starFilter]);
 
   return (
-    <div>
+    <div id='Ratings_Reviews'>
       <h1>Ratings & Reviews</h1>
       <Container>
         <RatingsOverview
