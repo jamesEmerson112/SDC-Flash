@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import { parseISO } from "date-fns";
 import questList from "./qAndA.js";
 import {

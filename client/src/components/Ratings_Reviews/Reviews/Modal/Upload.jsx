@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "/client/src/styleComponents.jsx";
+import { Button } from "../../../../styleComponents.jsx";
 
 const Upload = (props) => {
   var photoArray = [];

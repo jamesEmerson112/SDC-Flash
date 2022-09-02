@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import QuestionForm from "./QuestionForm.jsx";
 import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import config from "../../../../env/config.js";
+import { config } from "../../../../env/config.js";
 import questList from "./qAndA.js";
 import Upload from "../Ratings_Reviews/Reviews/Modal/Upload.jsx";
 import {
