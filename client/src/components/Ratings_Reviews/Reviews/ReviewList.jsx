@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReviewCard from "./ReviewCard.jsx";
 import ReviewModal from "./Modal/ReviewModal.jsx";
+import styled from "styled-components";
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
@@ -30,13 +31,12 @@ const ReviewList = (props) => {
         <option value='helpful'>Helpful</option>
         <option value='newest'>Newest</option>
       </select></p>}
-      <div>{map}</div>
-      <div>
+      <Reviews>
+        <div>{map}</div>
         {reviews.length > 2 && count < reviews.length && (
-          <button onClick={addMore}>More Reviews &#9660;</button>
-        )}
+        <button onClick={addMore}>More Reviews &#9660;</button>)}
         <button onClick={() => setOpenModal(true)}>Add Review +</button>
-      </div>
+      </Reviews>
       <ReviewModal
         id={props.id}
         meta={meta}
@@ -49,3 +49,9 @@ const ReviewList = (props) => {
 }
 
 export default ReviewList;
+
+const Reviews = styled.div`
+max-height: 800px;
+width: 800px;
+overflow-y: auto;
+`;
