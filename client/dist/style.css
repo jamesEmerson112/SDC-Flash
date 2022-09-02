@@ -24,7 +24,7 @@ cursor: pointer;
 .qList {
   max-height: 80vh;
   overflow: auto;
-  width: 80vw;
+  /* width: 80vw; */
 }
 
 .ansList {
