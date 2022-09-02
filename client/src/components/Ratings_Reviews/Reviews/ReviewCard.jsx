@@ -13,6 +13,10 @@ const ReviewCard = ({ review }) => {
   const [seeMore, setSeeMore] = useState(true)
   const [modal, setModal] = useState(false)
 
+  useEffect(() => {
+    setHelpfullness(review.helpfulness)
+  }, [review.helpfulness])
+
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
       year: "numeric",
