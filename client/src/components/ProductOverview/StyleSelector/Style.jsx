@@ -72,15 +72,14 @@ const StyleParent = styled.div`
   z-index: 1;
   box-shadow: 3px 3px 10px rgb(0, 0, 0);
   align-self: flex-end;
-  align-items: flex-end;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  max-height: 100%;
-  min-height: 152px;
+  max-height: 125px;
+  min-height: 125px;
 `;
 
 const StyleName = styled.div`
