@@ -77,7 +77,7 @@ const ProductOverview = ({ id, product }) => {
     getRatingsData();
   }, [id]);
 
-  console.log(darkMode);
+  // console.log(darkMode);
 
   if (styles.length > 0) {
     return (

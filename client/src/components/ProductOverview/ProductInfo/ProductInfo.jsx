@@ -6,7 +6,7 @@ const ProductInfo = ({ product, style, ratings }) => {
   const price = "$" + style.original_price;
   const salePrice = "$" + style.sale_price;
   const numberOfRatings = 0; //ratings.length;
-  console.log(ratings);
+  // console.log(ratings);
   return (
     <div className="product-info">
       <div>

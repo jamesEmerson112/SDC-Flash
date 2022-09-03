@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../../../styleComponents.jsx";
 
 const Upload = (props) => {
-  var photoArray = [];
+  const [photoArray, setPhotoArray] = useState(props.photos);
 
   const upload = (event) => {
     event.preventDefault();
@@ -14,8 +14,9 @@ const Upload = (props) => {
 
       (error, result) => {
         if (!error && result && result.event === "success") {
-          photoArray.push(result.info.url)
-          props.upload(photoArray.slice(0, 5))
+          let temp = photoArray.concat([result.info.url]);
+          props.upload(temp.slice(0, 5));
+          setPhotoArray(temp.slice(0, 5));
         }
       }
     );
@@ -24,13 +25,13 @@ const Upload = (props) => {
 
   return (
     <div>
-        <Button onClick={upload}>Open</Button>
-        {props.photos.map((photo, index) => {
-          return <img src={photo} key={index} className="ansPhotos"/>
-        })}
+      <Button onClick={upload}>Upload Photos</Button>
+      <br />
+      {photoArray.map((photo, index) => (
+        <img src={photo} key={index} className="ansPhotos" />
+      ))}
     </div>
-  )
-
+  );
 };
 
 export default Upload;

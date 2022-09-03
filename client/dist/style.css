@@ -22,7 +22,6 @@ cursor: pointer;
 .qList {
   max-height: 80vh;
   overflow: auto;
-  /* width: 80vw; */
 }
 
 .ansList {
@@ -32,7 +31,7 @@ cursor: pointer;
 }
 
 .qAndASearchBar {
-  width: 800px;
+  width: 75vw;
   margin-bottom: 20px;
 }
 
