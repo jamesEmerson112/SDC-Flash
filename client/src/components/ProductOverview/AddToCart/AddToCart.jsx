@@ -31,6 +31,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
   useEffect(() => {
     setStateStyles(styles);
     setLabel("Select a size");
+    console.log("This is what i am looking for", stateStyles);
   }, [size]);
 
   const selectSize = (e) => {
@@ -89,6 +90,9 @@ const AddToCart = ({ style, setSuccess, success }) => {
     setValue("");
     setStateStyles([]);
     setLabel("Select a size");
+    setTimeout(() => {
+      setSuccess(false);
+    }, 1000);
   };
 
   // set values for what the button will do depending on the state
@@ -115,11 +119,15 @@ const AddToCart = ({ style, setSuccess, success }) => {
       </Button>
     );
   }
-
+  const length = stateStyles.length;
   return (
-    <div className="item add-to-cart">
+    <div className="add-to-cart">
       <div>
-        <DropDown label={label} options={styles} onChange={selectSize} />
+        <DropDown
+          label={"Select a size"}
+          options={stateStyles}
+          onChange={selectSize}
+        />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
         ) : (
