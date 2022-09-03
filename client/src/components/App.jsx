@@ -20,10 +20,13 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get("/products", config)
+      .get("/products?count=1000", config)
       .then((response) => {
         setProducts(response.data);
-        setProduct(response.data[index]);
+        let randInd = Math.floor(Math.random() * 1000);
+        randInd = 0; //908
+        setIndex(randInd);
+        setProduct(response.data[randInd]);
       })
       .catch((err) => {
         console.log(err);
