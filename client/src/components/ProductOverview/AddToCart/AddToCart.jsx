@@ -151,7 +151,7 @@ const Alert = styled.div`
   font-weight: bold;
   margin-bottom: 5px;
   margin-left: 5px;
-  font-size: large;
+
   display: inline-flex;
   box-sizing: border-box;
 `;
