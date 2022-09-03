@@ -59,10 +59,16 @@ const App = () => {
 
   const clickTracker = (e, widget = "app") => {
     e.preventDefault();
-    console.log("element:", e.target.nodeName.toLowerCase());
-    console.log("widget:", widget);
     let date = new Date();
-    console.log("time:", date.toString());
+    let data = {
+      element: e.target.nodeName.toLowerCase(),
+      widget: widget,
+      time: date.toString(),
+    };
+    axios
+      .post("/interactions", data, config)
+      .then((res) => console.log(res.config.data, res.data))
+      .catch((err) => console.log(err));
   };
 
   if ("id" in product) {
