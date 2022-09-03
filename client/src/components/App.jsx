@@ -7,6 +7,8 @@ import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 import styled from "styled-components";
 import { Button } from "../styleComponents.jsx";
 
+export const ClickTracker = React.createContext();
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
@@ -55,29 +57,52 @@ const App = () => {
     }
   };
 
+  const clickTracker = (e, widget = "app") => {
+    let date = new Date();
+    let data = {
+      element: e.target.nodeName.toLowerCase(),
+      widget: widget,
+      time: date.toString(),
+    };
+    console.log("DATA: ,", data);
+    // axios
+    //   .post("/interactions", data, config)
+    //   .then((res) => console.log(res.config.data, res.data))
+    //   .catch((err) => console.log(err));
+  };
+
   if ("id" in product) {
     return (
       <div>
-        <TitleHeader>
-          {index > 0 ? (
-            <Button onClick={prev}>Previous Product</Button>
-          ) : (
-            <div></div>
-          )}
-          <h1>
-            {product.id}: this is the product id that we can pass to each
-            component
-          </h1>
-          {index + 1 < products.length ? (
-            <Button onClick={next}>Next Product</Button>
-          ) : (
-            <div></div>
-          )}
-        </TitleHeader>
-        <Button onClick={toggleClrMode}>{clrMode}</Button>
-        <ProductOverview id={product.id} product={product} />
-        <QuestionList product={product} />
-        <RRIndex id={product.id} />
+        <ClickTracker.Provider value={clickTracker}>
+          <TitleHeader onClick={clickTracker}>
+            {index > 0 ? (
+              <Button onClick={prev}>Previous Product</Button>
+            ) : (
+              <div></div>
+            )}
+            <h1>
+              {product.id}: this is the product id that we can pass to each
+              component
+            </h1>
+            {index + 1 < products.length ? (
+              <Button onClick={next}>Next Product</Button>
+            ) : (
+              <div></div>
+            )}
+          </TitleHeader>
+          <Button
+            onClick={(e) => {
+              clickTracker(e);
+              toggleClrMode(e);
+            }}
+          >
+            {clrMode}
+          </Button>
+          <QuestionList product={product} />
+          <ProductOverview id={product.id} product={product} />
+          <RRIndex id={product.id} />
+        </ClickTracker.Provider>
       </div>
     );
   } else {

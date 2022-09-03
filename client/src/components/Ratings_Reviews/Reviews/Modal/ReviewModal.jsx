@@ -46,7 +46,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
 
   const checkForm = (e) => {
     e.preventDefault();
-    if (rating === 0 || recc === null ||email.indexOf(".com") < 0 ) {
+    if (rating === 0 || recc === null || email.indexOf(".com") < 0 ) {
       console.log("MISSING DEETS");
       return setMissingReq(true);
     } else {
@@ -133,7 +133,6 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           <Sizes
             meta={meta}
             setChar={selectCharacteristic}
-            missing={missingReq}
           />
 
           <label>
@@ -168,7 +167,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           </label>
 
           <label>Upload Image: </label>
-          <Upload upload={setPhotos} />
+          <Upload photos={photos} upload={setPhotos} />
           <br />
 
           <label>
@@ -185,7 +184,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           <p>For authentication reasons you will not be emailed</p>
 
           <label>
-            Set Email: {missingReq && <Missing>* Invalid email format</Missing>}
+            Set Email:
             <input
               type="email"
               placeholder="jackson11@email.com"

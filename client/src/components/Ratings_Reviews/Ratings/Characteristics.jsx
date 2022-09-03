@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Characteristics = ({ meta }) => {
+
   if (meta && Object.keys(meta).length > 0) {
     const widthSize = Math.round((meta.Size?.value / 5) * 100);
     const widthWidth = Math.round((meta.Width?.value / 5) * 100);

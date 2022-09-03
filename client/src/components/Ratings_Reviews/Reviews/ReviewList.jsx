@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
+  const [filterReviews, setFilterReviews] = useState([])
   const [meta, setMeta] = useState({});
 
   const [count, setCount] = useState(2);
@@ -14,23 +15,47 @@ const ReviewList = (props) => {
     setCount(count + 2);
   };
 
-  const map =  reviews?.slice(0, count).map((review, index) => {
+  const search = (e) => {
+    var query = (e.target.value.toLowerCase())
+    if (query.length > 2) {
+      filter(query)
+    } else {
+      setFilterReviews(reviews)
+    }
+  }
+
+  const filter = (query) => {
+    const newData = reviews.filter((review) => {
+      if (review.summary.toLowerCase().includes(query) || review.body.toLowerCase().includes(query)) {
+        return review
+      }
+    })
+    setFilterReviews(newData)
+  }
+
+
+  var map = filterReviews?.slice(0, count).map((review, index) => {
     return <ReviewCard key={index} review={review}/>;
   });
 
+
   useEffect(() => {
     setReviews(props.reviews);
+    setFilterReviews(props.reviews)
     setMeta(props.meta);
-  }, [props.reviews, props.meta]);
+  }, [props.id, props.reviews]);
 
   return (
     <div>
-      {reviews.length && <p>{reviews.length} reviews, sorted by
-      <select onChange={(e) => props.sort(e.target.value)}>
-        <option value='relevant'>Relevant</option>
-        <option value='helpful'>Helpful</option>
-        <option value='newest'>Newest</option>
-      </select></p>}
+      <div>
+        <p>{filterReviews.length} reviews, sorted by
+        <select onChange={(e) => props.sort(e.target.value)}>
+          <option value='relevant'>Relevant</option>
+          <option value='helpful'>Helpful</option>
+          <option value='newest'>Newest</option>
+        </select></p>
+        <input type='text' placeholder='Search...' onChange={search}/>
+      </div>
       <Reviews>
         <div>{map}</div>
         {reviews.length > 2 && count < reviews.length && (

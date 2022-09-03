@@ -3,8 +3,14 @@ import Stars from '../Stars.jsx'
 import { parseISO } from "date-fns";
 import { FaStar, FaCheck } from 'react-icons/fa';
 import axios from "axios";
-import config from "../../../../../env/config.js";
+import {config} from "../../../../../env/config.js";
 import styled from "styled-components";
+import {
+  ModalClose,
+  ModalImg,
+  Modal,
+  ModalOverlay,
+} from "../../../styleComponents.jsx";
 
 const ReviewCard = ({ review }) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
@@ -12,10 +18,6 @@ const ReviewCard = ({ review }) => {
   const [reportClicked, setReportClicked] = useState(false)
   const [seeMore, setSeeMore] = useState(true)
   const [modal, setModal] = useState(false)
-
-  useEffect(() => {
-    setHelpfullness(review.helpfulness)
-  }, [review.helpfulness])
 
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
@@ -63,12 +65,12 @@ const ReviewCard = ({ review }) => {
   return (
     <ReviewCardDiv>
       {modal ? (
-        <div className="modalOverlay">
-          <div className="modal">
-            <img src={modal} className="modalImg" />
-            <div className="modalClose" onClick={() => setModal(false)}>X</div>
-          </div>
-        </div>
+        <ModalOverlay>
+          <Modal>
+            <ModalImg src={modal} className="modalImg" />
+            <ModalClose className="modalClose" onClick={() => setModal(false)}>X</ModalClose>
+          </Modal>
+        </ModalOverlay>
       ) : null}
       <div>
         <Stars rating={review.rating}/>
