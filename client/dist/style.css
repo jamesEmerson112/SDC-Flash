@@ -9,9 +9,7 @@ body {
 
 .darkMode {
   color: white;
-  /* background-color: rgba(128, 128, 128); */
   background-color:grey
-
 }
 
 /* Q and A */
@@ -86,6 +84,15 @@ cursor: pointer;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 4;
+}
+
+.background_dark {
+  background-color:darkgray;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+
 }
 
 .image-gallery {
