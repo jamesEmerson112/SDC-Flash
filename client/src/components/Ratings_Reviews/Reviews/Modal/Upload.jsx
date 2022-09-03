@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../../../../styleComponents.jsx";
 
 const Upload = (props) => {
-  const [photoArray, setPhotoArray] = useState(props.photos);
+  const [photoArray, setPhotoArray] = useState([]);
 
   const upload = (event) => {
     event.preventDefault();
