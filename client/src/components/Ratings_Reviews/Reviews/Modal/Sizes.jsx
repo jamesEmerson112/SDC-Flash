@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Sizes = ({meta, setChar, missing}) => {
+const Sizes = ({meta, setChar}) => {
 
   const characteristics = {
     Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide'],
@@ -80,38 +80,38 @@ const Sizes = ({meta, setChar, missing}) => {
     <div>
       {meta.Size &&
         <div>
-          <label>Sizes: {missing && <Missing>* Required</Missing>}</label>
+          <label>Sizes: </label>
           {selectSize}
         </div>}
 
       {meta.Width &&
         <div>
-          <label>Width: {missing && <Missing>* Required</Missing>}</label>
+          <label>Width: </label>
           {selectWidth}
         </div>}
 
 
       {meta.Comfort &&
         <div>
-          <label>Comfort: {missing && <Missing>* Required</Missing>}</label>
+          <label>Comfort: </label>
           {selectComfort}
         </div>}
 
       {meta.Quality &&
         <div>
-          <label>Quality: {missing && <Missing>* Required</Missing>}</label>
+          <label>Quality: </label>
           {selectQuality}
         </div>}
 
       {meta.Length &&
         <div>
-          <label>Length: {missing && <Missing>* Required</Missing>}</label>
+          <label>Length: </label>
           {selectLength}
         </div>}
 
       {meta.Fit &&
         <div>
-          <label>Fit: {missing && <Missing>* Required</Missing>}</label>
+          <label>Fit: </label>
           {selectFit}
         </div>}
     </div>

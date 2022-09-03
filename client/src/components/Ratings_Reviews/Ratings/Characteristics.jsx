@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Characteristics = ({ meta }) => {
+
   if (meta && Object.keys(meta).length > 0) {
     const widthSize = Math.round((meta.Size?.value / 5) * 100);
     const widthWidth = Math.round((meta.Width?.value / 5) * 100);
@@ -10,7 +11,6 @@ const Characteristics = ({ meta }) => {
     const widthLength = Math.round((meta.Length?.value / 5) * 100);
     const widthFit = Math.round((meta.Fit?.value / 5) * 100);
 
-    console.log(widthComfort, meta.Comfort.value);
     return (
       <div>
         {meta.Size && (

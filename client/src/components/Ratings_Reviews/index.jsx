@@ -8,10 +8,10 @@ import RatingsOverview from "./Ratings/RatingsOverview.jsx";
 import styled from "styled-components";
 
 const Ratings_Reviews = (props) => {
-  const [id, setId] = useState(props.id);
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [filter, setFilter] = useState("relavant");
+
 
   const [starCount, setStarCount] = useState({
     1: 0,
@@ -21,6 +21,8 @@ const Ratings_Reviews = (props) => {
     5: 0,
     total: 0,
   });
+
+
   const [overallRating, setOverallRating] = useState(0);
   const [recommend, setReccomend] = useState(0);
   const [starFilter, setStarFilter] = useState({
@@ -66,26 +68,24 @@ const Ratings_Reviews = (props) => {
   };
 
   const countStars = (ratings) => {
-    let total =
-      Number(ratings["1"]) +
-      Number(ratings["2"]) +
-      Number(ratings["3"]) +
-      Number(ratings["4"]) +
-      Number(ratings["5"]);
-    let overall =
-      (Number(ratings["1"]) * 1 +
-        Number(ratings["2"]) * 2 +
-        Number(ratings["3"]) * 3 +
-        Number(ratings["4"]) * 4 +
-        Number(ratings["5"]) * 5) /
-      total;
+    let total = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
+      if (ratings[num]) { stars += (Number(ratings[num])) }
+      return stars
+    }, 0)
+
+    let overall = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
+      if (ratings[num]) { stars += (Number(ratings[num]) * Number(num)) }
+      return stars
+    }, 0) / total
+    console.log('OVERALL: ', overall)
+
     setStarCount({
       ...starCount,
-      1: Number(ratings["1"]),
-      2: Number(ratings["2"]),
-      3: Number(ratings["3"]),
-      4: Number(ratings["4"]),
-      5: Number(ratings["5"]),
+      1: Number(ratings["1"]) || 0,
+      2: Number(ratings["2"]) || 0,
+      3: Number(ratings["3"]) || 0,
+      4: Number(ratings["4"]) || 0,
+      5: Number(ratings["5"]) || 0,
       total: total,
     });
     setOverallRating(Math.round(overall * 10) / 10);
@@ -99,14 +99,14 @@ const Ratings_Reviews = (props) => {
 
   const getReviewData = () => {
     axios
-      .get(`/reviews?product_id=${id}&count=${50}&sort=${filter}`, config)
+      .get(`/reviews?product_id=${props.id}&count=${10}&sort=${filter}`, config)
       .then((response) => filterReviews(response.data.results))
       .catch((err) => console.log(err));
   };
 
   const getMetaData = () => {
     axios
-      .get(`/reviews/meta?product_id=${id}`, config)
+      .get(`/reviews/meta?product_id=${props.id}`, config)
       .then((response) => {
         setMeta(response.data);
         getRecc(response.data.recommended);
@@ -122,8 +122,10 @@ const Ratings_Reviews = (props) => {
   };
 
   useEffect(() => {
-    getReviewData();
-    getMetaData();
+    if (props.id) {
+      getReviewData();
+      getMetaData();
+    }
   }, [props.id, filter, starFilter]);
 
   return (
@@ -142,7 +144,7 @@ const Ratings_Reviews = (props) => {
           meta={meta.characteristics}
           sort={setFilter}
           post={postData}
-          id={id}
+          id={props.id}
         />
       </Container>
     </div>
