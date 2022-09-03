@@ -13,7 +13,7 @@ const ProductOverview = ({ id, product }) => {
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
-  const [reviews, setReviews] = useState([]);
+  const [ratings, setRatings] = useState({});
   const [selected, setSelected] = useState(0);
 
   const choseStyle = (styleId) => {
@@ -50,11 +50,11 @@ const ProductOverview = ({ id, product }) => {
     setIndexMainPic(index);
   };
 
-  const getReviewData = () => {
+  const getRatingsData = () => {
     axios
-      .get(`/reviews?product_id=${id}`, config)
+      .get(`/reviews/meta?product_id=${id}`, config)
       .then((response) => {
-        setReviews(response.data.results);
+        setRatings(response.data.ratings);
       })
       .catch((err) => console.log(err));
   };
@@ -70,7 +70,7 @@ const ProductOverview = ({ id, product }) => {
       .catch((err) => {
         console.log(err);
       });
-    getReviewData();
+    getRatingsData();
   }, [id]);
 
   if (styles.length > 0) {
@@ -87,7 +87,7 @@ const ProductOverview = ({ id, product }) => {
             selected={selected}
             setSelected={setSelected}
           />
-          <ProductInfo product={product} style={style} reviews={reviews} />
+          <ProductInfo product={product} style={style} ratings={ratings} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
           <Description>{product.description}</Description>

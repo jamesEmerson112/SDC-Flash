@@ -153,16 +153,15 @@ const Alert = styled.div`
   margin-left: 5px;
   font-size: large;
   display: inline-flex;
+  box-sizing: border-box;
 `;
 
 const Success = styled.div`
-  border: 1px solid grey;
-  border-radius: 5px;
+  font-style: italic;
+  font-weight: bold;
   box-sizing: border-box;
-  margin-top: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
-  padding: 5px;
   width: fit-content;
   display: inline-flex;
 `;
