@@ -58,17 +58,17 @@ const App = () => {
   };
 
   const clickTracker = (e, widget = "app") => {
-    // e.preventDefault();
     let date = new Date();
     let data = {
       element: e.target.nodeName.toLowerCase(),
       widget: widget,
       time: date.toString(),
     };
-    axios
-      .post("/interactions", data, config)
-      .then((res) => console.log(res.config.data, res.data))
-      .catch((err) => console.log(err));
+    console.log('DATA: ,', data)
+    // axios
+    //   .post("/interactions", data, config)
+    //   .then((res) => console.log(res.config.data, res.data))
+    //   .catch((err) => console.log(err));
   };
 
   if ("id" in product) {

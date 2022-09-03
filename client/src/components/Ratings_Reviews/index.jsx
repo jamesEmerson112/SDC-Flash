@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Ratings from "./Ratings/RatingsOverview.jsx";
 import ReviewList from "./Reviews/ReviewList.jsx";
 import StarComponent from "../StarComponent.jsx";
@@ -6,8 +6,10 @@ import { config } from "../../../../env/config.js";
 import axios from "axios";
 import RatingsOverview from "./Ratings/RatingsOverview.jsx";
 import styled from "styled-components";
+import { ClickTracker } from "../App.jsx";
 
 const Ratings_Reviews = (props) => {
+  const clickTracker = useContext(ClickTracker);
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [filter, setFilter] = useState("relavant");
@@ -77,7 +79,6 @@ const Ratings_Reviews = (props) => {
       if (ratings[num]) { stars += (Number(ratings[num]) * Number(num)) }
       return stars
     }, 0) / total
-    console.log('OVERALL: ', overall)
 
     setStarCount({
       ...starCount,
@@ -129,7 +130,7 @@ const Ratings_Reviews = (props) => {
   }, [props.id, filter, starFilter]);
 
   return (
-    <div id="Ratings_Reviews">
+    <div id="Ratings_Reviews" onClick={(e) => clickTracker(e, "R&R")}>
       <h1>Ratings & Reviews</h1>
       <Container>
         <RatingsOverview
