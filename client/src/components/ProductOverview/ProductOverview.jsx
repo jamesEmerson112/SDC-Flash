@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
 import ProductInfo from "./ProductInfo/ProductInfo.jsx";
 import StyleSelector from "./StyleSelector/StyleSelector.jsx";
@@ -6,6 +6,7 @@ import AddToCart from "./AddToCart/AddToCart.jsx";
 import { config } from "../../../../env/config.js";
 import axios from "axios";
 import styled from "styled-components";
+import { ClickTracker, DarkMode } from "../App.jsx";
 
 const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState([]);
@@ -13,8 +14,11 @@ const ProductOverview = ({ id, product }) => {
   const [mainPic, setMainPic] = useState({});
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
-  const [reviews, setReviews] = useState([]);
+  const [ratings, setRatings] = useState({});
   const [selected, setSelected] = useState(0);
+
+  const clickTracker = useContext(ClickTracker);
+  const darkMode = useContext(DarkMode);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -50,11 +54,11 @@ const ProductOverview = ({ id, product }) => {
     setIndexMainPic(index);
   };
 
-  const getReviewData = () => {
+  const getRatingsData = () => {
     axios
-      .get(`/reviews?product_id=${id}`, config)
+      .get(`/reviews/meta?product_id=${id}`, config)
       .then((response) => {
-        setReviews(response.data.results);
+        setRatings(response.data.ratings);
       })
       .catch((err) => console.log(err));
   };
@@ -70,13 +74,21 @@ const ProductOverview = ({ id, product }) => {
       .catch((err) => {
         console.log(err);
       });
-    getReviewData();
+    getRatingsData();
   }, [id]);
+
+  console.log(darkMode);
 
   if (styles.length > 0) {
     return (
-      <div>
+      <div onClick={(e) => clickTracker(e, "Product Overview")}>
         <div className="product-overview">
+          {darkMode === "Dark Mode" ? (
+            <div className="background_dark"></div>
+          ) : (
+            <div className="background"></div>
+          )}
+
           <ImageGallery
             style={style}
             mainPic={mainPic}
@@ -86,7 +98,7 @@ const ProductOverview = ({ id, product }) => {
             selected={selected}
             setSelected={setSelected}
           />
-          <ProductInfo product={product} style={style} reviews={reviews} />
+          <ProductInfo product={product} style={style} ratings={ratings} />
           <StyleSelector styles={styles} choseStyle={choseStyle} />
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
           <Description>{product.description}</Description>

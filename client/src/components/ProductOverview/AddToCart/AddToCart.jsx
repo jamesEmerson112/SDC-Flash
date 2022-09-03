@@ -5,7 +5,6 @@ import DropDown from "./DropDown.jsx";
 import _ from "underscore";
 import { config } from "../../../../../env/config.js";
 import axios from "axios";
-import { Button } from "../../../styleComponents.jsx";
 
 const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
@@ -32,6 +31,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
   useEffect(() => {
     setStateStyles(styles);
     setLabel("Select a size");
+    console.log("This is what i am looking for", stateStyles);
   }, [size]);
 
   const selectSize = (e) => {
@@ -85,11 +85,13 @@ const AddToCart = ({ style, setSuccess, success }) => {
         console.log(err);
       });
     setSuccess(true);
-    setQuantity(0);
     setSize("");
-    setValue("");
+    setQuantity(0);
     setStateStyles([]);
-    setLabel("Select a size");
+    setValue("");
+    setTimeout(() => {
+      setSuccess(false);
+    }, 2000);
   };
 
   // set values for what the button will do depending on the state
@@ -116,12 +118,15 @@ const AddToCart = ({ style, setSuccess, success }) => {
       </Button>
     );
   }
-
+  const length = stateStyles.length;
   return (
-    <div>
-      {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
-      <div className="item add-to-cart">
-        <DropDown label={label} options={styles} onChange={selectSize} />
+    <div className="add-to-cart">
+      <div>
+        <DropDown
+          label={"Select a size"}
+          options={stateStyles}
+          onChange={selectSize}
+        />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
         ) : (
@@ -131,6 +136,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
             onChange={selectQuantity}
           />
         )}
+        {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
       </div>
       {button}
     </div>
@@ -145,17 +151,27 @@ const Alert = styled.div`
   font-weight: bold;
   margin-bottom: 5px;
   margin-left: 5px;
-  font-size: large;
+
+  display: inline-flex;
+  box-sizing: border-box;
 `;
 
 const Success = styled.div`
-  border: 3px solid grey;
-  border-radius: 5px;
+  font-style: italic;
+  font-weight: bold;
   box-sizing: border-box;
-  margin-top: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
-  padding: 5px;
   width: fit-content;
-  font-size: large;
+  display: inline-flex;
+`;
+
+const Button = styled.button`
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px 5px;
+  background-color: white;
+  display: block;
+  max-width: fit-content;
 `;

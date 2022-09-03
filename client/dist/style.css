@@ -9,9 +9,7 @@ body {
 
 .darkMode {
   color: white;
-  /* background-color: rgba(128, 128, 128); */
   background-color:grey
-
 }
 
 /* Q and A */
@@ -74,20 +72,51 @@ cursor: pointer;
 .product-overview {
   display: grid;
   grid-template-columns: [first] 65% [second] 35%;
-  grid-template-rows: [first-row] 180px [second-row] 360px [third-row] 75px;
+  grid-template-rows: [first-row] 180px [second-row] 360px [third-row] 95px;
   box-sizing: border-box;
   margin-top: 20px;
+
+}
+
+.background {
+  background-color:aliceblue;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.background_dark {
+  background-color:darkgray;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+
+}
+
+.image-gallery {
+  display: flex;
+  flex-direction: row;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: -1;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 15px;
+  max-height: auto;
+  max-width: 100%;
 }
 
 .pic {
-  max-height: 570px;
   max-width: 100%;
+  object-fit: contain;
+  max-height: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 0;
   border: 1px solid black;
-  position: relative;
 
 }
 .pic:hover {
@@ -109,7 +138,7 @@ cursor: pointer;
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
-  transform: translate(-39px);
+  transform: translate(-28px);
 }
 
 
@@ -125,24 +154,23 @@ cursor: pointer;
   text-decoration: none;
   display:inline;
   font-size: 20px;
-  transform: translate(90px);
+  transform: translate(28px);
 }
 
-.image-gallery {
-  display: flex;
-  grid-column-start: 1;
-  grid-row-start: 1;
-  grid-row-end: -1;
-  /* justify-content: center;  This would center all components of image gallery */
-  /* margin-left: 125px;*/
-  margin-right: 10px;
-  max-height: 100%;
-
-}
 
 /* .image-gallery > * {
   margin-left: 80px;
 } */
+
+.main_pic {
+  max-width: 75%;
+  max-height: 95%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  flex-grow: 1;
+}
 
 .thumbnails {
   box-sizing: border-box;
@@ -152,10 +180,10 @@ cursor: pointer;
   grid-row-start: 1;
   grid-row-end: 3;
   overflow: auto;
-  z-index: 2;
+  width: 8%;
   max-height: 570px;
-  position: absolute;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  margin-right: 15px;
+
 }
 
 .thumbnail {
@@ -170,6 +198,7 @@ cursor: pointer;
 .product-info {
   grid-column-start: 2;
   grid-row-start: 1;
+  margin-top: 15px;
 }
 
 .style-selector {
@@ -199,6 +228,7 @@ cursor: pointer;
 
 .add-to-cart {
   display: flex;
+  flex-direction: column;
   grid-column-start: 2;
   grid-row-start: 3;
 }

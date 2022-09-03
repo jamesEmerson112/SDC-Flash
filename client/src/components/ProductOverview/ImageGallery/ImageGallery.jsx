@@ -23,35 +23,39 @@ const ImageGallery = ({
     if (mainPic === null) {
       return (
         <div className="image-gallery">
-          {selected === 0 ? (
-            <div></div>
-          ) : (
-            <button className="pic_button_left" onClick={BackArrow}>
-              <FaArrowLeft />
-            </button>
-          )}
-          <div className="image-gallery">
-            <div className="thumbnails">
-              <Thumbnail
-                photos={photos}
-                click={click}
-                setSelected={setSelected}
-                selected={selected}
-                modal={false}
-              />
-            </div>
+          <div className="thumbnails">
+            <Thumbnail
+              photos={photos}
+              click={click}
+              setSelected={setSelected}
+              selected={selected}
+              modal={false}
+            />
+          </div>
+          <div className="main_pic">
+            {selected === 0 ? (
+              <div style={{ width: "39px" }}></div>
+            ) : (
+              <button className="pic_button_left" onClick={BackArrow}>
+                <FaArrowLeft />
+              </button>
+            )}
             <img
               className="pic"
               src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              onClick={() => {
+                setExpanded(true);
+                console.log("hi");
+              }}
             />
+            {selected === style.photos.length - 1 ? (
+              <div></div>
+            ) : (
+              <button className="pic_button_right" onClick={NextArrow}>
+                <FaArrowRight />
+              </button>
+            )}
           </div>
-          {selected === style.photos.length - 1 ? (
-            <div></div>
-          ) : (
-            <button className="pic_button_right" onClick={NextArrow}>
-              <FaArrowRight />
-            </button>
-          )}
         </div>
       );
     } else {
@@ -83,35 +87,23 @@ const ImageGallery = ({
             <div></div>
           )}
 
-          {selected === 0 ? (
-            <div style={{ width: "32px" }}></div>
-          ) : (
-            // <div className="pic_button_left" onClick={BackArrow}>
-            //   <a
-            //     style={{
-            //       backgroundColor: "black",
-            //       justifyContent: "center",
-            //       display: "flex",
-            //     }}
-            //   >
-            //     <FaArrowLeft />
-
-            //   </a>
-            // </div>
-            <button className="pic_button_left" onClick={BackArrow}>
-              <FaArrowLeft />
-            </button>
-          )}
-          <div className="image-gallery">
-            <div className="thumbnails">
-              <Thumbnail
-                photos={photos}
-                click={click}
-                setSelected={setSelected}
-                selected={selected}
-                modal={false}
-              />
-            </div>
+          <div className="thumbnails">
+            <Thumbnail
+              photos={photos}
+              click={click}
+              setSelected={setSelected}
+              selected={selected}
+              modal={false}
+            />
+          </div>
+          <div className="main_pic">
+            {selected === 0 ? (
+              <div style={{ width: "32px" }}></div>
+            ) : (
+              <button className="pic_button_left" onClick={BackArrow}>
+                <FaArrowLeft />
+              </button>
+            )}
             <img
               className="pic"
               src={mainPic}
@@ -120,14 +112,14 @@ const ImageGallery = ({
                 console.log("hi");
               }}
             />
+            {selected === style.photos.length - 1 ? (
+              <div></div>
+            ) : (
+              <button className="pic_button_right" onClick={NextArrow}>
+                <FaArrowRight />
+              </button>
+            )}
           </div>
-          {selected === style.photos.length - 1 ? (
-            <div></div>
-          ) : (
-            <button className="pic_button_right" onClick={NextArrow}>
-              <FaArrowRight />
-            </button>
-          )}
         </div>
       );
     }
@@ -138,7 +130,7 @@ export default ImageGallery;
 
 const ModalImage = styled.img`
   display: inline-block;
-  max-width: 100%;
+  max-width: 100vw;
   max-height: 100vh;
 `;
 
@@ -149,6 +141,6 @@ const ModalGallery = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  max-width: 50%;
+  max-width: 100%;
   max-height: 100%;
 `;

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Button } from "../styleComponents.jsx";
 
 export const ClickTracker = React.createContext();
+export const DarkMode = React.createContext();
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -64,7 +65,7 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
-    console.log('DATA: ,', data)
+    console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))
@@ -75,33 +76,35 @@ const App = () => {
     return (
       <div>
         <ClickTracker.Provider value={clickTracker}>
-          <TitleHeader onClick={clickTracker}>
-            {index > 0 ? (
-              <Button onClick={prev}>Previous Product</Button>
-            ) : (
-              <div></div>
-            )}
-            <h1>
-              {product.id}: this is the product id that we can pass to each
-              component
-            </h1>
-            {index + 1 < products.length ? (
-              <Button onClick={next}>Next Product</Button>
-            ) : (
-              <div></div>
-            )}
-          </TitleHeader>
-          <Button
-            onClick={(e) => {
-              clickTracker(e);
-              toggleClrMode(e);
-            }}
-          >
-            {clrMode}
-          </Button>
-          <QuestionList product={product} />
-          <ProductOverview id={product.id} product={product} />
-          <RRIndex id={product.id} />
+          <DarkMode.Provider value={clrMode}>
+            <TitleHeader onClick={clickTracker}>
+              {index > 0 ? (
+                <Button onClick={prev}>Previous Product</Button>
+              ) : (
+                <div></div>
+              )}
+              <h1>
+                {product.id}: this is the product id that we can pass to each
+                component
+              </h1>
+              {index + 1 < products.length ? (
+                <Button onClick={next}>Next Product</Button>
+              ) : (
+                <div></div>
+              )}
+            </TitleHeader>
+            <Button
+              onClick={(e) => {
+                clickTracker(e);
+                toggleClrMode(e);
+              }}
+            >
+              {clrMode}
+            </Button>
+            <QuestionList product={product} />
+            <ProductOverview id={product.id} product={product} />
+            <RRIndex id={product.id} />
+          </DarkMode.Provider>
         </ClickTracker.Provider>
       </div>
     );
