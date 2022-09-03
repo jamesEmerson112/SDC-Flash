@@ -85,11 +85,10 @@ const AddToCart = ({ style, setSuccess, success }) => {
         console.log(err);
       });
     setSuccess(true);
-    setQuantity(0);
     setSize("");
-    setValue("");
+    setQuantity(0);
     setStateStyles([]);
-    setLabel("Select a size");
+    setValue("");
     setTimeout(() => {
       setSuccess(false);
     }, 1000);

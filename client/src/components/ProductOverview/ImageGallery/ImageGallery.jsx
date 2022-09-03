@@ -34,7 +34,7 @@ const ImageGallery = ({
           </div>
           <div className="main_pic">
             {selected === 0 ? (
-              <div style={{ width: "32px" }}></div>
+              <div style={{ width: "39px" }}></div>
             ) : (
               <button className="pic_button_left" onClick={BackArrow}>
                 <FaArrowLeft />
@@ -130,7 +130,7 @@ export default ImageGallery;
 
 const ModalImage = styled.img`
   display: inline-block;
-  max-width: 100%;
+  max-width: 100vw;
   max-height: 100vh;
 `;
 
@@ -141,6 +141,6 @@ const ModalGallery = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  max-width: 50%;
+  max-width: 100%;
   max-height: 100%;
 `;
