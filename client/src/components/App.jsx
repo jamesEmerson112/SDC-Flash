@@ -58,7 +58,7 @@ const App = () => {
   };
 
   const clickTracker = (e, widget = "app") => {
-    e.preventDefault();
+    // e.preventDefault();
     let date = new Date();
     let data = {
       element: e.target.nodeName.toLowerCase(),

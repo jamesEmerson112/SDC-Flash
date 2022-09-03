@@ -6,4 +6,5 @@ test("should render QuestionList component", () => {
   const tree = renderer.create(<QuestionList product={{ id: 65631 }} />);
   expect(tree).not.toBeNull();
   tree.unmount();
+  tree.unstable_flushSync();
 });
