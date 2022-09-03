@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { config } from "../../../../env/config.js";
 import QuestionForm from "./QuestionForm.jsx";
@@ -6,10 +6,14 @@ import Question from "./Question.jsx";
 import SearchQandA from "./SearchQandA.jsx";
 import questList from "./qAndA.js";
 import { Button } from "../../styleComponents.jsx";
+import { ClickTracker } from "../App.jsx";
 
 const QuestionList = ({ product }) => {
   // variables
   const { id } = product;
+
+  // context
+  const clickTracker = useContext(ClickTracker);
 
   // state
   const [qList, setQList] = useState([]);
@@ -74,7 +78,7 @@ const QuestionList = ({ product }) => {
   };
 
   return (
-    <div>
+    <div onClick={(e) => clickTracker(e, "Q&A")}>
       <h3>{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
       <div className="qList">
