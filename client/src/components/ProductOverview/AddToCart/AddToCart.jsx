@@ -91,7 +91,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
     setValue("");
     setTimeout(() => {
       setSuccess(false);
-    }, 1000);
+    }, 2000);
   };
 
   // set values for what the button will do depending on the state
