@@ -77,6 +77,7 @@ const ProductOverview = ({ id, product }) => {
     return (
       <div>
         <div className="product-overview">
+          <div className="background"></div>
           <ImageGallery
             style={style}
             mainPic={mainPic}

@@ -5,7 +5,6 @@ import DropDown from "./DropDown.jsx";
 import _ from "underscore";
 import { config } from "../../../../../env/config.js";
 import axios from "axios";
-import { Button } from "../../../styleComponents.jsx";
 
 const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
@@ -118,9 +117,8 @@ const AddToCart = ({ style, setSuccess, success }) => {
   }
 
   return (
-    <div>
-      {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
-      <div className="item add-to-cart">
+    <div className="item add-to-cart">
+      <div>
         <DropDown label={label} options={styles} onChange={selectSize} />
         {value === "" ? (
           <DropDown label={"-"} value={value} options={[]} />
@@ -131,6 +129,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
             onChange={selectQuantity}
           />
         )}
+        {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
       </div>
       {button}
     </div>
@@ -146,6 +145,7 @@ const Alert = styled.div`
   margin-bottom: 5px;
   margin-left: 5px;
   font-size: large;
+  display: inline-flex;
 `;
 
 const Success = styled.div`
@@ -157,5 +157,15 @@ const Success = styled.div`
   margin-bottom: 5px;
   padding: 5px;
   width: fit-content;
-  font-size: large;
+  display: inline-flex;
+`;
+
+const Button = styled.button`
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px 5px;
+  background-color: white;
+  display: block;
+  max-width: fit-content;
 `;

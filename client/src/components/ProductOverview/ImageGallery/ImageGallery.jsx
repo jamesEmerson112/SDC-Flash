@@ -30,21 +30,19 @@ const ImageGallery = ({
               <FaArrowLeft />
             </button>
           )}
-          <div className="image-gallery">
-            <div className="thumbnails">
-              <Thumbnail
-                photos={photos}
-                click={click}
-                setSelected={setSelected}
-                selected={selected}
-                modal={false}
-              />
-            </div>
-            <img
-              className="pic"
-              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          <div className="thumbnails">
+            <Thumbnail
+              photos={photos}
+              click={click}
+              setSelected={setSelected}
+              selected={selected}
+              modal={false}
             />
           </div>
+          <img
+            className="pic"
+            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          />
           {selected === style.photos.length - 1 ? (
             <div></div>
           ) : (
@@ -83,35 +81,23 @@ const ImageGallery = ({
             <div></div>
           )}
 
-          {selected === 0 ? (
-            <div style={{ width: "32px" }}></div>
-          ) : (
-            // <div className="pic_button_left" onClick={BackArrow}>
-            //   <a
-            //     style={{
-            //       backgroundColor: "black",
-            //       justifyContent: "center",
-            //       display: "flex",
-            //     }}
-            //   >
-            //     <FaArrowLeft />
-
-            //   </a>
-            // </div>
-            <button className="pic_button_left" onClick={BackArrow}>
-              <FaArrowLeft />
-            </button>
-          )}
-          <div className="image-gallery">
-            <div className="thumbnails">
-              <Thumbnail
-                photos={photos}
-                click={click}
-                setSelected={setSelected}
-                selected={selected}
-                modal={false}
-              />
-            </div>
+          <div className="thumbnails">
+            <Thumbnail
+              photos={photos}
+              click={click}
+              setSelected={setSelected}
+              selected={selected}
+              modal={false}
+            />
+          </div>
+          <div className="main_pic">
+            {selected === 0 ? (
+              <div style={{ width: "32px" }}></div>
+            ) : (
+              <button className="pic_button_left" onClick={BackArrow}>
+                <FaArrowLeft />
+              </button>
+            )}
             <img
               className="pic"
               src={mainPic}
@@ -120,14 +106,14 @@ const ImageGallery = ({
                 console.log("hi");
               }}
             />
+            {selected === style.photos.length - 1 ? (
+              <div></div>
+            ) : (
+              <button className="pic_button_right" onClick={NextArrow}>
+                <FaArrowRight />
+              </button>
+            )}
           </div>
-          {selected === style.photos.length - 1 ? (
-            <div></div>
-          ) : (
-            <button className="pic_button_right" onClick={NextArrow}>
-              <FaArrowRight />
-            </button>
-          )}
         </div>
       );
     }
