@@ -5,6 +5,7 @@ import DropDown from "./DropDown.jsx";
 import _ from "underscore";
 import { config } from "../../../../../env/config.js";
 import axios from "axios";
+import { Button } from "../../../styleComponents.jsx";
 
 const AddToCart = ({ style, setSuccess, success }) => {
   const [value, setValue] = useState("");
@@ -157,10 +158,4 @@ const Success = styled.div`
   padding: 5px;
   width: fit-content;
   font-size: large;
-`;
-
-const Button = styled.button`
-  margin-top: 5px;
-  font-size: large;
-  border-radius: 10px;
 `;

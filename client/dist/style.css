@@ -24,7 +24,7 @@ cursor: pointer;
 .qList {
   max-height: 80vh;
   overflow: auto;
-  width: 80vw;
+  /* width: 80vw; */
 }
 
 .ansList {
@@ -74,7 +74,7 @@ cursor: pointer;
 .product-overview {
   display: grid;
   grid-template-columns: [first] 65% [second] 35%;
-  grid-template-rows: [first-row] 180px [second-row] 350px [third-row] 75px;
+  grid-template-rows: [first-row] 180px [second-row] 360px [third-row] 75px;
   box-sizing: border-box;
   margin-top: 20px;
 }
@@ -94,21 +94,38 @@ cursor: pointer;
   cursor: zoom-in;
 }
 
-.pic_button {
+.pic_button_right {
   position: relative;
   box-sizing: border-box;
   display: flex;
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 3;
-  z-index: 2;
+  z-index: 3;
   border: white;
   background-color: transparent;
-  color: black;
+  color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
+  transform: translate(-39px);
+}
+
+
+.pic_button_left {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  z-index: 3;
+  border:white;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display:inline;
+  font-size: 20px;
+  transform: translate(90px);
 }
 
 .image-gallery {

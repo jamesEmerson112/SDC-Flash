@@ -4,6 +4,8 @@ import Thumbnail from "./Thumbnail.jsx";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 
+import { ModalClose, ModalOverlay, Modal } from "../../../styleComponents.jsx";
+
 const ImageGallery = ({
   style,
   mainPic,
@@ -21,9 +23,13 @@ const ImageGallery = ({
     if (mainPic === null) {
       return (
         <div className="image-gallery">
-          <button className="pic_button" onClick={BackArrow}>
-            <FaArrowLeft />
-          </button>
+          {selected === 0 ? (
+            <div></div>
+          ) : (
+            <button className="pic_button_left" onClick={BackArrow}>
+              <FaArrowLeft />
+            </button>
+          )}
           <div className="image-gallery">
             <div className="thumbnails">
               <Thumbnail
@@ -39,50 +45,63 @@ const ImageGallery = ({
               src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
             />
           </div>
-          <button className="pic_button" onClick={NextArrow}>
-            <FaArrowRight />
-          </button>
+          {selected === style.photos.length - 1 ? (
+            <div></div>
+          ) : (
+            <button className="pic_button_right" onClick={NextArrow}>
+              <FaArrowRight />
+            </button>
+          )}
         </div>
       );
     } else {
       return (
         <div className="image-gallery">
           {expanded ? (
-            <div className="modalOverlay">
-              <div className="modal">
-                <div className="modalForm">
-                  <div className="modal">
-                    {/* <Thumbnail
+            <ModalOverlay>
+              <ModalGallery>
+                <div className="modal">
+                  {/* <Thumbnail
                       photos={photos}
                       click={click}
                       setSelected={setSelected}
                       selected={selected}
                       modal={true}
                     /> */}
-                  </div>
-                  <ModalImage src={mainPic} />
                 </div>
-                <div
-                  className="modalClose"
+                <ModalImage src={mainPic} />
+                <ModalClose
                   onClick={() => {
                     setExpanded(false);
                   }}
                 >
                   X
-                </div>
-              </div>
-            </div>
+                </ModalClose>
+              </ModalGallery>
+            </ModalOverlay>
           ) : (
             <div></div>
           )}
+
           {selected === 0 ? (
-            <div></div>
+            <div style={{ width: "32px" }}></div>
           ) : (
-            <button className="pic_button" onClick={BackArrow}>
+            // <div className="pic_button_left" onClick={BackArrow}>
+            //   <a
+            //     style={{
+            //       backgroundColor: "black",
+            //       justifyContent: "center",
+            //       display: "flex",
+            //     }}
+            //   >
+            //     <FaArrowLeft />
+
+            //   </a>
+            // </div>
+            <button className="pic_button_left" onClick={BackArrow}>
               <FaArrowLeft />
             </button>
           )}
-
           <div className="image-gallery">
             <div className="thumbnails">
               <Thumbnail
@@ -105,7 +124,7 @@ const ImageGallery = ({
           {selected === style.photos.length - 1 ? (
             <div></div>
           ) : (
-            <button className="pic_button" onClick={NextArrow}>
+            <button className="pic_button_right" onClick={NextArrow}>
               <FaArrowRight />
             </button>
           )}
@@ -121,4 +140,15 @@ const ModalImage = styled.img`
   display: inline-block;
   max-width: 100%;
   max-height: 100vh;
+`;
+
+const ModalGallery = styled.div`
+  color: white;
+  text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  max-height: 100%;
 `;
