@@ -7,6 +7,7 @@ const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
   const [filterReviews, setFilterReviews] = useState([])
   const [meta, setMeta] = useState({});
+  const [helpfullClicks, setHelpfullClicks] = useState({})
 
   const [count, setCount] = useState(2);
   const [openModal, setOpenModal] = useState(false);
@@ -35,7 +36,8 @@ const ReviewList = (props) => {
 
 
   var map = filterReviews?.slice(0, count).map((review, index) => {
-    return <ReviewCard key={index} review={review}/>;
+    return <ReviewCard key={index} review={review}
+    helpfullClicks={helpfullClicks} setHelpfullClicks={setHelpfullClicks}/>;
   });
 
 
@@ -43,7 +45,8 @@ const ReviewList = (props) => {
     setReviews(props.reviews);
     setFilterReviews(props.reviews)
     setMeta(props.meta);
-  }, [props.id, props.reviews]);
+    setCount(2)
+  }, [props.id, props.reviews, props.meta, helpfullClicks]);
 
   return (
     <div>

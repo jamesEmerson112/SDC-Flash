@@ -12,12 +12,15 @@ import {
   ModalOverlay,
 } from "../../../styleComponents.jsx";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, helpfullClicks, setHelpfullClicks}) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
-  const [helpfullClicked, setHelpfulClicked] = useState(false)
   const [reportClicked, setReportClicked] = useState(false)
   const [seeMore, setSeeMore] = useState(true)
   const [modal, setModal] = useState(false)
+
+  useEffect(() => {
+    setHelpfullness(review.helpfulness)
+  }, [review.helpfulness])
 
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
@@ -44,11 +47,11 @@ const ReviewCard = ({ review }) => {
   })
 
   const helpful = () => {
-    if (!helpfullClicked) {
+    if (helpfullClicks[review.review_id] === undefined) {
       axios.put(`/reviews/${review.review_id}/helpful`, {}, config)
         .then(() => {
-          setHelpfulClicked(true)
           setHelpfullness(helpfullness + 1)
+          setHelpfullClicks({...helpfullClicks, [review.review_id] : true})
         })
         .catch((err) => console.log(err))
     }
@@ -76,9 +79,11 @@ const ReviewCard = ({ review }) => {
         <Stars rating={review.rating}/>
         <p>{review.reviewer_name}, {formatDate(review.date)}</p>
       </div>
-      <p>Summary: {review.summary}</p>
-      <p>Body: {formatBody(review.body)}</p>
-      {review.body.length > 251 && seeMore && <p onClick={() => setSeeMore(false)}>See More</p>}
+
+      <p className='hi'>Summary: {review.summary}</p>
+      <p className='hi'>Body: {formatBody(review.body)}</p>
+      {review.body.length > 251 && seeMore && <p className='hi' onClick={() => setSeeMore(false)}>See More</p>}
+
       <div>{images}</div>
       {review.recommend && <p><FaCheck /> I recommend this product</p>}
       <p>{review.response !== null && review.response}</p>

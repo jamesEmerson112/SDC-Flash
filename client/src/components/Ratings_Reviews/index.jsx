@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Ratings from "./Ratings/RatingsOverview.jsx";
 import ReviewList from "./Reviews/ReviewList.jsx";
-import StarComponent from "../StarComponent.jsx";
 import { config } from "../../../../env/config.js";
 import axios from "axios";
 import RatingsOverview from "./Ratings/RatingsOverview.jsx";
@@ -93,8 +92,8 @@ const Ratings_Reviews = (props) => {
   };
 
   const getRecc = (recc) => {
-    const yes = Number(recc.true);
-    const no = Number(recc.false);
+    const yes = Number(recc.true) || 0;
+    const no = Number(recc.false) || 0;
     setReccomend(Math.round((yes / (yes + no)) * 100));
   };
 

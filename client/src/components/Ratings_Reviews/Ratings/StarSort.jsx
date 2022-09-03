@@ -2,7 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 
 const StarSort = ({starCount, toggle}) => {
-  console.log('starcount:', starCount)
 
   const width5 = 100 - Math.round(starCount['5']/starCount.total * 100)
   const width4 = 100 - Math.round(starCount['4']/starCount.total * 100)

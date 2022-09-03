@@ -20,7 +20,7 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get("/products", config)
+      .get(`/products?count=${100}`, config)
       .then((response) => {
         setProducts(response.data);
         setProduct(response.data[index]);
@@ -65,7 +65,6 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
-    console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))
