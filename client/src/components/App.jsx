@@ -24,7 +24,7 @@ const App = () => {
       .then((response) => {
         setProducts(response.data);
         let randInd = Math.floor(Math.random() * 1000);
-        randInd = 0; //908
+        // randInd = 4;
         setIndex(randInd);
         setProduct(response.data[randInd]);
       })
@@ -82,16 +82,13 @@ const App = () => {
           <DarkMode.Provider value={clrMode}>
             <TitleHeader onClick={clickTracker}>
               {index > 0 ? (
-                <Button onClick={prev}>Previous Product</Button>
+                <Button onClick={prev}>{products[index - 1].name}</Button>
               ) : (
                 <div></div>
               )}
-              <h1>
-                {product.id}: this is the product id that we can pass to each
-                component
-              </h1>
+              <h1>{product.name}</h1>
               {index + 1 < products.length ? (
-                <Button onClick={next}>Next Product</Button>
+                <Button onClick={next}>{products[index + 1].name}</Button>
               ) : (
                 <div></div>
               )}
@@ -119,8 +116,8 @@ const App = () => {
 export default App;
 
 const TitleHeader = styled.div`
+  border-radis: 5px;
   display: flex;
-  border: 3px solid black;
   justify-content: space-between;
   gap: 30px;
 `;
