@@ -4,8 +4,6 @@ import { Button } from "../../../../styleComponents.jsx";
 const Upload = (props) => {
   var photoArray = [];
 
-  var photoArray = [];
-
   const upload = (event) => {
     event.preventDefault();
     let widget = window.cloudinary.createUploadWidget(
