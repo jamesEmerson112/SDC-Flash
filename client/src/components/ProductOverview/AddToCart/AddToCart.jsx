@@ -157,7 +157,7 @@ const Alert = styled.div`
 `;
 
 const Success = styled.div`
-  border: 3px solid grey;
+  border: 1px solid grey;
   border-radius: 5px;
   box-sizing: border-box;
   margin-top: 5px;
