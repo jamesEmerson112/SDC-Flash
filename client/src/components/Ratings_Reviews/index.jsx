@@ -14,7 +14,6 @@ const Ratings_Reviews = (props) => {
   const [meta, setMeta] = useState({});
   const [filter, setFilter] = useState("relavant");
 
-
   const [starCount, setStarCount] = useState({
     1: 0,
     2: 0,
@@ -23,7 +22,6 @@ const Ratings_Reviews = (props) => {
     5: 0,
     total: 0,
   });
-
 
   const [overallRating, setOverallRating] = useState(0);
   const [recommend, setReccomend] = useState(0);
@@ -70,15 +68,20 @@ const Ratings_Reviews = (props) => {
   };
 
   const countStars = (ratings) => {
-    let total = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
-      if (ratings[num]) { stars += (Number(ratings[num])) }
-      return stars
-    }, 0)
+    let total = ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+      if (ratings[num]) {
+        stars += Number(ratings[num]);
+      }
+      return stars;
+    }, 0);
 
-    let overall = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
-      if (ratings[num]) { stars += (Number(ratings[num]) * Number(num)) }
-      return stars
-    }, 0) / total
+    let overall =
+      ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+        if (ratings[num]) {
+          stars += Number(ratings[num]) * Number(num);
+        }
+        return stars;
+      }, 0) / total;
 
     setStarCount({
       ...starCount,

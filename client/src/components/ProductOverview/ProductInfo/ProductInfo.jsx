@@ -1,5 +1,5 @@
 import React from "react";
-import StarComponent from "../../StarComponent.jsx";
+import Stars from "../../Ratings_Reviews/Stars.jsx";
 import styled from "styled-components";
 
 const ProductInfo = ({ product, style, ratings }) => {
@@ -12,13 +12,30 @@ const ProductInfo = ({ product, style, ratings }) => {
     style.sale_price = null;
     price = "No price";
   }
-  const numberOfRatings = 0; //ratings.length;
+
+  let total = ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+    if (ratings[num]) {
+      stars += Number(ratings[num]);
+    }
+    return stars;
+  }, 0);
+
+  let overall =
+    ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+      if (ratings[num]) {
+        stars += Number(ratings[num]) * Number(num);
+      }
+      return stars;
+    }, 0) / total;
+
+  overall = Math.round(overall * 10) / 10;
+
   return (
     <div className="product-info">
       <div>
-        {/* <StarComponent ratings={ratings} /> */}
+        <Stars rating={overall} />
         <Link>
-          <a href="#Ratings_Reviews">Read all {numberOfRatings} reviews</a>
+          <a href="#Ratings_Reviews">Read all {total} reviews</a>
         </Link>
       </div>
       <Category>{product.category}</Category>

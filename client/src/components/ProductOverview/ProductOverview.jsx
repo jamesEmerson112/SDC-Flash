@@ -20,8 +20,6 @@ const ProductOverview = ({ id, product }) => {
   const clickTracker = useContext(ClickTracker);
   const darkMode = useContext(DarkMode);
 
-  console.log(product);
-
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
@@ -76,7 +74,6 @@ const ProductOverview = ({ id, product }) => {
           setStyles([]);
           setStyle({});
         } else {
-          console.log(response.data.results, "here");
           setStyles(response.data.results);
           setStyle(response.data.results[0]);
           setMainPic(response.data.results[0].photos[0]?.url);
