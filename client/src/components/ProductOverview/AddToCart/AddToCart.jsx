@@ -15,7 +15,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
   let sizesAvailable = _.map(style.skus, (sku) => {
     return sku.size;
   });
-
   // obtain all of the sizes from the current style and add to an array
   const styles = [];
   for (let key in style.skus) {
@@ -81,6 +80,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
     setValue("");
     setTimeout(() => {
       setSuccess(false);
+      setStateStyles(styles);
     }, 2000);
   };
 
