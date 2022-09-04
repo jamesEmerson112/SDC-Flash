@@ -3,16 +3,22 @@ import StarComponent from "../../StarComponent.jsx";
 import styled from "styled-components";
 
 const ProductInfo = ({ product, style, ratings }) => {
-  const price = "$" + style.original_price;
-  const salePrice = "$" + style.sale_price;
+  var price;
+  var salePrice = null;
+  if ("original_price" in style) {
+    price = "$" + style.original_price;
+    salePrice = "$" + style.sale_price;
+  } else {
+    style.sale_price = null;
+    price = "No price";
+  }
   const numberOfRatings = 0; //ratings.length;
-  console.log(ratings);
   return (
     <div className="product-info">
       <div>
         {/* <StarComponent ratings={ratings} /> */}
         <Link>
-          <a href="#Ratings_ratings">Read all {numberOfRatings} reviews</a>
+          <a href="#Ratings_Reviews">Read all {numberOfRatings} reviews</a>
         </Link>
       </div>
       <Category>{product.category}</Category>

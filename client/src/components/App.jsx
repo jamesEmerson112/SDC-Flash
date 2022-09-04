@@ -20,7 +20,7 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get("/products", config)
+      .get("/products?count=100", config)
       .then((response) => {
         setProducts(response.data);
         setProduct(response.data[index]);
@@ -101,8 +101,8 @@ const App = () => {
             >
               {clrMode}
             </Button>
-            <QuestionList product={product} />
             <ProductOverview id={product.id} product={product} />
+            <QuestionList product={product} />
             <RRIndex id={product.id} />
           </DarkMode.Provider>
         </ClickTracker.Provider>

@@ -16,10 +16,8 @@ const ImageGallery = ({
   NextArrow,
 }) => {
   const [expanded, setExpanded] = useState(false);
-
-  if (style) {
+  if ("photos" in style) {
     const photos = style.photos;
-
     if (mainPic === null) {
       return (
         <div className="image-gallery">
@@ -123,6 +121,17 @@ const ImageGallery = ({
         </div>
       );
     }
+  } else {
+    return (
+      <div className="image-gallery">
+        <div className="main_pic">
+          <img
+            className="pic"
+            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          />
+        </div>
+      </div>
+    );
   }
 };
 

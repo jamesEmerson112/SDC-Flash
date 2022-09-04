@@ -11,7 +11,7 @@ import { ClickTracker, DarkMode } from "../App.jsx";
 const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState({});
-  const [mainPic, setMainPic] = useState({});
+  const [mainPic, setMainPic] = useState([]);
   const [indexMainPic, setIndexMainPic] = useState(0);
   const [success, setSuccess] = useState(false);
   const [ratings, setRatings] = useState({});
@@ -19,6 +19,8 @@ const ProductOverview = ({ id, product }) => {
 
   const clickTracker = useContext(ClickTracker);
   const darkMode = useContext(DarkMode);
+
+  console.log(product);
 
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
@@ -67,45 +69,55 @@ const ProductOverview = ({ id, product }) => {
     axios
       .get(`/products/${id}/styles`, config)
       .then((response) => {
-        setStyles(response.data.results);
-        setStyle(response.data.results[0]);
-        setMainPic(response.data.results[0].photos[0].url);
+        if (response.data.results.length === 0) {
+          setMainPic(
+            "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          );
+          setStyles([]);
+          setStyle({});
+        } else {
+          console.log(response.data.results, "here");
+          setStyles(response.data.results);
+          setStyle(response.data.results[0]);
+          setMainPic(response.data.results[0].photos[0]?.url);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
     getRatingsData();
   }, [id]);
+  return (
+    <div onClick={(e) => clickTracker(e, "Product Overview")}>
+      <div className="product-overview">
+        {darkMode === "Dark Mode" ? (
+          <div className="background_dark"></div>
+        ) : (
+          <div className="background"></div>
+        )}
 
-  console.log(darkMode);
-
-  if (styles.length > 0) {
-    return (
-      <div onClick={(e) => clickTracker(e, "Product Overview")}>
-        <div className="product-overview">
-          {darkMode === "Dark Mode" ? (
-            <div className="background_dark"></div>
-          ) : (
-            <div className="background"></div>
-          )}
-
-          <ImageGallery
-            style={style}
-            mainPic={mainPic}
-            click={ChooseMainPic}
-            NextArrow={NextArrow}
-            BackArrow={BackArrow}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <ProductInfo product={product} style={style} ratings={ratings} />
-          <StyleSelector styles={styles} choseStyle={choseStyle} />
+        <ImageGallery
+          style={style}
+          mainPic={mainPic}
+          click={ChooseMainPic}
+          NextArrow={NextArrow}
+          BackArrow={BackArrow}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        <ProductInfo product={product} style={style} ratings={ratings} />
+        <StyleSelector styles={styles} choseStyle={choseStyle} />
+        {styles.length > 1 ? (
           <AddToCart style={style} setSuccess={setSuccess} success={success} />
-          <Description>{product.description}</Description>
-        </div>
+        ) : (
+          <div className="add-to-cart">
+            <div>OUT OF STOCK</div>
+          </div>
+        )}
+        <Description>{product.description}</Description>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default ProductOverview;

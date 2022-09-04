@@ -30,8 +30,8 @@ const AddToCart = ({ style, setSuccess, success }) => {
 
   useEffect(() => {
     setStateStyles(styles);
+    console.log(style);
     setLabel("Select a size");
-    console.log("This is what i am looking for", stateStyles);
   }, [size]);
 
   const selectSize = (e) => {
@@ -67,8 +67,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
   // will handle if no sizes available for this style
   if (sizesAvailable.length === 1 && sizesAvailable[0] === null) {
     return (
-      <div>
-        <h3 className="item add-to-cart">Add To Cart</h3>
+      <div className="add-to-cart">
         <div>OUT OF STOCK</div>
       </div>
     );
