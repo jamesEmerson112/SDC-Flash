@@ -3,6 +3,7 @@ import { Button } from "../../../../styleComponents.jsx";
 
 const Upload = (props) => {
   const [photoArray, setPhotoArray] = useState([]);
+  let temp = [];
 
   const upload = (event) => {
     event.preventDefault();
@@ -14,7 +15,8 @@ const Upload = (props) => {
 
       (error, result) => {
         if (!error && result && result.event === "success") {
-          let temp = photoArray.concat([result.info.url]);
+          temp = photoArray.concat(temp);
+          temp.push(result.info.url);
           props.upload(temp.slice(0, 5));
           setPhotoArray(temp.slice(0, 5));
         }

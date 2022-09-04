@@ -24,7 +24,7 @@ const App = () => {
       .then((response) => {
         setProducts(response.data);
         let randInd = Math.floor(Math.random() * 1000);
-        // randInd = 4;
+        randInd = 0;
         setIndex(randInd);
         setProduct(response.data[randInd]);
       })
@@ -68,7 +68,7 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
-    // console.log("DATA: ,", data);
+    console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))

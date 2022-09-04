@@ -72,14 +72,18 @@ const QuestionList = ({ product }) => {
   };
 
   const expandQs = (event) => {
-    let last = filtList.length;
-    setQList(list.slice(0, last + 2));
-    setFiltList(list.slice(0, last + 2));
+    // let last = filtList.length;
+    // setQList(list.slice(0, last + 2));
+    // setFiltList(list.slice(0, last + 2));
+    setQList(list);
+    setFiltList(list);
+    window.location.href = "#QA";
+    history.pushState({}, "", window.location.origin);
   };
 
   return (
     <div onClick={(e) => clickTracker(e, "Q&A")}>
-      <h3>{"QUESTIONS & ANSWERS"}</h3>
+      <h3 id="QA">{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
       <div className="qList">
         {filtList.map((question) => (
