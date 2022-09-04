@@ -29,13 +29,12 @@ const Upload = (props) => {
 
   return (
     <div>
-      <Button onClick={upload}>Upload Photos</Button>
         <br />
         {[...Array(5)].map((photo, index) => {
           if (photoArray[index]) {
             return <img src={photoArray[index]} key={index} className="ansPhotos" />
           } else {
-            return <Empty />
+            return <Empty key={index} onClick={upload}/>
           }
         })}
     </div>
@@ -50,6 +49,7 @@ width: 50px;
 height: 50px;
 margin-right: 10px;
 border: 2px dashed black;
+cursor: pointer;
 `;
 
 
