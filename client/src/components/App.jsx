@@ -68,7 +68,7 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
-    console.log("DATA: ,", data);
+    // console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))

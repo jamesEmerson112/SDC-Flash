@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "../../../../styleComponents.jsx";
+import styled from "styled-components";
 
 const Upload = (props) => {
   const [photoArray, setPhotoArray] = useState([]);
@@ -27,13 +27,24 @@ const Upload = (props) => {
 
   return (
     <div>
-      <Button onClick={upload}>Upload Photos</Button>
       <br />
-      {photoArray.map((photo, index) => (
-        <img src={photo} key={index} className="ansPhotos" />
-      ))}
+      {[...Array(5)].map((_, index) =>
+        photoArray[index] ? (
+          <img src={photoArray[index]} key={index} className="ansPhotos" />
+        ) : (
+          <Empty key={index} onClick={upload} />
+        )
+      )}
     </div>
   );
 };
 
 export default Upload;
+
+const Empty = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border: 2px dashed black;
+  cursor: pointer;
+`;
