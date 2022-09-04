@@ -16,8 +16,10 @@ const ImageGallery = ({
   NextArrow,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  // if there are styles that have a property of photos, render them, if not i will have a placholder (bottom)
   if ("photos" in style) {
     const photos = style.photos;
+    // if there are is no main picture, set the default picture
     if (mainPic === null) {
       return (
         <div className="image-gallery">
@@ -56,10 +58,12 @@ const ImageGallery = ({
           </div>
         </div>
       );
+      // if there is a main picture use that for the display
     } else {
       return (
         <div className="image-gallery">
           {expanded ? (
+            //if the main picture is clicked on display the EXTENDED DISPLAY
             <ModalOverlay>
               <ModalGallery>
                 <div className="modal">
@@ -84,7 +88,6 @@ const ImageGallery = ({
           ) : (
             <div></div>
           )}
-
           <div className="thumbnails">
             <Thumbnail
               photos={photos}
@@ -121,6 +124,7 @@ const ImageGallery = ({
         </div>
       );
     }
+    // if there are no styles available
   } else {
     return (
       <div className="image-gallery">
