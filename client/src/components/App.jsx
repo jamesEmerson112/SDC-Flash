@@ -24,7 +24,7 @@ const App = () => {
       .then((response) => {
         setProducts(response.data);
         let randInd = Math.floor(Math.random() * 1000);
-        randInd = 0;
+        // randInd = 0;
         setIndex(randInd);
         setProduct(response.data[randInd]);
       })
