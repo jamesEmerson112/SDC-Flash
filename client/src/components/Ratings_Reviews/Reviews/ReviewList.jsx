@@ -13,7 +13,7 @@ const ReviewList = (props) => {
   const [openModal, setOpenModal] = useState(false);
 
   const addMore = () => {
-    setCount(count + 2);
+    setCount(reviews.length);
   };
 
   const search = (e) => {

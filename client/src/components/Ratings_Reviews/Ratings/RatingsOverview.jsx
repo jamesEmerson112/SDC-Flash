@@ -5,7 +5,6 @@ import Characteristics from "./Characteristics.jsx";
 import styled from "styled-components";
 
 const RatingsOverview = (props) => {
-  console.log(props.recc)
 
   return (
     <Container>

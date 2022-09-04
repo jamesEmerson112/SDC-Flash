@@ -76,7 +76,7 @@ const App = () => {
       <div>
         <ClickTracker.Provider value={clickTracker}>
           <DarkMode.Provider value={clrMode}>
-            <TitleHeader onClick={clickTracker}>
+            {/* <TitleHeader onClick={clickTracker}>
               {index > 0 ? (
                 <Button onClick={prev}>Previous Product</Button>
               ) : (
@@ -101,7 +101,7 @@ const App = () => {
               {clrMode}
             </Button>
             <QuestionList product={product} />
-            <ProductOverview id={product.id} product={product} />
+            <ProductOverview id={product.id} product={product} /> */}
             <RRIndex id={product.id} />
           </DarkMode.Provider>
         </ClickTracker.Provider>

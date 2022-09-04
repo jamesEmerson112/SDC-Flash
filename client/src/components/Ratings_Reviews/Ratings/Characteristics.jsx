@@ -11,6 +11,8 @@ const Characteristics = ({ meta }) => {
     const widthLength = Math.round((meta.Length?.value / 5) * 100);
     const widthFit = Math.round((meta.Fit?.value / 5) * 100);
 
+    console.log('size: ', widthSize, 'width: ', widthWidth, 'comfort: ', widthComfort)
+    console.log('quality: ', widthQuality, 'length: ', widthLength, 'fit: ', widthFit)
     return (
       <div>
         {meta.Size && (
@@ -22,7 +24,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthSize + "%" }}>&#128525;</Emoji>
+              {widthSize >= 35 || widthSize <= 70 && <Emoji style={{ width: widthSize + "%" }}>&#128525;</Emoji>}
+              {widthSize <  35 || widthSize > 70 && <Emoji style={{ width: widthSize + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Too Small</Quality>
@@ -41,7 +44,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthWidth + "%" }}>&#128525;</Emoji>
+              {widthWidth >= 35 || widthWidth <= 70 && <Emoji style={{ width: widthWidth + "%" }}>&#128525;</Emoji>}
+              {widthWidth <  35 || widthWidth > 70 && <Emoji style={{ width: widthWidth + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Too Narrow</Quality>
@@ -60,7 +64,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthComfort + "%" }}>&#128525;</Emoji>
+              {widthComfort >= 70 && <Emoji style={{ width: widthComfort + "%" }}>&#128525;</Emoji>}
+              {widthComfort < 70 && <Emoji style={{ width: widthComfort + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Poor</Quality>
@@ -78,7 +83,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthQuality + "%" }}>&#128525;</Emoji>
+              {widthQuality >= 70 && <Emoji style={{ width: widthQuality + "%" }}>&#128525;</Emoji>}
+              {widthQuality < 70 && <Emoji style={{ width: widthQuality + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Poor</Quality>
@@ -96,7 +102,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthLength + "%" }}>&#128525;</Emoji>
+              {widthLength >= 35 || widthLength <= 70 && <Emoji style={{ width: widthLength + "%" }}>&#128525;</Emoji>}
+              {widthLength <  35 || widthLength > 70 && <Emoji style={{ width: widthLength + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Too Short</Quality>
@@ -115,7 +122,8 @@ const Characteristics = ({ meta }) => {
               <BarFiller />
             </BarContainer>
             <EmojiContainer>
-              <Emoji style={{ width: widthFit + "%" }}>&#128525;</Emoji>
+              {widthFit >= 35 || widthFit <= 70 && <Emoji style={{ width: widthFit + "%" }}>&#128525;</Emoji>}
+              {widthFit <  35 || widthFit > 70 && <Emoji style={{ width: widthFit + "%" }}>&#128531;</Emoji>}
             </EmojiContainer>
             <Comfort>
               <Quality>Too Tight</Quality>
@@ -137,9 +145,10 @@ const BarContainer = styled.div`
 `;
 
 const BarFiller = styled.span`
-  width: 83px;
+  width: 80px;
   height: 15px;
   margin: 3px;
+  margin-left: 0;
   border-radius: 7px;
   background-color: #ddd;
 `;
@@ -147,14 +156,13 @@ const BarFiller = styled.span`
 const EmojiContainer = styled.div`
   position: absolute;
   display: flex;
-  justify-content: space-between;
-  width: 270px;
+  width: 255px;
 `;
 
 const Emoji = styled.span`
-text-align: right;
-font-size: 15px
-position: relative;
+  text-align: right;
+  font-size: 15px
+  position: relative;
 `;
 
 const Comfort = styled.div`

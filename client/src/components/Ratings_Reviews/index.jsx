@@ -11,8 +11,15 @@ const Ratings_Reviews = (props) => {
   const clickTracker = useContext(ClickTracker);
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
-  const [filter, setFilter] = useState("relavant");
 
+  const [filter, setFilter] = useState("relavant");
+  const [starFilter, setStarFilter] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
 
   const [starCount, setStarCount] = useState({
     1: 0,
@@ -22,30 +29,12 @@ const Ratings_Reviews = (props) => {
     5: 0,
     total: 0,
   });
-
-
   const [overallRating, setOverallRating] = useState(0);
   const [recommend, setReccomend] = useState(0);
-  const [starFilter, setStarFilter] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-  });
+
 
   const toggleStar = (value) => {
-    if (value === "5") {
-      setStarFilter({ ...starFilter, 5: !starFilter[value] });
-    } else if (value === "4") {
-      setStarFilter({ ...starFilter, 4: !starFilter[value] });
-    } else if (value === "3") {
-      setStarFilter({ ...starFilter, 3: !starFilter[value] });
-    } else if (value === "2") {
-      setStarFilter({ ...starFilter, 2: !starFilter[value] });
-    } else if (value === "1") {
-      setStarFilter({ ...starFilter, 1: !starFilter[value] });
-    }
+    setStarFilter({...starFilter, [value]: !starFilter[value]})
   };
 
   const filterReviews = (reviews) => {
@@ -66,6 +55,18 @@ const Ratings_Reviews = (props) => {
     } else {
       setReviews(reviews);
     }
+  };
+
+  const getReviewData = () => {
+    axios.get(`/reviews?product_id=${props.id}&count=${10}&sort=${filter}`, config)
+    .then((response) => filterReviews(response.data.results))
+    .catch((err) => console.log(err));
+  };
+
+  const getRecc = (recc) => {
+    const yes = Number(recc.true) || 0;
+    const no = Number(recc.false) || 0;
+    setReccomend(Math.round((yes / (yes + no)) * 100));
   };
 
   const countStars = (ratings) => {
@@ -91,19 +92,6 @@ const Ratings_Reviews = (props) => {
     setOverallRating(Math.round(overall * 10) / 10);
   };
 
-  const getRecc = (recc) => {
-    const yes = Number(recc.true) || 0;
-    const no = Number(recc.false) || 0;
-    setReccomend(Math.round((yes / (yes + no)) * 100));
-  };
-
-  const getReviewData = () => {
-    axios
-      .get(`/reviews?product_id=${props.id}&count=${10}&sort=${filter}`, config)
-      .then((response) => filterReviews(response.data.results))
-      .catch((err) => console.log(err));
-  };
-
   const getMetaData = () => {
     axios
       .get(`/reviews/meta?product_id=${props.id}`, config)
@@ -122,10 +110,8 @@ const Ratings_Reviews = (props) => {
   };
 
   useEffect(() => {
-    if (props.id) {
-      getReviewData();
-      getMetaData();
-    }
+    getReviewData();
+    getMetaData();
   }, [props.id, filter, starFilter]);
 
   return (
