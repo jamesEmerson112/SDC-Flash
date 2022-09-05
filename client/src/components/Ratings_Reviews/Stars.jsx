@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
+import { DarkMode } from "../App.jsx";
 
 const Stars = ({ rating }) => {
   //takes a number between 1-5 and does magic to create stars
@@ -9,20 +10,27 @@ const Stars = ({ rating }) => {
     return <FaStar key={index} className="star" />;
   });
 
+  const darkMode = useContext(DarkMode);
+
   return (
-    <StarContainer>
-      {starRating}
-      <OverlayStar style={{ width: `${width}%` }}></OverlayStar>
-    </StarContainer>
+
+    <Container>
+      <StarContainer>{starRating}</StarContainer>
+      <OverlayStar style={{ width: `${width}%`, backgroundColor: darkMode === 'Light Mode' ? 'rgb(254, 254, 254)' : 'grey'}}></OverlayStar>
+    </Container>
   );
 };
 
 export default Stars;
 
-const StarContainer = styled.div`
+const Container = styled.div`
   display: inline-flex;
   align-items: center;
   position: relative;
+`;
+
+const StarContainer = styled.div`
+display: flex;
 `;
 
 const OverlayStar = styled.div`
@@ -31,6 +39,5 @@ const OverlayStar = styled.div`
   right: 0;
   bottom: 0;
   z-index: 1;
-  background-color: rgb(254, 254, 254);
   opacity: 0.7;
 `;

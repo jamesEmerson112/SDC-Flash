@@ -33,6 +33,16 @@ const Ratings_Reviews = (props) => {
   const [recommend, setReccomend] = useState(0);
 
 
+  const resetStars = () => {
+    setStarFilter({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+    })
+  }
+
   const toggleStar = (value) => {
     setStarFilter({...starFilter, [value]: !starFilter[value]})
   };
@@ -58,7 +68,7 @@ const Ratings_Reviews = (props) => {
   };
 
   const getReviewData = () => {
-    axios.get(`/reviews?product_id=${props.id}&count=${10}&sort=${filter}`, config)
+    axios.get(`/reviews?product_id=${props.id}&count=${100}&sort=${filter}`, config)
     .then((response) => filterReviews(response.data.results))
     .catch((err) => console.log(err));
   };
@@ -123,7 +133,9 @@ const Ratings_Reviews = (props) => {
           average={overallRating}
           recc={recommend}
           meta={meta.characteristics}
+          starFilter={starFilter}
           toggleStar={toggleStar}
+          reset={resetStars}
         />
         <ReviewList
           reviews={reviews}
@@ -141,4 +153,5 @@ export default Ratings_Reviews;
 
 const Container = styled.div`
   display: flex;
+  width: 300px;
 `;

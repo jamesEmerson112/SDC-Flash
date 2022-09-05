@@ -24,7 +24,7 @@ const Ratings = ({rating, hover, setHover, setRating, missing}) => {
     return (
       <label key={index}>
         <HideRadio type='radio' onClick={() => displayRating(index)}/>
-        <FaStar color={index <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
+        <FaStar style={{cursor: 'pointer'}} color={index <= (hover || rating) ? '#ffc107' : '#e4e5e9'}
         onMouseEnter={() => setHover(index)} onMouseLeave={() => setHover(null)}/>
       </label>
     )
@@ -33,8 +33,9 @@ const Ratings = ({rating, hover, setHover, setRating, missing}) => {
   return (
     <div>
       {starRating}
-      <label>{overallRating}</label>
+      <Label>{overallRating}</Label>
       {missing && <Missing>* Required</Missing>}
+      <br/>
     </div>
   );
 }
@@ -47,4 +48,9 @@ display: none;
 
 const Missing = styled.span`
 color: red;
+margin-left: 7px;
 `;
+
+const Label = styled.label`
+margin-left: 7px;
+`

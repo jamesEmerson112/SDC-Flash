@@ -10,11 +10,18 @@ const ReviewList = (props) => {
   const [helpfullClicks, setHelpfullClicks] = useState({})
 
   const [count, setCount] = useState(2);
+  const [hide, setHide] = useState(false)
   const [openModal, setOpenModal] = useState(false);
 
   const addMore = () => {
-    setCount(reviews.length);
+    setCount(reviews.length)
+    setHide(true)
   };
+
+  const hideReviews = () => {
+    setCount(2)
+    setHide(false)
+  }
 
   const search = (e) => {
     var query = (e.target.value.toLowerCase())
@@ -46,25 +53,27 @@ const ReviewList = (props) => {
     setFilterReviews(props.reviews)
     setMeta(props.meta);
     setCount(2)
+    setHide(false)
   }, [props.id, props.reviews, props.meta, helpfullClicks]);
 
   return (
-    <div>
-      <div>
-        <p>{filterReviews.length} reviews, sorted by
-        <select onChange={(e) => props.sort(e.target.value)}>
-          <option value='relevant'>Relevant</option>
-          <option value='helpful'>Helpful</option>
-          <option value='newest'>Newest</option>
-        </select></p>
-        <input type='text' placeholder='Search...' onChange={search}/>
-      </div>
-      <Reviews>
-        <div>{map}</div>
-        {reviews.length > 2 && count < reviews.length && (
-        <button onClick={addMore}>More Reviews &#9660;</button>)}
-        <button onClick={() => setOpenModal(true)}>Add Review +</button>
-      </Reviews>
+    <RnRContainer>
+      <Bold>{filterReviews.length + '  reviews, sorted by  '}
+        <Select onChange={(e) => props.sort(e.target.value)}>
+            <option value='relevant'>Relevant</option>
+            <option value='helpful'>Helpful</option>
+            <option value='newest'>Newest</option>
+        </Select></Bold>
+        <Search type='text' placeholder='Search...' onChange={search}/>
+      <Container>
+        {map}
+      </Container>
+      <ButtonContainer>
+        {reviews.length > 2 && count < reviews.length &&
+        <button onClick={addMore} className='reviewbtn'>MORE REVIEWS &#9660;</button>}
+        {hide && <button onClick={hideReviews} className='reviewbtn'>HIDE REVIEWS &#9650;</button>}
+        <button onClick={() => setOpenModal(true)} className='reviewbtn'>ADD REVIEW +</button>
+      </ButtonContainer>
       <ReviewModal
         id={props.id}
         meta={meta}
@@ -72,14 +81,53 @@ const ReviewList = (props) => {
         close={() => setOpenModal(false)}
         post={props.post}
       />
-    </div>
+    </RnRContainer>
   );
 }
 
 export default ReviewList;
 
-const Reviews = styled.div`
+const RnRContainer = styled.div`
+margin-bottom: 80px;
+`
+
+const Bold = styled.p`
+font-size: 18px;
+font-weight: bold;
+`
+
+const Select = styled.select`
+padding: 8px;
+padding-right: 0px;
+border: 0;
+font-size: 18px;
+font-weight: bold;
+text-decoration: underline;
+text-shadow: 0px 0px 20px #a0a0a0;
+cursor: pointer;
+`
+
+const Search = styled.input`
+width: 798px;
+padding: 0px;
+margin-bottom: 8px;
+`
+
+const Container = styled.div`
 max-height: 800px;
 width: 800px;
 overflow-y: auto;
-`;
+`
+
+const ButtonContainer = styled.div`
+display: flex;
+margin-top: 20px;
+& button:last-child {
+  margin-left: 25px;
+}
+`
+
+
+
+
+

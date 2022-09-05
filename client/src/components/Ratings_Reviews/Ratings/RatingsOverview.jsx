@@ -8,9 +8,12 @@ const RatingsOverview = (props) => {
 
   return (
     <Container>
-      <div>{Boolean(props.average % 1) ? props.average : props.average + '.0'} <Stars rating={props.average}/></div>
+      <StarRating>
+        <StarScore>{Boolean(props.average % 1) ? props.average : props.average + '.0'}</StarScore>
+        <Stars rating={props.average}/>
+      </StarRating>
       <p>{props.recc}% of reviews commend this product</p>
-      <StarSort starCount={props.stars} toggle={props.toggleStar}/>
+      <StarSort starCount={props.stars} toggle={props.toggleStar} starFilter={props.starFilter} reset={props.reset}/>
       <Characteristics meta={props.meta}/>
     </Container>
   );
@@ -22,7 +25,15 @@ export default RatingsOverview;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
-padding: 20px;
-width: 400px;
+padding: 10px 20px 0px 0px;
+width: 350px;
 `;
 
+const StarRating = styled.div`
+display: flex;
+`;
+
+const StarScore = styled.h2`
+margin: 0px 20px 0px 0px;
+font-size: 36px
+`

@@ -47,17 +47,8 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
   const checkForm = (e) => {
     e.preventDefault();
     if (rating === 0 || recc === null || email.indexOf(".com") < 0 ) {
-      console.log("MISSING DEETS");
       return setMissingReq(true);
     } else {
-      console.log("Rating value: ", rating);
-      console.log("Recc check: ", recc);
-      console.log("Characteristics values: ", characteristics);
-      console.log("Summary value: ", summary);
-      console.log("Body value: ", body);
-      console.log("Photos urls: ", photos);
-      console.log("Nickname value: ", nickname);
-      console.log("Email value: ", email);
       postData();
     }
   };
@@ -92,13 +83,8 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
   return (
     <Overlay>
       <ModalForm>
-        {missingReq && (
-          <Missing>
-            Areas marked with * are potentially filled out incorrectly or need
-            to be filled out!
-          </Missing>
-        )}
-        <button onClick={close}>X</button>
+        {missingReq && <Missing>* Areas are required</Missing>}
+        <Close onClick={close}>X</Close>
         <form onSubmit={checkForm}>
           <Ratings
             rating={rating}
@@ -109,7 +95,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           />
 
           <label>
-            Recommend: {missingReq && <Missing>* Required</Missing>}
+            Recommend:
             <label>
               <input
                 type="radio"
@@ -128,6 +114,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
               />
               No:
             </label>
+            {missingReq && <Missing>* Required</Missing>}
           </label>
 
           <Sizes
@@ -135,8 +122,10 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
             setChar={selectCharacteristic}
           />
 
+          <br />
           <label>
             Summary:
+            <br />
             <input
               type="text"
               placeholder="Example: Best purchase ever!"
@@ -145,11 +134,12 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
               maxLength={60}
               onChange={summaryText}
             />
-            <p>{summRemain} Characters remaining</p>
+            <Remain>{summRemain} Characters remaining</Remain>
           </label>
 
           <label>
             Body:
+            <br />
             <input
               type="text"
               placeholder="Why did you like this product or not?"
@@ -160,7 +150,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
               onChange={bodyText}
             />
             {body.length < 50 ? (
-              <p>Minimum required characters left: {bodyRemain}</p>
+              <Remain>Minimum required characters left: {bodyRemain}</Remain>
             ) : (
               <p>Minimum reached</p>
             )}
@@ -168,11 +158,10 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
 
           <label>Upload Image: </label>
           <Upload photos={photos} upload={setPhotos} />
-          <br />
 
           <label>
             Set Nickname:
-            <input
+            <Input
               type="text"
               placeholder="Example: jackson11!"
               value={nickname}
@@ -181,11 +170,11 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
               onChange={nicknameText}
             />
           </label>
-          <p>For authentication reasons you will not be emailed</p>
+          <Remain>For authentication reasons you will not be emailed</Remain>
 
           <label>
             Set Email:
-            <input
+            <Input
               type="email"
               placeholder="jackson11@email.com"
               value={email}
@@ -195,7 +184,8 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
             />
           </label>
           <br />
-          <input type="submit" value="Post Review" />
+
+          <Submit type="submit" value="Post Review" />
         </form>
       </ModalForm>
     </Overlay>
@@ -221,8 +211,35 @@ const ModalForm = styled.div`
   transform: translate(-50%, -50%);
   background-color: #f4f0db;
   padding: 50px;
+  overflow-y: auto;
 `;
 
 const Missing = styled.span`
   color: red;
+  margin-left: 7px;
 `;
+
+const Close = styled.button`
+position: absolute;
+right: 0;
+top: 0;
+`
+
+const Input = styled.input`
+margin-left: 8px;
+`
+
+const Remain = styled.p`
+margin-top: 0px;
+font-style: italic;
+`
+
+const Submit = styled.input`
+background: #f0f0f0;
+width: 100px;
+height: 50px;
+font-weight: bold;
+cursor: pointer;
+margin-top: 8px;
+`
+
