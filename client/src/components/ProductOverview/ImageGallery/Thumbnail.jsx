@@ -52,7 +52,6 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
           </ModalParent>
         );
       } else {
-        console.log(selected, i);
         if (selected === i) {
           return (
             <ModalParentSelected

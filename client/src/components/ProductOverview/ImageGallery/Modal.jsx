@@ -22,7 +22,6 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
     setZoom(true);
   };
 
-  console.log(selectedModal, "this is it");
   return (
     <div>
       <ModalOverlay>
