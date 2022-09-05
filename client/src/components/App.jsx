@@ -102,8 +102,8 @@ const App = () => {
               {clrMode}
             </Button>
             <ProductOverview id={product.id} product={product} />
-            <RRIndex id={product.id} />
             <QuestionList product={product} />
+            <RRIndex id={product.id} />
           </DarkMode.Provider>
         </ClickTracker.Provider>
       </div>
