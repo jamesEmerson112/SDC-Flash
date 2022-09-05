@@ -44,22 +44,6 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
               src={displayPic}
               onClick={modalClick}
             />
-            {zoom === true ? (
-              <ModalGallery>
-                <ZoomModel>
-                  <Modal></Modal>
-                  <ModalClose
-                    onClick={() => {
-                      setZoom(false);
-                    }}
-                  >
-                    X
-                  </ModalClose>
-                </ZoomModel>
-              </ModalGallery>
-            ) : (
-              <div></div>
-            )}
           </div>
 
           <ModalClose
@@ -95,8 +79,6 @@ const ModalGallery = styled.div`
   max-height: 100%;
 `;
 
-const ZoomModel = styled.div`
-  height: 45vh;
-  width: 45vh;
-  background-color: white;
+const ZoomImage = styled.img`
+  transform
 `;
