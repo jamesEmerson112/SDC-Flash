@@ -26,7 +26,7 @@ const Upload = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       <br />
       {[...Array(5)].map((_, index) =>
         photoArray[index] ? (
@@ -35,11 +35,15 @@ const Upload = (props) => {
           <Empty key={index} onClick={upload} />
         )
       )}
-    </div>
+    </Container>
   );
 };
 
 export default Upload;
+
+const Container = styled.div`
+  margin-bottom: 8px;
+`;
 
 const Empty = styled.img`
   width: 50px;
