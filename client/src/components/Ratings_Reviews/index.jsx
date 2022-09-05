@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Ratings from "./Ratings/RatingsOverview.jsx";
 import ReviewList from "./Reviews/ReviewList.jsx";
-import StarComponent from "../StarComponent.jsx";
 import { config } from "../../../../env/config.js";
 import axios from "axios";
 import RatingsOverview from "./Ratings/RatingsOverview.jsx";

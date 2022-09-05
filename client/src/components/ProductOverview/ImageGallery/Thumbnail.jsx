@@ -61,7 +61,7 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
               }}
               key={i}
             >
-              <ModalThumbnail src={photo.thumbnail_url} width="50px" />
+              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
             </ModalParentSelected>
           );
         } else {
@@ -72,7 +72,7 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
               }}
               key={i}
             >
-              <ModalThumbnail src={photo.thumbnail_url} width="50px" />
+              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
             </ModalParentNotSelected>
           );
         }
