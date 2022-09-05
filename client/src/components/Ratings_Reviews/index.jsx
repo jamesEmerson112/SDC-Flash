@@ -32,7 +32,6 @@ const Ratings_Reviews = (props) => {
   const [overallRating, setOverallRating] = useState(0);
   const [recommend, setReccomend] = useState(0);
 
-
   const resetStars = () => {
     setStarFilter({
       1: false,
@@ -40,11 +39,11 @@ const Ratings_Reviews = (props) => {
       3: false,
       4: false,
       5: false,
-    })
-  }
+    });
+  };
 
   const toggleStar = (value) => {
-    setStarFilter({...starFilter, [value]: !starFilter[value]})
+    setStarFilter({ ...starFilter, [value]: !starFilter[value] });
   };
 
   const filterReviews = (reviews) => {
@@ -68,9 +67,13 @@ const Ratings_Reviews = (props) => {
   };
 
   const getReviewData = () => {
-    axios.get(`/reviews?product_id=${props.id}&count=${100}&sort=${filter}`, config)
-    .then((response) => filterReviews(response.data.results))
-    .catch((err) => console.log(err));
+    axios
+      .get(
+        `/reviews?product_id=${props.id}&count=${100}&sort=${filter}`,
+        config
+      )
+      .then((response) => filterReviews(response.data.results))
+      .catch((err) => console.log(err));
   };
 
   const getRecc = (recc) => {
@@ -80,15 +83,20 @@ const Ratings_Reviews = (props) => {
   };
 
   const countStars = (ratings) => {
-    let total = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
-      if (ratings[num]) { stars += (Number(ratings[num])) }
-      return stars
-    }, 0)
+    let total = ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+      if (ratings[num]) {
+        stars += Number(ratings[num]);
+      }
+      return stars;
+    }, 0);
 
-    let overall = ['1', '2', '3', '4', '5'].reduce((stars, num) => {
-      if (ratings[num]) { stars += (Number(ratings[num]) * Number(num)) }
-      return stars
-    }, 0) / total
+    let overall =
+      ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+        if (ratings[num]) {
+          stars += Number(ratings[num]) * Number(num);
+        }
+        return stars;
+      }, 0) / total;
 
     setStarCount({
       ...starCount,

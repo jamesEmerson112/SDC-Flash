@@ -77,7 +77,6 @@ const ProductOverview = ({ id, product }) => {
     getRatingsData();
   }, [id]);
 
-
   if (styles.length > 0) {
     return (
       <div onClick={(e) => clickTracker(e, "Product Overview")}>

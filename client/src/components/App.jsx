@@ -20,10 +20,13 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get(`/products?count=${100}`, config)
+      .get("/products?count=1000", config)
       .then((response) => {
         setProducts(response.data);
-        setProduct(response.data[index]);
+        let randInd = Math.floor(Math.random() * 1000);
+        randInd = 0;
+        setIndex(randInd);
+        setProduct(response.data[randInd]);
       })
       .catch((err) => {
         console.log(err);
@@ -65,6 +68,7 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
+    // console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))
@@ -78,16 +82,13 @@ const App = () => {
           <DarkMode.Provider value={clrMode}>
             <TitleHeader onClick={clickTracker}>
               {index > 0 ? (
-                <Button onClick={prev}>Previous Product</Button>
+                <Button onClick={prev}>{products[index - 1].name}</Button>
               ) : (
                 <div></div>
               )}
-              <h1>
-                {product.id}: this is the product id that we can pass to each
-                component
-              </h1>
+              <h1>{product.name}</h1>
               {index + 1 < products.length ? (
-                <Button onClick={next}>Next Product</Button>
+                <Button onClick={next}>{products[index + 1].name}</Button>
               ) : (
                 <div></div>
               )}
@@ -115,8 +116,8 @@ const App = () => {
 export default App;
 
 const TitleHeader = styled.div`
+  border-radis: 5px;
   display: flex;
-  border: 3px solid black;
   justify-content: space-between;
   gap: 30px;
 `;

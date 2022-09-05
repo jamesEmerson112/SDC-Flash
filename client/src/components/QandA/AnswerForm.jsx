@@ -101,6 +101,7 @@ const AnswerForm = ({ question, product, setShowAForm, setAnsState }) => {
           <br />
           <small>For authentication reasons, you will not be emailed</small>
           <br />
+          <label>Upload Photos </label>
           <Upload upload={setPhotos} />
           <br />
           <InputButton type="submit" value="Submit Answer" />

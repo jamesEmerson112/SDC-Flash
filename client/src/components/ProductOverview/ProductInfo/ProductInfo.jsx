@@ -10,7 +10,14 @@ const ProductInfo = ({ product, style, ratings }) => {
       <div>
         {/* <StarComponent ratings={ratings} /> */}
         <Link>
-          <a href="#Ratings_ratings">Read all {numberOfRatings} reviews</a>
+          <a
+            onClick={() => {
+              window.location.href = "#Ratings_Reviews";
+              history.pushState({}, "", window.location.origin);
+            }}
+          >
+            Read all {numberOfRatings} reviews
+          </a>
         </Link>
       </div>
       <Category>{product.category}</Category>
