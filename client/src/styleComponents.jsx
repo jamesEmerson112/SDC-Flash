@@ -1,11 +1,22 @@
 import styled from "styled-components";
 
 const buttonS = `
-  border-radius: 5px;
-  border: 1px solid black;
-  cursor: pointer;
-  padding: 5px 5px;
-  background-color: white;
+background: #f0f0f0;
+padding: 20px;
+min-width: 150px;
+font-weight: bold;
+cursor: pointer;
+transition: 0.5s;
+&:hover{
+  background: black;
+  color: white;
+  border: 2px solid #f0f0f0;
+}
+  // border-radius: 5px;
+  // border: 1px solid black;
+  // cursor: pointer;
+  // padding: 5px 5px;
+  // background-color: white;
   `;
 
 const Button = styled.button`

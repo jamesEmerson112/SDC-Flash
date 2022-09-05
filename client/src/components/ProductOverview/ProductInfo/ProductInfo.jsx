@@ -35,7 +35,14 @@ const ProductInfo = ({ product, style, ratings }) => {
       <div>
         <Stars rating={overall} />
         <Link>
-          <a href="#Ratings_Reviews">Read all {total} reviews</a>
+          <a
+            onClick={() => {
+              window.location.href = "#Ratings_Reviews";
+              history.pushState({}, "", window.location.origin);
+            }}
+          >
+            Read all {total} reviews
+          </a>
         </Link>
       </div>
       <Category>{product.category}</Category>

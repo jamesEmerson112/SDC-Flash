@@ -82,13 +82,17 @@ const App = () => {
           <DarkMode.Provider value={clrMode}>
             <TitleHeader onClick={clickTracker}>
               {index > 0 ? (
-                <Button onClick={prev}>{products[index - 1].name}</Button>
+                <Button onClick={prev}>
+                  {products[index - 1].name.toUpperCase()}
+                </Button>
               ) : (
                 <div></div>
               )}
               <h1>{product.name}</h1>
               {index + 1 < products.length ? (
-                <Button onClick={next}>{products[index + 1].name}</Button>
+                <Button onClick={next}>
+                  {products[index + 1].name.toUpperCase()}
+                </Button>
               ) : (
                 <div></div>
               )}
@@ -99,7 +103,7 @@ const App = () => {
                 toggleClrMode(e);
               }}
             >
-              {clrMode}
+              {clrMode.toUpperCase()}
             </Button>
             <ProductOverview id={product.id} product={product} />
             <QuestionList product={product} />

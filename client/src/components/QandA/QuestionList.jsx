@@ -96,10 +96,13 @@ const QuestionList = ({ product }) => {
       </div>
       <div>
         {filtList.length < list.length ? (
-          <Button onClick={expandQs}>More Answered Questions</Button>
+          <Button onClick={expandQs}>MORE ANSWERED QUESTIONS</Button>
         ) : null}
-        <Button onClick={() => setShowQForm(!showQForm)}>
-          Add a Question +
+        <Button
+          style={{ marginLeft: "25px" }}
+          onClick={() => setShowQForm(!showQForm)}
+        >
+          ADD A QUESTION +
         </Button>
       </div>
       {showQForm ? (
