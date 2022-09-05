@@ -33,8 +33,6 @@ const Modal = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  max-width: 50%;
-  max-height: 50%;
 `;
 
 const ModalForm = styled.form`
@@ -44,8 +42,8 @@ const ModalForm = styled.form`
 
 const ModalImg = styled.img`
   border-radius: 5px;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
 `;
 
 const ModalClose = styled.button`

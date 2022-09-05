@@ -52,37 +52,38 @@ const Sizes = ({meta, setChar}) => {
 
   const selectSize = characteristics.Size.map((data, index) => {
     return (
-      <label key={index}><input type='radio' name='Size' value={index+1} onChange={charChange}/>{data}</label>)
+      <label key={index}><Input type='radio' name='Size' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
   const selectWidth = characteristics.Width.map((data, index) => { return (
-      <label key={index}><input type='radio' name='Width' value={index+1} onChange={charChange}/>{data}</label>)
+      <label key={index}><Input type='radio' name='Width' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
   const selectComfort = characteristics.Comfort.map((data, index) => { return (
-    <label key={index}><input type='radio' name='Comfort' value={index+1} onChange={charChange}/>{data}</label>)
+    <label key={index}><Input type='radio' name='Comfort' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
   const selectQuality = characteristics.Quality.map((data, index) => { return (
-    <label key={index}><input type='radio' name='Quality' value={index+1} onChange={charChange}/>{data}</label>)
+    <label key={index}><Input type='radio' name='Quality' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
   const selectLength = characteristics.Length.map((data, index) => { return (
-    <label key={index}><input type='radio' name='Length' value={index+1} onChange={charChange}/>{data}</label>)
+    <label key={index}><Input type='radio' name='Length' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
   const selectFit = characteristics.Fit.map((data, index) => { return (
-    <label key={index}><input type='radio' name='Fit' value={index+1} onChange={charChange}/>{data}</label>)
+    <label key={index}><Input type='radio' name='Fit' value={index+1} onChange={charChange}/>{data}</label>)
   })
 
 
   return (
-    <div>
+    <Container>
       {meta.Size &&
         <div>
           <label>Sizes: </label>
           {selectSize}
         </div>}
+
 
       {meta.Width &&
         <div>
@@ -114,13 +115,16 @@ const Sizes = ({meta, setChar}) => {
           <label>Fit: </label>
           {selectFit}
         </div>}
-    </div>
+    </Container>
   );
 }
 
 export default Sizes;
 
-const Missing = styled.span`
-color: red;
-`;
+const Container = styled.div`
+margin-top: 8px;
+`
 
+const Input = styled.input`
+margin-left: 10px;
+`

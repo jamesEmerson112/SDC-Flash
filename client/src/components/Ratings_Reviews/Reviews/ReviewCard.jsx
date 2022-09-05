@@ -12,12 +12,15 @@ import {
   ModalOverlay,
 } from "../../../styleComponents.jsx";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, helpfullClicks, setHelpfullClicks}) => {
   const [helpfullness, setHelpfullness] = useState(review.helpfulness)
-  const [helpfullClicked, setHelpfulClicked] = useState(false)
   const [reportClicked, setReportClicked] = useState(false)
   const [seeMore, setSeeMore] = useState(true)
   const [modal, setModal] = useState(false)
+
+  useEffect(() => {
+    setHelpfullness(review.helpfulness)
+  }, [review.helpfulness])
 
   const formatDate = (date) => {
     date = parseISO(date).toLocaleDateString("en-us", {
@@ -44,11 +47,11 @@ const ReviewCard = ({ review }) => {
   })
 
   const helpful = () => {
-    if (!helpfullClicked) {
+    if (helpfullClicks[review.review_id] === undefined) {
       axios.put(`/reviews/${review.review_id}/helpful`, {}, config)
         .then(() => {
-          setHelpfulClicked(true)
           setHelpfullness(helpfullness + 1)
+          setHelpfullClicks({...helpfullClicks, [review.review_id] : true})
         })
         .catch((err) => console.log(err))
     }
@@ -65,24 +68,30 @@ const ReviewCard = ({ review }) => {
   return (
     <ReviewCardDiv>
       {modal ? (
-        <ModalOverlay>
+        <ModalOverlay onClick={() => setModal(false)}>
           <Modal>
             <ModalImg src={modal} className="modalImg" />
             <ModalClose className="modalClose" onClick={() => setModal(false)}>X</ModalClose>
           </Modal>
         </ModalOverlay>
       ) : null}
-      <div>
+      <Flex>
         <Stars rating={review.rating}/>
-        <p>{review.reviewer_name}, {formatDate(review.date)}</p>
-      </div>
-      <p>Summary: {review.summary}</p>
-      <p>Body: {formatBody(review.body)}</p>
+        <User>{review.reviewer_name}, {formatDate(review.date)}</User>
+      </Flex>
+
+      <Summary>{review.summary}</Summary>
+      <p>{formatBody(review.body)}</p>
       {review.body.length > 251 && seeMore && <p onClick={() => setSeeMore(false)}>See More</p>}
+
       <div>{images}</div>
       {review.recommend && <p><FaCheck /> I recommend this product</p>}
-      <p>{review.response !== null && review.response}</p>
-      <p>Helpful? <span onClick={helpful}>Yes </span>{`(${helpfullness}) | `}<span onClick={report}>Report</span></p>
+      {review.response !== null && <Response>
+        <h4>Response:</h4>
+        <p>{review.response}</p>
+      </Response>}
+
+      <p>Helpful? <Underline onClick={helpful}>Yes </Underline>{`(${helpfullness}) | `}<Underline onClick={report}>Report</Underline></p>
     </ReviewCardDiv>
   );
 };
@@ -90,5 +99,29 @@ const ReviewCard = ({ review }) => {
 export default ReviewCard;
 
 const ReviewCardDiv = styled.div`
-  border: 1px solid black;
+border-bottom: 2px solid black;
 `;
+
+const Flex = styled.div`
+display: flex;
+justify-content: space-between
+`;
+
+const User = styled.p`
+margin-right: 10px;
+`
+
+const Summary = styled.h3`
+margin: 3px 0px 8px 0px;
+`
+
+const Response = styled.div`
+width: auto;
+padding: 1px 10px 1px 10px;
+background: #e0e0e0;
+`
+
+const Underline = styled.span`
+text-decoration: underline;
+cursor: pointer;
+`

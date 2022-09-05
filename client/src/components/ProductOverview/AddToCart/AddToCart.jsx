@@ -31,7 +31,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
   useEffect(() => {
     setStateStyles(styles);
     setLabel("Select a size");
-    console.log("This is what i am looking for", stateStyles);
   }, [size]);
 
   const selectSize = (e) => {

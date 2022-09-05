@@ -3,20 +3,21 @@ body {
 }
 
 #root {
-  max-width:75vw;
+  max-width: 75vw;
   margin: auto;
 }
 
 .darkMode {
   color: white;
-  background-color:grey
+  background-color: grey;
 }
 
 /* Q and A */
 .clickable {
-color: rgb(28, 194, 9);
-text-shadow: 1px 0 rgb(222, 40, 285), 0 1px rgb(222, 40, 185), -1px 0 rgb(222, 40, 185), 0 -1px rgb(222, 40, 185);
-cursor: pointer;
+  color: rgb(28, 194, 9);
+  text-shadow: 1px 0 rgb(222, 40, 285), 0 1px rgb(222, 40, 185),
+    -1px 0 rgb(222, 40, 185), 0 -1px rgb(222, 40, 185);
+  cursor: pointer;
 }
 
 .qList {
@@ -39,7 +40,6 @@ cursor: pointer;
 .qAndA {
   display: flex;
   flex-direction: row;
-
 }
 
 .question {
@@ -75,11 +75,10 @@ cursor: pointer;
   grid-template-rows: [first-row] 180px [second-row] 360px [third-row] 95px;
   box-sizing: border-box;
   margin-top: 20px;
-
 }
 
 .background {
-  background-color:aliceblue;
+  background-color: aliceblue;
   grid-column-start: 1;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -87,12 +86,11 @@ cursor: pointer;
 }
 
 .background_dark {
-  background-color:darkgray;
+  background-color: darkgray;
   grid-column-start: 1;
   grid-column-end: -1;
   grid-row-start: 1;
   grid-row-end: 4;
-
 }
 
 .image-gallery {
@@ -117,7 +115,6 @@ cursor: pointer;
   align-items: center;
   z-index: 0;
   border: 1px solid black;
-
 }
 .pic:hover {
   cursor: zoom-in;
@@ -141,22 +138,20 @@ cursor: pointer;
   transform: translate(-28px);
 }
 
-
 .pic_button_left {
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 3;
   z-index: 3;
-  border:white;
+  border: white;
   background-color: transparent;
   color: white;
   text-align: center;
   text-decoration: none;
-  display:inline;
+  display: inline;
   font-size: 20px;
   transform: translate(28px);
 }
-
 
 /* .image-gallery > * {
   margin-left: 80px;
@@ -165,7 +160,7 @@ cursor: pointer;
 .main_pic {
   max-width: 75%;
   max-height: 95%;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 15px;
@@ -183,7 +178,6 @@ cursor: pointer;
   width: 8%;
   max-height: 570px;
   margin-right: 15px;
-
 }
 
 .thumbnail {
@@ -245,4 +239,20 @@ cursor: pointer;
   display: flex;
   color: #ffc107;
   margin-right: 2px;
+}
+
+/* Crazy Button */
+.reviewbtn {
+  background: #f0f0f0;
+  padding: 20px;
+  min-width: 150px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.reviewbtn:hover {
+  background: black;
+  color: white;
+  border: 2px solid #f0f0f0;
 }

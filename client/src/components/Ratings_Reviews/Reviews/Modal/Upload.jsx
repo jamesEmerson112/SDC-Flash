@@ -1,8 +1,10 @@
-import React from "react";
-import { Button } from "../../../../styleComponents.jsx";
+import React, {useState} from "react";
+import styled from "styled-components";
 
 const Upload = (props) => {
-  var photoArray = [];
+
+  const [photoArray, setPhotoArray] = useState([]);
+  let temp = [];
 
   const upload = (event) => {
     event.preventDefault();
@@ -14,8 +16,10 @@ const Upload = (props) => {
 
       (error, result) => {
         if (!error && result && result.event === "success") {
-          photoArray.push(result.info.url)
-          props.upload(photoArray.slice(0, 5))
+          temp = photoArray.concat(temp);
+          temp.push(result.info.url);
+          props.upload(temp.slice(0, 5));
+          setPhotoArray(temp.slice(0, 5));
         }
       }
     );
@@ -23,14 +27,27 @@ const Upload = (props) => {
   };
 
   return (
-    <div>
-        <Button onClick={upload}>Open</Button>
-        {props.photos.map((photo, index) => {
-          return <img src={photo} key={index} className="ansPhotos"/>
-        })}
-    </div>
+    <Container>
+        <br />
+        {[...Array(5)].map((_, index) =>
+          photoArray[index] ? <img src={photoArray[index]} key={index} className="ansPhotos" /> : <Empty key={index} onClick={upload}/>
+        )}
+    </Container>
   )
-
 };
 
 export default Upload;
+
+const Container = styled.div`
+margin-bottom: 8px;
+`
+
+const Empty = styled.img`
+width: 50px;
+height: 50px;
+margin-right: 10px;
+border: 2px dashed black;
+cursor: pointer;
+`;
+
+
