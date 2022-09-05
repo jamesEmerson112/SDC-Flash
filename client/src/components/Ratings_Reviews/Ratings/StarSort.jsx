@@ -62,7 +62,7 @@ const Container = styled.div`
   min-width: 350px;
 `;
 
-const Span = styled.div`
+const Span = styled.span`
   margin-right: 10px;
   cursor: pointer;
   display: inline-block;

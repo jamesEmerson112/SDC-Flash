@@ -2,7 +2,7 @@ import React from "react";
 import Stars from "../../Ratings_Reviews/Stars.jsx";
 import styled from "styled-components";
 
-const ProductInfo = ({ product, style, ratings }) => {
+const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
   var price;
   var salePrice = null;
   if ("original_price" in style) {
@@ -35,7 +35,14 @@ const ProductInfo = ({ product, style, ratings }) => {
       <div>
         <Stars rating={overall} />
         <Link>
-          <a href="#Ratings_Reviews">Read all {total} reviews</a>
+          <Span
+            onClick={() => {
+              window.location.href = "#Ratings_Reviews";
+              history.pushState({}, "", window.location.origin);
+            }}
+          >
+            Read all {numberOfReviews} reviews
+          </Span>
         </Link>
       </div>
       <Category>{product.category}</Category>
@@ -78,4 +85,27 @@ const Sale = styled.h2`
   color: red;
   display: inline;
   padding-left: 20px;
+`;
+
+const Span = styled.span`
+  margin-right: 10px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  &:: before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.25s ease-out;
+  }
+  &:hover {
+    font-weight: bold;
+    &::before {
+      width: 100%;
+    }
+  }
 `;

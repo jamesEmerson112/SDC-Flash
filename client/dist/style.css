@@ -245,6 +245,20 @@ body {
   margin-right: 2px;
 }
 
+.addtocartbtn {
+  background: #f0f0f0;
+  padding: 5px;
+  width: 128px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.addtocartbtn:hover {
+  background: black;
+  color: white;
+  border: 2px solid #f0f0f0;
+}
+
 /* Crazy Button */
 .reviewbtn {
   background: #f0f0f0;
