@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Thumbnail from "./Thumbnail.jsx";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import ModalComponent from "./Modal.jsx";
 
 import { ModalClose, ModalOverlay, Modal } from "../../../styleComponents.jsx";
 
@@ -64,27 +65,12 @@ const ImageGallery = ({
         <div className="image-gallery">
           {expanded ? (
             //if the main picture is clicked on display the EXTENDED DISPLAY
-            <ModalOverlay>
-              <ModalGallery>
-                <div className="modal">
-                  {/* <Thumbnail
-                      photos={photos}
-                      click={click}
-                      setSelected={setSelected}
-                      selected={selected}
-                      modal={true}
-                    /> */}
-                </div>
-                <ModalImage src={mainPic} />
-                <ModalClose
-                  onClick={() => {
-                    setExpanded(false);
-                  }}
-                >
-                  X
-                </ModalClose>
-              </ModalGallery>
-            </ModalOverlay>
+            <ModalComponent
+              mainPic={mainPic}
+              setExpanded={setExpanded}
+              photos={photos}
+              selected={selected}
+            />
           ) : (
             <div></div>
           )}
@@ -110,7 +96,7 @@ const ImageGallery = ({
               src={mainPic}
               onClick={() => {
                 setExpanded(true);
-                console.log("hi");
+                console.log(expanded);
               }}
             />
             {selected === style.photos.length - 1 ? (

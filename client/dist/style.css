@@ -183,7 +183,6 @@ cursor: pointer;
   width: 8%;
   max-height: 570px;
   margin-right: 15px;
-
 }
 
 .thumbnail {
@@ -222,6 +221,7 @@ cursor: pointer;
 .selected {
   background-color: grey;
 }
+
 .not-selected {
   background-color: white;
 }
