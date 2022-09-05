@@ -1,5 +1,5 @@
 import React from "react";
-import StarComponent from "../../StarComponent.jsx";
+// import StarComponent from "../../StarComponent.jsx";
 import styled from "styled-components";
 
 const ProductInfo = ({ product, style, ratings }) => {
