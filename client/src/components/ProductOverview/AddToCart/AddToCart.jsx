@@ -11,16 +11,10 @@ const AddToCart = ({ style, setSuccess, success }) => {
   const [quantities, setQuantities] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [alert, setAlert] = useState("");
-  const [size, setSize] = useState("");
-  const [label, setLabel] = useState("Select a size");
   const [stateStyles, setStateStyles] = useState([]);
-  // set the style name to be returned with the cart purchase
-  const styleName = style.name;
-  // will be set to true upon successful addition to cart
   let sizesAvailable = _.map(style.skus, (sku) => {
     return sku.size;
   });
-
   // obtain all of the sizes from the current style and add to an array
   const styles = [];
   for (let key in style.skus) {
@@ -30,8 +24,7 @@ const AddToCart = ({ style, setSuccess, success }) => {
 
   useEffect(() => {
     setStateStyles(styles);
-    setLabel("Select a size");
-  }, [size]);
+  }, [style]);
 
   const selectSize = (e) => {
     let size = e.target.value;
@@ -40,17 +33,16 @@ const AddToCart = ({ style, setSuccess, success }) => {
       if (currentSku.value === size) {
         const N = currentSku.quantity;
         const arr = Array.from({ length: N }, (_, index) => index + 1);
-        const quantities = [];
+        const quantityOptions = [];
         for (let i = 0; i < arr.length; i++) {
           if (arr[i] > 15) {
             break;
           } else {
             let obj = { value: arr[i] };
-            quantities.push(obj);
+            quantityOptions.push(obj);
           }
         }
-        setSize(size);
-        setQuantities(quantities);
+        setQuantities(quantityOptions);
         setValue(currentSku);
         setAlert("");
         setSuccess(false);
@@ -66,15 +58,14 @@ const AddToCart = ({ style, setSuccess, success }) => {
   // will handle if no sizes available for this style
   if (sizesAvailable.length === 1 && sizesAvailable[0] === null) {
     return (
-      <div>
-        <h3 className="item add-to-cart">Add To Cart</h3>
+      <div className="add-to-cart">
         <div>OUT OF STOCK</div>
       </div>
     );
   }
 
   const addToCart = () => {
-    const data = { sku_id: parseInt(value.key), count: parseInt(quantity) };
+    const data = { sku_id: parseInt(value.key) };
     axios
       .post("/cart", data, config)
       .then((success) => {
@@ -84,12 +75,12 @@ const AddToCart = ({ style, setSuccess, success }) => {
         console.log(err);
       });
     setSuccess(true);
-    setSize("");
     setQuantity(0);
     setStateStyles([]);
     setValue("");
     setTimeout(() => {
       setSuccess(false);
+      setStateStyles(styles);
     }, 2000);
   };
 

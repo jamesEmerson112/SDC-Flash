@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Thumbnail from "./Thumbnail.jsx";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import ModalComponent from "./Modal.jsx";
 
 import { ModalClose, ModalOverlay, Modal } from "../../../styleComponents.jsx";
 
@@ -16,10 +17,10 @@ const ImageGallery = ({
   NextArrow,
 }) => {
   const [expanded, setExpanded] = useState(false);
-
-  if (style) {
+  // if there are styles that have a property of photos, render them, if not i will have a placholder (bottom)
+  if ("photos" in style) {
     const photos = style.photos;
-
+    // if there are is no main picture, set the default picture
     if (mainPic === null) {
       return (
         <div className="image-gallery">
@@ -58,35 +59,21 @@ const ImageGallery = ({
           </div>
         </div>
       );
+      // if there is a main picture use that for the display
     } else {
       return (
         <div className="image-gallery">
           {expanded ? (
-            <ModalOverlay>
-              <ModalGallery>
-                <div className="modal">
-                  {/* <Thumbnail
-                      photos={photos}
-                      click={click}
-                      setSelected={setSelected}
-                      selected={selected}
-                      modal={true}
-                    /> */}
-                </div>
-                <ModalImage src={mainPic} />
-                <ModalClose
-                  onClick={() => {
-                    setExpanded(false);
-                  }}
-                >
-                  X
-                </ModalClose>
-              </ModalGallery>
-            </ModalOverlay>
+            //if the main picture is clicked on display the EXTENDED DISPLAY
+            <ModalComponent
+              mainPic={mainPic}
+              setExpanded={setExpanded}
+              photos={photos}
+              selected={selected}
+            />
           ) : (
             <div></div>
           )}
-
           <div className="thumbnails">
             <Thumbnail
               photos={photos}
@@ -109,7 +96,7 @@ const ImageGallery = ({
               src={mainPic}
               onClick={() => {
                 setExpanded(true);
-                console.log("hi");
+                console.log(expanded);
               }}
             />
             {selected === style.photos.length - 1 ? (
@@ -123,6 +110,18 @@ const ImageGallery = ({
         </div>
       );
     }
+    // if there are no styles available
+  } else {
+    return (
+      <div className="image-gallery">
+        <div className="main_pic">
+          <img
+            className="pic"
+            src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+          />
+        </div>
+      </div>
+    );
   }
 };
 

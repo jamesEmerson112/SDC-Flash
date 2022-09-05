@@ -46,24 +46,35 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
               setSelected(i);
             }}
             key={i}
-            className={selected === i ? "selected" : "not_selected"}
+            className={selected === i ? "selected_modal" : "not_selected"}
           >
             <ModalThumbnail src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png" />
           </ModalParent>
         );
       } else {
-        return (
-          <ModalParent
-            onClick={() => {
-              click(photo.url, i);
-              setSelected(i);
-            }}
-            key={i}
-            className={selected === i ? "selected" : "not_selected"}
-          >
-            <ModalThumbnail src={photo.thumbnail_url} />
-          </ModalParent>
-        );
+        if (selected === i) {
+          return (
+            <ModalParentSelected
+              onClick={() => {
+                click(photo.url, i);
+              }}
+              key={i}
+            >
+              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
+            </ModalParentSelected>
+          );
+        } else {
+          return (
+            <ModalParentNotSelected
+              onClick={() => {
+                click(photo.url, i);
+              }}
+              key={i}
+            >
+              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
+            </ModalParentNotSelected>
+          );
+        }
       }
     });
   }
@@ -84,17 +95,37 @@ const ThumbnailParent = styled.div`
   align-items: center;
 `;
 
-const ModalParent = styled.div`
+const ModalParentSelected = styled.div`
   display: flex;
+  display: row;
   background-color: transparent;
-  padding: 5px;
   justify-content: center;
-  align-items: space-between;
-  max-height: 100%;
+  align-items: center;
+  height: 14vh;
+  width: 7vw;
   border: 1px solid black;
+  border: 2px solid black;
+  background-color: black;
+`;
+const ModalParentNotSelected = styled.div`
+  display: flex;
+  display: row;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  height: 14vh;
+  width: 7vw;
+  border: 1px solid black;
+  border: 2px solid black;
+  background-color: grey;
 `;
 
 const ModalThumbnail = styled.img`
-  padding: 10px;
+  box-sizing: border-box;
+  display: block;
   max-width: 100%;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 `;

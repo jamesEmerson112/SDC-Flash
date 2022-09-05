@@ -1,23 +1,41 @@
 import React from "react";
+import Stars from "../../Ratings_Reviews/Stars.jsx";
 import styled from "styled-components";
 
 const ProductInfo = ({ product, style, ratings }) => {
-  const price = "$" + style.original_price;
-  const salePrice = "$" + style.sale_price;
-  const numberOfRatings = 0; //ratings.length;
+  var price;
+  var salePrice = null;
+  if ("original_price" in style) {
+    price = "$" + style.original_price;
+    salePrice = "$" + style.sale_price;
+  } else {
+    style.sale_price = null;
+    price = "No price";
+  }
+
+  let total = ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+    if (ratings[num]) {
+      stars += Number(ratings[num]);
+    }
+    return stars;
+  }, 0);
+
+  let overall =
+    ["1", "2", "3", "4", "5"].reduce((stars, num) => {
+      if (ratings[num]) {
+        stars += Number(ratings[num]) * Number(num);
+      }
+      return stars;
+    }, 0) / total;
+
+  overall = Math.round(overall * 10) / 10;
+
   return (
     <div className="product-info">
       <div>
-        {/* <StarComponent ratings={ratings} /> */}
+        <Stars rating={overall} />
         <Link>
-          <a
-            onClick={() => {
-              window.location.href = "#Ratings_Reviews";
-              history.pushState({}, "", window.location.origin);
-            }}
-          >
-            Read all {numberOfRatings} reviews
-          </a>
+          <a href="#Ratings_Reviews">Read all {total} reviews</a>
         </Link>
       </div>
       <Category>{product.category}</Category>
