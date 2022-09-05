@@ -239,6 +239,10 @@ cursor: pointer;
   justify-content: center;
 }
 
+.modal_image {
+  cursor: crosshair;
+}
+
 /* Star */
 .star {
   width: 18px;
