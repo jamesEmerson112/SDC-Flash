@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReviewCard from "./ReviewCard.jsx";
 import ReviewModal from "./Modal/ReviewModal.jsx";
+import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 
 const ReviewList = (props) => {
@@ -9,18 +10,33 @@ const ReviewList = (props) => {
   const [meta, setMeta] = useState({});
   const [helpfullClicks, setHelpfullClicks] = useState({})
 
-  const [count, setCount] = useState(2);
-  const [hide, setHide] = useState(false)
   const [openModal, setOpenModal] = useState(false);
 
+  const [count, setCount] = useState(2);
+  const [scrollAdd, setScrollAdd] = useState(false)
+  const [addClicked, setAddClicked] = useState(false)
+  const [spinner, setSpinner] = useState(false)
+
   const addMore = () => {
-    setCount(reviews.length)
-    setHide(true)
+    setCount(count + 5)
+    setAddClicked(true)
+    setScrollAdd(true)
   };
+
+  const scroll = (e) => {
+    if (e.target.scrollTop >= e.target.scrollHeight - 800 && scrollAdd === true) {
+      setSpinner(true)
+      setTimeout(() => {
+        setSpinner(false)
+        setCount(count + 3)
+      }, 1500);
+    }
+  }
 
   const hideReviews = () => {
     setCount(2)
-    setHide(false)
+    setScrollAdd(false)
+    setAddClicked(false)
   }
 
   const search = (e) => {
@@ -42,7 +58,7 @@ const ReviewList = (props) => {
   }
 
 
-  var map = filterReviews?.slice(0, count).map((review, index) => {
+  const map = filterReviews?.slice(0, count).map((review, index) => {
     return <ReviewCard key={index} review={review}
     helpfullClicks={helpfullClicks} setHelpfullClicks={setHelpfullClicks}/>;
   });
@@ -53,8 +69,9 @@ const ReviewList = (props) => {
     setFilterReviews(props.reviews)
     setMeta(props.meta);
     setCount(2)
-    setHide(false)
-  }, [props.id, props.reviews, props.meta, helpfullClicks]);
+    setScrollAdd(false)
+    setAddClicked(false)
+  }, [props.id, props.reviews, props.meta]);
 
   return (
     <RnRContainer>
@@ -65,15 +82,23 @@ const ReviewList = (props) => {
             <option value='newest'>Newest</option>
         </Select></Bold>
         <Search type='text' placeholder='Search...' onChange={search}/>
-      <Container>
+
+      <Container onScroll={scroll}>
         {map}
+        {spinner ?
+        <SpinnerContainer>
+          <ClipLoader color={'#dc143c'} loading={spinner} size={70} />
+        </SpinnerContainer>
+        : null}
       </Container>
+
       <ButtonContainer>
-        {reviews.length > 2 && count < reviews.length &&
+        {reviews.length > 2 && count < reviews.length && !addClicked &&
         <button onClick={addMore} className='reviewbtn'>MORE REVIEWS &#9660;</button>}
-        {hide && <button onClick={hideReviews} className='reviewbtn'>HIDE REVIEWS &#9650;</button>}
+        {count >= reviews.length && <button onClick={hideReviews} className='reviewbtn'>HIDE REVIEWS &#9650;</button>}
         <button onClick={() => setOpenModal(true)} className='reviewbtn'>ADD REVIEW +</button>
       </ButtonContainer>
+
       <ReviewModal
         id={props.id}
         meta={meta}
@@ -115,8 +140,13 @@ margin-bottom: 8px;
 
 const Container = styled.div`
 max-height: 800px;
-width: 800px;
+max- width: 800px;
 overflow-y: auto;
+`
+
+const SpinnerContainer = styled.div`
+display: flex;
+justify-content: center;
 `
 
 const ButtonContainer = styled.div`
@@ -124,6 +154,9 @@ display: flex;
 margin-top: 20px;
 & button:last-child {
   margin-left: 25px;
+}
+& button: first-child {
+  margin: 0px;
 }
 `
 

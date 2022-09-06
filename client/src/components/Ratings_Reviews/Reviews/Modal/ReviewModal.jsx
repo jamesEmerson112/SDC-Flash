@@ -12,9 +12,6 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
   const [recc, setRecc] = useState(null);
 
   const [characteristics, setCharacteristics] = useState({});
-  const selectCharacteristic = (id, value) => {
-    setCharacteristics({...characteristics, [id]: value})
-  };
 
   const [summary, setSummary] = useState("");
   const [summRemain, setSummRemain] = useState(60);
@@ -25,6 +22,10 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
 
   const [nickname, setNickname] = useState("");
   const [email, setEmail] = useState("");
+
+  const selectCharacteristic = (id, value) => {
+    setCharacteristics({...characteristics, [id]: value})
+  };
 
   const summaryText = (e) => {
     setSummary(e.target.value);
@@ -126,13 +127,15 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           <label>
             Summary:
             <br />
-            <input
-              type="text"
-              placeholder="Example: Best purchase ever!"
-              value={summary}
-              required
-              maxLength={60}
-              onChange={summaryText}
+            <textarea
+            style={{ width: "70%" }}
+            placeholder="Example: Best purchase ever!"
+            value={summary}
+            required
+            rows="3"
+            cols="50"
+            maxLength="60"
+            onChange={summaryText}
             />
             <Remain>{summRemain} Characters remaining</Remain>
           </label>
@@ -140,20 +143,20 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
           <label>
             Body:
             <br />
-            <input
-              type="text"
-              placeholder="Why did you like this product or not?"
-              value={body}
-              required
-              minLength={10}
-              maxLength={1000}
-              onChange={bodyText}
+            <textarea
+            style={{ width: "70%" }}
+            placeholder="Why did you like this product or not?"
+            value={body}
+            required
+            rows="5"
+            cols="50"
+            maxLength="60"
+            minLength="50"
+            maxLength="1000"
+            onChange={bodyText}
             />
-            {body.length < 50 ? (
-              <Remain>Minimum required characters left: {bodyRemain}</Remain>
-            ) : (
-              <p>Minimum reached</p>
-            )}
+            {body.length < 50 ? <Remain>Minimum required characters left: {bodyRemain}</Remain>
+            : <Remain>Minimum reached</Remain> }
           </label>
 
           <label>Upload Image: </label>
@@ -208,6 +211,7 @@ const ModalForm = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 800px;
   transform: translate(-50%, -50%);
   background-color: #f4f0db;
   padding: 50px;
@@ -225,13 +229,13 @@ right: 0;
 top: 0;
 `
 
-const Input = styled.input`
-margin-left: 8px;
-`
-
 const Remain = styled.p`
 margin-top: 0px;
 font-style: italic;
+`
+
+const Input = styled.input`
+margin-left: 8px;
 `
 
 const Submit = styled.input`
