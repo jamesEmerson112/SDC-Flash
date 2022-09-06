@@ -97,7 +97,7 @@ const ReviewCard = ({ review, helpfullClicks, setHelpfullClicks}) => {
         <p>{review.response}</p>
       </Response>}
 
-      <p>Helpful? <Underline onClick={helpful}>Yes </Underline>{`(${helpfullness}) | `}<Underline onClick={report}>Report</Underline></p>
+      <p>Helpful? <span onClick={helpful} className='clickable'>Yes </span>{`(${helpfullness}) | `}<span onClick={report} className='clickable'>Report</span></p>
     </ReviewCardDiv>
   );
 };
@@ -130,12 +130,4 @@ const Response = styled.div`
 width: auto;
 padding: 1px 10px 1px 10px;
 background: #e0e0e0;
-`
-
-const Underline = styled.span`
-text-decoration: underline;
-cursor: pointer;
-&:hover {
-  background: #f5f5f5;
-}
 `

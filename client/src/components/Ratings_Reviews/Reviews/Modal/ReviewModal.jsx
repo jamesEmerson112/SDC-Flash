@@ -159,7 +159,7 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
             : <Remain>Minimum reached</Remain> }
           </label>
 
-          <label>Upload Image: </label>
+          <label>Upload Photos:</label>
           <Upload photos={photos} upload={setPhotos} />
 
           <label>
@@ -214,6 +214,7 @@ const ModalForm = styled.div`
   width: 800px;
   transform: translate(-50%, -50%);
   background-color: #f4f0db;
+  color: black;
   padding: 50px;
   overflow-y: auto;
 `;
@@ -227,6 +228,11 @@ const Close = styled.button`
 position: absolute;
 right: 0;
 top: 0;
+border-radius: 5px;
+border: 1px solid black;
+cursor: pointer;
+color: white;
+text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
 `
 
 const Remain = styled.p`
@@ -240,10 +246,12 @@ margin-left: 8px;
 
 const Submit = styled.input`
 background: #f0f0f0;
-width: 100px;
-height: 50px;
+padding: 5px;
+max-width: fit-content;
 font-weight: bold;
 cursor: pointer;
 margin-top: 8px;
+border-radius: 5px;
+border: 1px solid black;
+cursor: pointer;
 `
-
