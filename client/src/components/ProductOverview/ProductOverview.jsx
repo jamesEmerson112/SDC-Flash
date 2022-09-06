@@ -16,6 +16,7 @@ const ProductOverview = ({ id, product }) => {
   const [success, setSuccess] = useState(false);
   const [ratings, setRatings] = useState({});
   const [selected, setSelected] = useState(0);
+  const [numberOfReviews, setNumberOfReviews] = useState(0);
 
   const clickTracker = useContext(ClickTracker);
   const darkMode = useContext(DarkMode);
@@ -58,7 +59,18 @@ const ProductOverview = ({ id, product }) => {
     axios
       .get(`/reviews/meta?product_id=${id}`, config)
       .then((response) => {
+        console.log("REVIEWS", response);
         setRatings(response.data.ratings);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getReviewData = () => {
+    axios
+      .get(`/reviews?product_id=${id}&count=${100}`, config)
+      .then((response) => {
+        console.log("Number of Reviews: ", response.data.results.length);
+        setNumberOfReviews(response.data.results.length);
       })
       .catch((err) => console.log(err));
   };
@@ -83,6 +95,7 @@ const ProductOverview = ({ id, product }) => {
         console.log(err);
       });
     getRatingsData();
+    getReviewData();
   }, [id]);
   return (
     <div onClick={(e) => clickTracker(e, "Product Overview")}>
@@ -102,7 +115,12 @@ const ProductOverview = ({ id, product }) => {
           selected={selected}
           setSelected={setSelected}
         />
-        <ProductInfo product={product} style={style} ratings={ratings} />
+        <ProductInfo
+          product={product}
+          style={style}
+          ratings={ratings}
+          numberOfReviews={numberOfReviews}
+        />
         <StyleSelector styles={styles} choseStyle={choseStyle} />
         {styles.length > 1 ? (
           <AddToCart style={style} setSuccess={setSuccess} success={success} />

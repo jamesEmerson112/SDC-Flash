@@ -86,26 +86,32 @@ const AddToCart = ({ style, setSuccess, success }) => {
 
   // set values for what the button will do depending on the state
   if (value !== "" && quantity !== 0) {
-    var button = <Button onClick={addToCart}>Add To Cart</Button>;
+    var button = (
+      <button className="addtocartbtn" onClick={addToCart}>
+        Add To Cart
+      </button>
+    );
   } else if (value !== "" && quantity === 0) {
     var button = (
-      <Button
+      <button
+        className="addtocartbtn"
         onClick={(e) => {
           setAlert("Select a quantity!");
         }}
       >
         Add To Cart
-      </Button>
+      </button>
     );
   } else if (value === "") {
     var button = (
-      <Button
+      <button
+        className="addtocartbtn"
         onClick={(e) => {
           setAlert("Select a size!");
         }}
       >
         Add To Cart
-      </Button>
+      </button>
     );
   }
   const length = stateStyles.length;
