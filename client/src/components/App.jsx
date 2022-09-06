@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
 import axios from "axios";
 import { config } from "../../../env/config.js";
 import QuestionList from "./QandA/QuestionList.jsx";
@@ -15,6 +16,7 @@ const App = () => {
   const [product, setProduct] = useState({});
   const [index, setIndex] = useState(0);
   const [clrMode, setClrMode] = useState("Light Mode");
+  const [lightMode, setLightMode] = useState("");
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -55,9 +57,11 @@ const App = () => {
     if (clrMode === "Light Mode") {
       document.body.className = "darkMode";
       setClrMode("Dark Mode");
+      setLightMode("LM");
     } else {
-      document.body.className = "";
+      document.body.className = "lightMode";
       setClrMode("Light Mode");
+      setLightMode("");
     }
   };
 
@@ -97,14 +101,23 @@ const App = () => {
                 <div></div>
               )}
             </TitleHeader>
-            <Button
+            {/* <Button
               onClick={(e) => {
                 clickTracker(e);
                 toggleClrMode(e);
               }}
             >
-              {clrMode.toUpperCase()}
-            </Button>
+              {clrMode}
+            </Button> */}
+            <DMContainer>
+              <div id="DM" className={lightMode} onClick={toggleClrMode}>
+                <i className="switch" />
+              </div>
+              <Icons>
+                <FaSun /> || <FaMoon />
+              </Icons>
+            </DMContainer>
+
             <ProductOverview id={product.id} product={product} />
             <QuestionList product={product} />
             <RRIndex id={product.id} />
@@ -120,8 +133,19 @@ const App = () => {
 export default App;
 
 const TitleHeader = styled.div`
-  border-radis: 5px;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   gap: 30px;
+`;
+
+const DMContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 75vw;
+  margin-top: 10px;
+`;
+
+const Icons = styled.span`
+  margin-left: 10px;
 `;
