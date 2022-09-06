@@ -80,13 +80,19 @@ const ReviewCard = ({ review, helpfullClicks, setHelpfullClicks}) => {
         <User>{review.reviewer_name}, {formatDate(review.date)}</User>
       </Flex>
 
-      <Summary>{review.summary}</Summary>
-      <p>{formatBody(review.body)}</p>
-      {review.body.length > 251 && seeMore && <p onClick={() => setSeeMore(false)}>See More</p>}
+      <Body>
+        <Summary>{review.summary}</Summary>
+      </Body>
+      <Body>
+        <p>{formatBody(review.body)}</p>
+        {review.body.length > 251 && seeMore && <p onClick={() => setSeeMore(false)}>See More</p>}
+      </Body>
+
 
       <div>{images}</div>
       {review.recommend && <p><FaCheck /> I recommend this product</p>}
-      {review.response !== null && <Response>
+      {review.response !== null &&
+      <Response>
         <h4>Response:</h4>
         <p>{review.response}</p>
       </Response>}
@@ -111,6 +117,11 @@ const User = styled.p`
 margin-right: 10px;
 `
 
+const Body = styled.div`
+max-width: 700px;
+word-wrap: break-word;
+`
+
 const Summary = styled.h3`
 margin: 3px 0px 8px 0px;
 `
@@ -124,4 +135,7 @@ background: #e0e0e0;
 const Underline = styled.span`
 text-decoration: underline;
 cursor: pointer;
+&:hover {
+  background: #f5f5f5;
+}
 `
