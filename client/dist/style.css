@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif, arial;
+  font-family: "Roboto", sans-serif;
 }
 
 #root {
@@ -10,6 +10,13 @@ body {
 .darkMode {
   color: white;
   background-color: grey;
+  transition: 0.5s;
+}
+
+.lightMode {
+  color: black;
+  background-color: white;
+  transition: 0.5s;
 }
 
 /* Q and A */
@@ -277,4 +284,41 @@ body {
   background: black;
   color: white;
   border: 2px solid #f0f0f0;
+}
+
+/* Darkmode switch */
+
+#DM {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background: grey;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#DM.LM {
+  background: #fff;
+}
+
+.switch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: #222;
+  border-radius: 50%;
+  transform: scale(0.85);
+  transition: 0.5s;
+}
+
+#DM.LM .switch {
+  left: 50%;
+  background: grey;
 }

@@ -21,8 +21,6 @@ const ProductOverview = ({ id, product }) => {
   const clickTracker = useContext(ClickTracker);
   const darkMode = useContext(DarkMode);
 
-  console.log(style);
-
   const choseStyle = (styleId) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i].style_id === styleId) {
