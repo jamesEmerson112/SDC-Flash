@@ -26,7 +26,6 @@ const Answer = ({ answer, question_id }) => {
   const [a_helpf, setHelpfulness] = useState(helpfulness);
   const [modal, setModal] = useState(false);
   const [reportSt, setReportSt] = useState(answ.reported);
-  const [clickable, setClickable] = useState({ yes: "", report: "" });
 
   // methods
   const incHelp = () => {
@@ -86,12 +85,7 @@ const Answer = ({ answer, question_id }) => {
         {answ.helpf_click ? (
           " Yes "
         ) : (
-          <u
-            className={clickable.yes}
-            onMouseEnter={() => setClickable({ yes: "clickable" })}
-            onMouseLeave={() => setClickable({ yes: "" })}
-            onClick={incHelp}
-          >
+          <u className="clickable" onClick={incHelp}>
             Yes
           </u>
         )}
@@ -99,12 +93,7 @@ const Answer = ({ answer, question_id }) => {
         {reportSt ? (
           " Reported "
         ) : (
-          <u
-            className={clickable.report}
-            onMouseEnter={() => setClickable({ report: "clickable" })}
-            onMouseLeave={() => setClickable({ report: "" })}
-            onClick={reportAns}
-          >
+          <u className="clickable" onClick={reportAns}>
             Report
           </u>
         )}

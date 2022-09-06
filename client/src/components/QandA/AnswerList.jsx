@@ -4,7 +4,6 @@ import Answer from "./Answer.jsx";
 const AnswerList = ({ answers, question_id }) => {
   // State
   const [filtAList, setFiltAList] = useState([]);
-  const [clickable, setClickable] = useState({ see: "", col: "" });
 
   // Sort answer list
   let ansArr = [];
@@ -37,22 +36,12 @@ const AnswerList = ({ answers, question_id }) => {
         <Answer answer={answer} question_id={question_id} key={answer.id} />
       ))}
       {filtAList.length < ansArr.length ? (
-        <small
-          className={clickable.see}
-          onMouseEnter={() => setClickable({ see: "clickable" })}
-          onMouseLeave={() => setClickable({ see: "" })}
-          onClick={toggleAns}
-        >
+        <small className="clickable" onClick={toggleAns}>
           SEE MORE ANSWERS
         </small>
       ) : null}
       {filtAList.length === ansArr.length && filtAList.length > 2 ? (
-        <small
-          className={clickable.col}
-          onMouseEnter={() => setClickable({ col: "clickable" })}
-          onMouseLeave={() => setClickable({ col: "" })}
-          onClick={toggleAns}
-        >
+        <small className="clickable" onClick={toggleAns}>
           COLLAPSE ANSWERS
         </small>
       ) : null}
