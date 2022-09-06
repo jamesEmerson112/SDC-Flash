@@ -49,6 +49,8 @@ const QuestionList = ({ product }) => {
         });
         setQList(response.data.results.slice(0, 2));
         setFiltList(response.data.results.slice(0, 2));
+        setSpinner(false);
+        setScrollAdd(false);
       })
       .catch((err) => console.log(err));
   }, [product]);
