@@ -98,6 +98,9 @@ const ImageGallery = ({
                 setExpanded(true);
                 console.log(expanded);
               }}
+              onError={() => {
+                console.log(this);
+              }}
             />
             {selected === style.photos.length - 1 ? (
               <div></div>
