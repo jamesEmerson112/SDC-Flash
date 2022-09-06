@@ -21,6 +21,10 @@ body {
 
 /* Q and A */
 .clickable {
+  text-decoration: underline;
+}
+
+.clickable:hover {
   color: rgb(28, 194, 9);
   text-shadow: 1px 0 rgb(222, 40, 285), 0 1px rgb(222, 40, 185),
     -1px 0 rgb(222, 40, 185), 0 -1px rgb(222, 40, 185);
@@ -246,7 +250,7 @@ body {
 }
 
 .zoomed {
-  cursor:vertical-text;
+  cursor: vertical-text;
 }
 
 .social_media {

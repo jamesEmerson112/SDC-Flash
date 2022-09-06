@@ -60,7 +60,6 @@ const ProductOverview = ({ id, product }) => {
     axios
       .get(`/reviews/meta?product_id=${id}`, config)
       .then((response) => {
-        console.log("REVIEWS", response);
         setRatings(response.data.ratings);
       })
       .catch((err) => console.log(err));
@@ -70,7 +69,6 @@ const ProductOverview = ({ id, product }) => {
     axios
       .get(`/reviews?product_id=${id}&count=${100}`, config)
       .then((response) => {
-        console.log("Number of Reviews: ", response.data.results.length);
         setNumberOfReviews(response.data.results.length);
       })
       .catch((err) => console.log(err));

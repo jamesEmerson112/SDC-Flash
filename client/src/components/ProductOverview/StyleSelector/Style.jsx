@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
-  console.log("figuring out styles", photos);
   const [selected, setSelected] = useState(0);
   if (selected > photos.length) {
     setSelected(0);

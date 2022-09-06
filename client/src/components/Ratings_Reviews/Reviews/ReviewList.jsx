@@ -14,18 +14,17 @@ const ReviewList = (props) => {
 
   const [count, setCount] = useState(2);
   const [scrollAdd, setScrollAdd] = useState(false);
-  const [addClicked, setAddClicked] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
   const addMore = () => {
     setCount(count + 5);
-    setAddClicked(true);
     setScrollAdd(true);
   };
 
   const scroll = (e) => {
+    console.log(e.target.scrollTop, e.target.scrollHeight - e.target.offsetHeight)
     if (
-      e.target.scrollTop >= e.target.scrollHeight - 800 &&
+      e.target.scrollTop + 1 >= e.target.scrollHeight - e.target.offsetHeight &&
       scrollAdd === true
     ) {
       setSpinner(true);
@@ -39,7 +38,6 @@ const ReviewList = (props) => {
   const hideReviews = () => {
     setCount(2);
     setScrollAdd(false);
-    setAddClicked(false);
   };
 
   const search = (e) => {
@@ -80,7 +78,6 @@ const ReviewList = (props) => {
     setMeta(props.meta);
     setCount(2);
     setScrollAdd(false);
-    setAddClicked(false);
   }, [props.id, props.reviews, props.meta]);
 
   return (
@@ -105,7 +102,7 @@ const ReviewList = (props) => {
       </Container>
 
       <ButtonContainer>
-        {reviews.length > 2 && count < reviews.length && !addClicked && (
+        {reviews.length > 2 && count < reviews.length && !scrollAdd && (
           <button onClick={addMore} className="reviewbtn">
             MORE REVIEWS &#9660;
           </button>
@@ -161,7 +158,7 @@ const Search = styled.input`
 
 const Container = styled.div`
 max-height: 800px;
-max- width: 800px;
+max-width: 800px;
 overflow-y: auto;
 `;
 
@@ -172,11 +169,11 @@ const SpinnerContainer = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  margin-top: 20px;
+  margin-top: 30px;
   & button:last-child {
     margin-left: 25px;
   }
-  &button: first-child {
-    margin: 0px;
+  & button: first-child {
+    margin-left: 0px;
   }
 `;
