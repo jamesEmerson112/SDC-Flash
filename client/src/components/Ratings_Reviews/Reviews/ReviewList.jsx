@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReviewCard from "./ReviewCard.jsx";
 import ReviewModal from "./Modal/ReviewModal.jsx";
+import { FaSearch } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
+
 
 const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
@@ -22,7 +24,6 @@ const ReviewList = (props) => {
   };
 
   const scroll = (e) => {
-    console.log(e.target.scrollTop, e.target.scrollHeight - e.target.offsetHeight)
     if (
       e.target.scrollTop + 1 >= e.target.scrollHeight - e.target.offsetHeight &&
       scrollAdd === true
@@ -90,7 +91,10 @@ const ReviewList = (props) => {
           <option value="newest">Newest</option>
         </Select>
       </Bold>
-      <Search type="text" placeholder="Search..." onChange={search} />
+      <SearchContainer>
+        <Search type="text" placeholder="Search..." onChange={search} />
+        <FaSearch className="searchIcon"/>
+      </SearchContainer>
 
       <Container onScroll={scroll}>
         {map}
@@ -150,10 +154,14 @@ const Select = styled.select`
   cursor: pointer;
 `;
 
+const SearchContainer = styled.div`
+
+`
+
 const Search = styled.input`
-  width: 798px;
-  padding: 0px;
-  margin-bottom: 8px;
+width: 775px;
+padding: 0px;
+margin-bottom: 8px;
 `;
 
 const Container = styled.div`

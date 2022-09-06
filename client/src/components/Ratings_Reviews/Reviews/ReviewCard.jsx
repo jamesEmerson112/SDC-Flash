@@ -106,6 +106,7 @@ export default ReviewCard;
 
 const ReviewCardDiv = styled.div`
 border-bottom: 2px solid black;
+width: 800px;
 `;
 
 const Flex = styled.div`

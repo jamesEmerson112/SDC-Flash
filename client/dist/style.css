@@ -88,7 +88,7 @@ body {
 }
 
 .background {
-  background-color:rgb(244, 241, 241);
+  background-color: rgb(244, 241, 241);
   grid-column-start: 1;
   grid-column-end: -1;
   grid-row-start: 1;
@@ -257,27 +257,23 @@ body {
   box-sizing: border-box;
   grid-column-start: 2;
   grid-row-start: 4;
-  display:flex;
-  align-items:center;
-
+  display: flex;
+  align-items: center;
 }
 
-.social_media div{
+.social_media div {
   margin: 5px 25px;
 }
 
-
-.icons{
+.icons {
   /* border: 2px solid grey;
   border-radius: 5px; */
   display: flex;
 }
 
-.icon{
-  font-size:x-large;
+.icon {
+  font-size: x-large;
 }
-
-
 
 /* Star */
 .star {
@@ -285,6 +281,9 @@ body {
   display: flex;
   color: #ffc107;
   margin-right: 2px;
+}
+
+.searchIcon {
 }
 
 .addtocartbtn {
