@@ -45,7 +45,6 @@ test("should render AnswerList component", () => {
 });
 
 test("should render Answer component", () => {
-  console.log(answer);
   const tree = renderer.create(
     <Answer answer={answer} question_id={question_id} />
   );
