@@ -23,7 +23,6 @@ const AddToCart = ({ style, setSuccess, success }) => {
   }
 
   useEffect(() => {
-    console.log("styleChanged", stateStyles, style);
     setStateStyles(styles);
     setValue("");
   }, [style]);

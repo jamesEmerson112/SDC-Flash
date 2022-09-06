@@ -74,9 +74,6 @@ const ProductOverview = ({ id, product }) => {
       .get(`/products/${id}/styles`, config)
       .then((response) => {
         if (response.data.results.length === 0) {
-          setMainPic(
-            "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-          );
           setStyles([]);
           setStyle({});
         } else {
