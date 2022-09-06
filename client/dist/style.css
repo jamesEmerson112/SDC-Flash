@@ -237,6 +237,10 @@ body {
   cursor: crosshair;
 }
 
+.zoomed {
+  cursor:vertical-text;
+}
+
 /* Star */
 .star {
   width: 18px;

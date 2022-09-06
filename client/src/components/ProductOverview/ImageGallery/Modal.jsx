@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import ImageMagnifier from "./ImageMagnifier.jsx";
+
 import {
   ModalForm,
   ModalClose,
@@ -13,13 +15,19 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
   const [selectedModal, setSelectedModal] = useState(selected);
   const [displayPic, setDisplayPic] = useState("");
   const [zoom, setZoom] = useState(false);
+  const [modalWidth, setModalWidth] = useState(0);
+  const [modalHeight, setModalHeight] = useState(0);
   useEffect(() => {
     setDisplayPic(mainPic);
   }, []);
 
   const modalClick = (e) => {
     console.log(e);
+    const box = document.querySelector(".modal_image");
+    console.log("BOX: ", box.offsetWidth, box.offsetHeight);
     setZoom(true);
+    setModalHeight(box.offsetHeight);
+    setModalWidth(box.offsetWidth);
   };
 
   return (
@@ -39,11 +47,20 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
             />
           </div>
           <div>
-            <ModalImage
-              className="modal_image"
-              src={displayPic}
-              onClick={modalClick}
-            />
+            {zoom ? (
+              <ImageMagnifier
+                src={displayPic}
+                height={modalHeight}
+                width={modalWidth}
+                setZoom={setZoom}
+              />
+            ) : (
+              <ModalImage
+                className="modal_image"
+                src={displayPic}
+                onClick={modalClick}
+              />
+            )}
           </div>
 
           <ModalClose
