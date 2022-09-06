@@ -47,11 +47,6 @@ const ProductOverview = ({ id, product }) => {
   };
 
   const ChooseMainPic = (url, index) => {
-    if (url === null) {
-      setMainPic(
-        "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-      );
-    }
     setMainPic(url);
     setIndexMainPic(index);
   };

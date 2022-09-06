@@ -4,77 +4,53 @@ import styled from "styled-components";
 const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
   if (modal === false) {
     return photos.map((photo, i) => {
+      console.log(photo.thumbnail_url);
       if (photo.thumbnail_url === null) {
-        return (
-          <ThumbnailParent
-            onClick={() => {
-              click(photo.url, i);
-              setSelected(i);
-            }}
-            key={i}
-            className={selected === i ? "selected" : "not_selected"}
-          >
-            <img
-              className="thumbnail"
-              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-              width="50px"
-            />
-          </ThumbnailParent>
-        );
-      } else {
-        return (
-          <ThumbnailParent
-            onClick={() => {
-              click(photo.url, i);
-              setSelected(i);
-            }}
-            key={i}
-            className={selected === i ? "selected" : "not_selected"}
-          >
-            <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
-          </ThumbnailParent>
-        );
+        photo.thumbnail_url =
+          "https://www.cnet.com/a/img/resize/905e1d3662ccaaf4763408156c833b91a47dfd07/2020/08/31/9562c49a-8f37-434d-8070-2751fb03d683/will-smith-fresh-prince-bel-air.jpg?auto=webp&fit=crop&height=900&width=1200";
       }
+
+      return (
+        <ThumbnailParent
+          onClick={() => {
+            click(photo.url, i);
+            setSelected(i);
+          }}
+          key={i}
+          className={selected === i ? "selected" : "not_selected"}
+        >
+          <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
+        </ThumbnailParent>
+      );
     });
   } else {
     return photos.map((photo, i) => {
       if (photo.thumbnail_url === null) {
+        photo.thumbNail_url ===
+          "https://www.cnet.com/a/img/resize/905e1d3662ccaaf4763408156c833b91a47dfd07/2020/08/31/9562c49a-8f37-434d-8070-2751fb03d683/will-smith-fresh-prince-bel-air.jpg?auto=webp&fit=crop&height=900&width=1200";
+      }
+      if (selected === i) {
         return (
-          <ModalParent
+          <ModalParentSelected
             onClick={() => {
               click(photo.url, i);
-              setSelected(i);
             }}
             key={i}
-            className={selected === i ? "selected_modal" : "not_selected"}
           >
-            <ModalThumbnail src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png" />
-          </ModalParent>
+            <ModalThumbnail src={photo.thumbnail_url} width="80px" />
+          </ModalParentSelected>
         );
       } else {
-        if (selected === i) {
-          return (
-            <ModalParentSelected
-              onClick={() => {
-                click(photo.url, i);
-              }}
-              key={i}
-            >
-              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
-            </ModalParentSelected>
-          );
-        } else {
-          return (
-            <ModalParentNotSelected
-              onClick={() => {
-                click(photo.url, i);
-              }}
-              key={i}
-            >
-              <ModalThumbnail src={photo.thumbnail_url} width="80px" />
-            </ModalParentNotSelected>
-          );
-        }
+        return (
+          <ModalParentNotSelected
+            onClick={() => {
+              click(photo.url, i);
+            }}
+            key={i}
+          >
+            <ModalThumbnail src={photo.thumbnail_url} width="80px" />
+          </ModalParentNotSelected>
+        );
       }
     });
   }
