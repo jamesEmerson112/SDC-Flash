@@ -16,7 +16,7 @@ const App = () => {
   const [product, setProduct] = useState({});
   const [index, setIndex] = useState(0);
   const [clrMode, setClrMode] = useState("Light Mode");
-  const [lightMode, setLightMode] = useState('')
+  const [lightMode, setLightMode] = useState("");
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -57,11 +57,11 @@ const App = () => {
     if (clrMode === "Light Mode") {
       document.body.className = "darkMode";
       setClrMode("Dark Mode");
-      setLightMode('LM')
+      setLightMode("LM");
     } else {
       document.body.className = "lightMode";
       setClrMode("Light Mode");
-      setLightMode('')
+      setLightMode("");
     }
   };
 
@@ -86,13 +86,17 @@ const App = () => {
           <DarkMode.Provider value={clrMode}>
             <TitleHeader onClick={clickTracker}>
               {index > 0 ? (
-                <Button onClick={prev}>{products[index - 1].name}</Button>
+                <Button onClick={prev}>
+                  {products[index - 1].name.toUpperCase()}
+                </Button>
               ) : (
                 <div></div>
               )}
               <h1>{product.name}</h1>
               {index + 1 < products.length ? (
-                <Button onClick={next}>{products[index + 1].name}</Button>
+                <Button onClick={next}>
+                  {products[index + 1].name.toUpperCase()}
+                </Button>
               ) : (
                 <div></div>
               )}
@@ -107,9 +111,11 @@ const App = () => {
             </Button> */}
             <DMContainer>
               <div id="DM" className={lightMode} onClick={toggleClrMode}>
-                <i className="switch"/>
+                <i className="switch" />
               </div>
-              <Icons><FaSun/> || <FaMoon/></Icons>
+              <Icons>
+                <FaSun /> || <FaMoon />
+              </Icons>
             </DMContainer>
 
             <ProductOverview id={product.id} product={product} />
@@ -134,12 +140,12 @@ const TitleHeader = styled.div`
 `;
 
 const DMContainer = styled.div`
-display: flex;
-justify-content: flex-end;
-width: 75vw;
-margin-top: 10px;
-`
+  display: flex;
+  justify-content: flex-end;
+  width: 75vw;
+  margin-top: 10px;
+`;
 
 const Icons = styled.span`
   margin-left: 10px;
-`
+`;
