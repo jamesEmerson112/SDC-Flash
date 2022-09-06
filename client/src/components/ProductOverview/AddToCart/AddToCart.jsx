@@ -161,13 +161,3 @@ const Success = styled.div`
   width: fit-content;
   display: inline-flex;
 `;
-
-const Button = styled.button`
-  border-radius: 5px;
-  border: 1px solid black;
-  cursor: pointer;
-  padding: 5px 5px;
-  background-color: white;
-  display: block;
-  max-width: fit-content;
-`;
