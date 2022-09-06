@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import { config } from "../../../../env/config.js";
 import QuestionForm from "./QuestionForm.jsx";
 import Question from "./Question.jsx";
@@ -7,6 +8,7 @@ import SearchQandA from "./SearchQandA.jsx";
 import questList from "./qAndA.js";
 import { Button } from "../../styleComponents.jsx";
 import { ClickTracker } from "../App.jsx";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const QuestionList = ({ product }) => {
   // variables
@@ -19,6 +21,8 @@ const QuestionList = ({ product }) => {
   const [qList, setQList] = useState([]);
   const [filtList, setFiltList] = useState([]);
   const [showQForm, setShowQForm] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [scrollAdd, setScrollAdd] = useState(false);
 
   // on load
   useEffect(() => {
@@ -72,20 +76,37 @@ const QuestionList = ({ product }) => {
   };
 
   const expandQs = (event) => {
-    // let last = filtList.length;
+    let last = filtList.length;
     // setQList(list.slice(0, last + 2));
     // setFiltList(list.slice(0, last + 2));
-    setQList(list);
-    setFiltList(list);
+    setQList(list.slice(0, last + 5));
+    setFiltList(list.slice(0, last + 5));
+    setScrollAdd(true);
     window.location.href = "#QA";
     history.pushState({}, "", window.location.origin);
+  };
+
+  const scroll = (e) => {
+    let last = filtList.length;
+    if (
+      e.target.scrollTop + 1 >= e.target.scrollHeight - e.target.offsetHeight &&
+      scrollAdd === true &&
+      filtList.length < list.length
+    ) {
+      setSpinner(true);
+      setTimeout(() => {
+        setSpinner(false);
+        setQList(list.slice(0, last + 3));
+        setFiltList(list.slice(0, last + 3));
+      }, 1500);
+    }
   };
 
   return (
     <div onClick={(e) => clickTracker(e, "Q&A")}>
       <h3 id="QA">{"QUESTIONS & ANSWERS"}</h3>
       <SearchQandA search={search} />
-      <div className="qList">
+      <div className="qList" onScroll={scroll}>
         {filtList.map((question) => (
           <Question
             question={question}
@@ -94,14 +115,18 @@ const QuestionList = ({ product }) => {
           />
         ))}
       </div>
+      {spinner ? (
+        <SpinnerContainer>
+          <ClipLoader color={"#dc143c"} loading={spinner} size={70} />
+        </SpinnerContainer>
+      ) : null}
       <div>
-        {filtList.length < list.length ? (
-          <Button onClick={expandQs}>MORE ANSWERED QUESTIONS</Button>
+        {!scrollAdd ? (
+          <Button onClick={expandQs} style={{ marginRight: "25px" }}>
+            MORE ANSWERED QUESTIONS
+          </Button>
         ) : null}
-        <Button
-          style={{ marginLeft: "25px" }}
-          onClick={() => setShowQForm(!showQForm)}
-        >
+        <Button onClick={() => setShowQForm(!showQForm)}>
           ADD A QUESTION +
         </Button>
       </div>
@@ -113,3 +138,8 @@ const QuestionList = ({ product }) => {
 };
 
 export default QuestionList;
+
+const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
