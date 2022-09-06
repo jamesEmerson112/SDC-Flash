@@ -7,6 +7,7 @@ import { config } from "../../../../env/config.js";
 import axios from "axios";
 import styled from "styled-components";
 import { ClickTracker, DarkMode } from "../App.jsx";
+import SocialMedia from "./SocialMedia.jsx";
 
 const ProductOverview = ({ id, product }) => {
   const [styles, setStyles] = useState([]);
@@ -128,6 +129,7 @@ const ProductOverview = ({ id, product }) => {
           </div>
         )}
         <Description>{product.description}</Description>
+        <SocialMedia></SocialMedia>
       </div>
     </div>
   );
