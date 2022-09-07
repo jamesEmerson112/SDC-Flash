@@ -78,7 +78,6 @@ const App = () => {
     //   .then((res) => console.log(res.config.data, res.data))
     //   .catch((err) => console.log(err));
   };
-
   if ("id" in product) {
     return (
       <div>
