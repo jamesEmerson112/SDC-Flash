@@ -30,20 +30,20 @@ const Stars = ({ rating, color }) => {
 export default Stars;
 
 const Container = styled.div`
-  display: inline-flex;
-  align-items: center;
-  position: relative;
+display: inline-flex;
+align-items: center;
+position: relative;
 `;
 
 const StarContainer = styled.div`
-  display: flex;
+display: flex;
 `;
 
 const OverlayStar = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  opacity: 0.7;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+z-index: 1;
+opacity: 0.7;
 `;

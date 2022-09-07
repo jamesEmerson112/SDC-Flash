@@ -147,43 +147,46 @@ font-style: italic;
 `
 
 const BarContainer = styled.div`
-  position: absolute;
-  display: flex;
+position: absolute;
+display: flex;
 `;
 
 const BarFiller = styled.span`
-  width: 80px;
-  height: 15px;
-  margin: 3px;
-  margin-left: 0;
-  border-radius: 7px;
-  background-color: #ddd;
+width: 80px;
+height: 15px;
+margin: 3px;
+margin-left: 0;
+border-radius: 7px;
+background-color: #ddd;
 `;
 
 const EmojiContainer = styled.div`
-  position: absolute;
-  display: flex;
-  width: 255px;
+position: absolute;
+display: flex;
+width: 255px;
 `;
 
 const Emoji = styled.span`
-  text-align: right;
-  font-size: 15px
-  position: relative;
+text-align: right;
+font-size: 15px
+position: relative;
+transform: translateY(-4px);
 `;
 
+// translate 0 for some screens
+
 const Comfort = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 270px;
-  margin-top: 8px;
-  & p:last-child {
-    margin-right: 25px;
-  }
+display: flex;
+justify-content: space-between;
+width: 270px;
+margin-top: 8px;
+& p:last-child {
+  margin-right: 25px;
+}
 `;
 
 const Quality = styled.p`
-  position: relative;
-  font-size: 14px;
-  font-style: italic;
+position: relative;
+font-size: 14px;
+font-style: italic;
 `;
