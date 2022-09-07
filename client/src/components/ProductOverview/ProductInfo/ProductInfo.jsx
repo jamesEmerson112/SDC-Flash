@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Stars from "../../Ratings_Reviews/Stars.jsx";
 import styled from "styled-components";
+import { DarkMode } from "../../App.jsx";
 
 const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
+  const darkMode = useContext(DarkMode);
+  var color;
   var price;
   var salePrice = null;
   if ("original_price" in style) {
@@ -30,10 +33,16 @@ const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
 
   overall = Math.round(overall * 10) / 10;
 
+  if (darkMode === "Light Mode") {
+    color = "rgb(244, 241, 241)";
+  } else {
+    color = "darkgray";
+  }
+
   return (
     <div className="product-info">
       <div>
-        <Stars rating={overall} />
+        <Stars color={color} rating={overall} />
         <Link>
           <Span
             onClick={() => {
