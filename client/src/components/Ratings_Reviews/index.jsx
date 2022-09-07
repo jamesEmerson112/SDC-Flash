@@ -161,6 +161,7 @@ export default Ratings_Reviews;
 
 const Container = styled.div`
   display: flex;
+  width: 800px;
   @media (max-width: 768px) {
     flex-direction: column;
   }
