@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
-
+import { DarkMode } from "../../App.jsx";
 const StarSort = ({ starCount, toggle, starFilter, reset }) => {
+
+  const darkMode = useContext(DarkMode);
+
 
   const width5 = 100 - Math.round((starCount["5"] / starCount.total) * 100);
   const width4 = 100 - Math.round((starCount["4"] / starCount.total) * 100);
@@ -19,7 +22,7 @@ const StarSort = ({ starCount, toggle, starFilter, reset }) => {
   const map = ["5", "4", "3", "2", "1"].map((star) => {
     return (
       <Container key={star}>
-        <Span onClick={() => toggle(star)}>{star} stars </Span>
+        <Span darkMode={darkMode} onClick={() => toggle(star)}>{star} stars </Span>
         <BarContainer>
           <Overlay style={{ width: `${count[star]}%` }}></Overlay>
         </BarContainer>
@@ -71,7 +74,7 @@ const Span = styled.span`
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: black;
+    background-color: ${props => props.darkMode === 'Light Mode' ? "black" : "white"};
     transition: width 0.25s ease-out;
   }
   &:hover {
