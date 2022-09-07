@@ -198,30 +198,30 @@ const ReviewModal = ({ id, meta, open, close, post }) => {
 export default ReviewModal;
 
 const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(128, 128, 128, 0.7);
-  z-index: 1000;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(128, 128, 128, 0.7);
+z-index: 1000;
 `;
 
 const ModalForm = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  transform: translate(-50%, -50%);
-  background-color: #f4f0db;
-  color: black;
-  padding: 50px;
-  overflow-y: auto;
+position: fixed;
+top: 50%;
+left: 50%;
+width: 800px;
+transform: translate(-50%, -50%);
+background-color: #f4f0db;
+color: black;
+padding: 50px;
+overflow-y: auto;
 `;
 
 const Missing = styled.span`
-  color: red;
-  margin-left: 7px;
+color: red;
+margin-left: 7px;
 `;
 
 const Close = styled.button`

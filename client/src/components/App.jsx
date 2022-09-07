@@ -6,6 +6,7 @@ import QuestionList from "./QandA/QuestionList.jsx";
 import RRIndex from "./Ratings_Reviews/index.jsx";
 import ProductOverview from "./ProductOverview/ProductOverview.jsx";
 import styled from "styled-components";
+import BeatLoader from "react-spinners/BeatLoader";
 import { Button } from "../styleComponents.jsx";
 
 export const ClickTracker = React.createContext();
@@ -17,6 +18,7 @@ const App = () => {
   const [index, setIndex] = useState(0);
   const [clrMode, setClrMode] = useState("Light Mode");
   const [lightMode, setLightMode] = useState("");
+  const [loader, setLoader] = useState(true);
 
   // will set product to the first product in list
   // maybe set this up to be random later
@@ -79,7 +81,13 @@ const App = () => {
     //   .catch((err) => console.log(err));
   };
 
-  if ("id" in product) {
+  if (loader === true) {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }
+
+  if ("id" in product && loader === false) {
     return (
       <div>
         <ClickTracker.Provider value={clickTracker}>
@@ -119,7 +127,13 @@ const App = () => {
       </div>
     );
   } else {
-    return <div>loading</div>;
+    return (
+      loader && (
+        <LoadingContainer>
+          <BeatLoader color={"#dc143c"} loading={loader} size={60} />
+        </LoadingContainer>
+      )
+    );
   }
 };
 
@@ -141,4 +155,15 @@ const DMContainer = styled.div`
 
 const Icons = styled.span`
   margin-left: 10px;
+`;
+
+const LoadingContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 `;

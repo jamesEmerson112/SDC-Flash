@@ -139,12 +139,12 @@ const ReviewList = (props) => {
 export default ReviewList;
 
 const RnRContainer = styled.div`
-  margin-bottom: 80px;
+margin-bottom: 80px;
 `;
 
 const Bold = styled.p`
-  font-size: 18px;
-  font-weight: bold;
+font-size: 18px;
+font-weight: bold;
 `;
 
 const Select = styled.select`
@@ -194,22 +194,22 @@ justify-content: center;
 
 const Container = styled.div`
 max-height: 800px;
-max-width: 800px;
+max-width: 900px;
 overflow-y: auto;
 `;
 
 const SpinnerContainer = styled.div`
-  display: flex;
-  justify-content: center;
+display: flex;
+justify-content: center;
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  margin-top: 30px;
-  & button:last-child {
-    margin-left: 25px;
-  }
-  & button: first-child {
-    margin-left: 0px;
-  }
+display: flex;
+margin-top: 30px;
+& button:last-child {
+  margin-left: 25px;
+}
+& button: first-child {
+  margin-left: 0px;
+}
 `;
