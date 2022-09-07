@@ -23,9 +23,8 @@ const AddToCart = ({ style, setSuccess, success }) => {
   }
 
   useEffect(() => {
-    console.log("styleChanged", stateStyles);
-    // setStateStyles([]);
     setStateStyles(styles);
+    setValue("");
   }, [style]);
 
   const selectSize = (e) => {
