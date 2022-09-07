@@ -24,7 +24,7 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get("/products?count=1000", config)
+      .get("/products?count=10", config)
       .then((response) => {
         setProducts(response.data);
         let randInd = Math.floor(Math.random() * 1000);
@@ -74,7 +74,6 @@ const App = () => {
       widget: widget,
       time: date.toString(),
     };
-    // console.log("DATA: ,", data);
     // axios
     //   .post("/interactions", data, config)
     //   .then((res) => console.log(res.config.data, res.data))

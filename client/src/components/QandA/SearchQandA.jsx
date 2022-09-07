@@ -15,13 +15,6 @@ const SearchQandA = ({ search }) => {
         <FaSearch style={{ color: "white" }} />
       </IconContainer>
     </SearchContainer>
-
-    // <input
-    //   className="qAndASearchBar"
-    //   type="text"
-    //   placeholder="Have a question? Search for answers..."
-    //   onChange={search}
-    // />
   );
 };
 
