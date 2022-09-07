@@ -16,33 +16,33 @@ questList.push(question);
 const answer = questList[0].answers["5987911"];
 const question_id = 642996;
 
-// test("should render App component", () => {
-//   const tree = renderer.create(<App />);
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render App component", () => {
+  const tree = renderer.create(<App />);
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});
 
-// test("should render QuestionList component", () => {
-//   const tree = renderer.create(<QuestionList product={product} />);
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render QuestionList component", () => {
+  const tree = renderer.create(<QuestionList product={product} />);
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});
 
-// test("should render Question component", () => {
-//   const tree = renderer.create(<Question question={question} />);
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render Question component", () => {
+  const tree = renderer.create(<Question question={question} />);
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});
 
-// test("should render AnswerList component", () => {
-//   const tree = renderer.create(<AnswerList />);
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render AnswerList component", () => {
+  const tree = renderer.create(<AnswerList />);
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});
 
 test("should render Answer component", () => {
   const tree = renderer.create(
@@ -53,18 +53,18 @@ test("should render Answer component", () => {
   tree.unstable_flushSync();
 });
 
-// test("should render AnswerForm component", () => {
-//   const tree = renderer.create(
-//     <AnswerForm question={question} product={product} />
-//   );
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render AnswerForm component", () => {
+  const tree = renderer.create(
+    <AnswerForm question={question} product={product} />
+  );
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});
 
-// test("should render QuestionForm component", () => {
-//   const tree = renderer.create(<QuestionForm product={product} />);
-//   expect(tree).not.toBeNull();
-//   tree.unmount();
-//   tree.unstable_flushSync();
-// });
+test("should render QuestionForm component", () => {
+  const tree = renderer.create(<QuestionForm product={product} />);
+  expect(tree).not.toBeNull();
+  tree.unmount();
+  tree.unstable_flushSync();
+});

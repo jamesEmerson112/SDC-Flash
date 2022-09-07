@@ -26,7 +26,6 @@ test("should render App component", () => {
 test("should render ProductOverview component", () => {
   const tree = renderer.create(<ProductOverview product={product} id={id} />);
   expect(tree).not.toBeNull();
-  expect(1).toBe(1);
   tree.unmount();
   tree.unstable_flushSync();
 });
