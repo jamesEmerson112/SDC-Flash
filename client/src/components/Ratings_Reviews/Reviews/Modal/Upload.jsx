@@ -42,13 +42,13 @@ const Upload = (props) => {
 export default Upload;
 
 const Container = styled.div`
-  margin-bottom: 8px;
+margin-bottom: 8px;
 `;
 
 const Empty = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border: 2px dashed black;
-  cursor: pointer;
+width: 50px;
+height: 50px;
+margin-right: 10px;
+border: 2px dashed black;
+cursor: pointer;
 `;
