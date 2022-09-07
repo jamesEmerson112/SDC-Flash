@@ -23,6 +23,7 @@ const QuestionList = ({ product }) => {
   const [showQForm, setShowQForm] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const [scrollAdd, setScrollAdd] = useState(false);
+  const [searchSt, setSearchSt] = useState("");
 
   // on load
   useEffect(() => {
@@ -60,15 +61,17 @@ const QuestionList = ({ product }) => {
   list.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
 
   const search = (event) => {
-    let query = event.target.value;
-    if (query.length > 2) {
+    setSearchSt(event.target.value);
+    if (searchSt.length > 2) {
       let filtQ = list.filter((ques) => {
         let ans = ques.answers;
         for (let id in ans) {
-          if (ans[id].body.toLowerCase().includes(query.toLowerCase()))
+          if (ans[id].body.toLowerCase().includes(searchSt.toLowerCase()))
             return true;
         }
-        return ques.question_body.toLowerCase().includes(query.toLowerCase());
+        return ques.question_body
+          .toLowerCase()
+          .includes(searchSt.toLowerCase());
       });
       filtQ.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
       setFiltList(filtQ);
@@ -93,7 +96,8 @@ const QuestionList = ({ product }) => {
     if (
       e.target.scrollTop + 1 >= e.target.scrollHeight - e.target.offsetHeight &&
       scrollAdd === true &&
-      filtList.length < list.length
+      filtList.length < list.length &&
+      searchSt.length < 3
     ) {
       setSpinner(true);
       setTimeout(() => {
