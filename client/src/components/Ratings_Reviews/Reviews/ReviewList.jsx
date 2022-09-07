@@ -91,10 +91,14 @@ const ReviewList = (props) => {
           <option value="newest">Newest</option>
         </Select>
       </Bold>
+
       <SearchContainer>
         <Search type="text" placeholder="Search..." onChange={search} />
-        <FaSearch className="searchIcon"/>
+        <IconContainer>
+          <FaSearch style={{color: "white"}}/>
+        </IconContainer>
       </SearchContainer>
+
 
       <Container onScroll={scroll}>
         {map}
@@ -144,24 +148,48 @@ const Bold = styled.p`
 `;
 
 const Select = styled.select`
-  padding: 8px;
-  padding-right: 0px;
-  border: 0;
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: underline;
-  text-shadow: 0px 0px 20px #a0a0a0;
-  cursor: pointer;
+padding: 8px;
+padding-right: 0px;
+border: 0;
+font-size: 18px;
+font-weight: bold;
+text-decoration: underline;
+text-shadow: 0px 0px 20px #a0a0a0;
+cursor: pointer;
+&:hover {
+  transform: scale(1.04);
+}
 `;
 
 const SearchContainer = styled.div`
-
-`
+width: 800px;
+height: 40px;
+display: flex;
+margin-bottom: 10px;
+`;
 
 const Search = styled.input`
-width: 775px;
-padding: 0px;
-margin-bottom: 8px;
+flex: 1;
+border: none;
+outline: none;
+padding-left: 10px;
+background: #f0f0f0;
+font-size: 16px;
+transition: .3s;
+&:focus {
+  transition: .3s;
+  background-color: #505050;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+`;
+
+const IconContainer = styled.div`
+background: #505050;
+padding: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
 `;
 
 const Container = styled.div`

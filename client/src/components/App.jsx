@@ -101,14 +101,7 @@ const App = () => {
                 <div></div>
               )}
             </TitleHeader>
-            {/* <Button
-              onClick={(e) => {
-                clickTracker(e);
-                toggleClrMode(e);
-              }}
-            >
-              {clrMode}
-            </Button> */}
+
             <DMContainer>
               <div id="DM" className={lightMode} onClick={toggleClrMode}>
                 <i className="switch" />
