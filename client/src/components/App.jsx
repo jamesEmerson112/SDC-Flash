@@ -22,7 +22,7 @@ const App = () => {
   // maybe set this up to be random later
   useEffect(() => {
     axios
-      .get("/products?count=1000", config)
+      .get("/products?count=10", config)
       .then((response) => {
         setProducts(response.data);
         let randInd = Math.floor(Math.random() * 1000);

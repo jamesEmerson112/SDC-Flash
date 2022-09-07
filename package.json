@@ -7,7 +7,8 @@
     "testC": "jest --coverage --coverageReporters=\"text-summary\"",
     "test": "jest",
     "server-dev": "npx nodemon --watch server server/index.js",
-    "client-dev": "webpack --config webpack.config.js -w"
+    "client-dev": "webpack --config webpack.config.js -w",
+    "start": "npx webpack & node server/index.js"
   },
   "repository": {
     "type": "git",
