@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 import { DarkMode } from "../App.jsx";
 
-const Stars = ({ rating }) => {
+const Stars = ({ rating, color }) => {
   //takes a number between 1-5 and does magic to create stars
   const width = 100 - Math.round((rating / 5) * 100);
   const starRating = [...Array(5)].map((_, index) => {
@@ -11,12 +11,18 @@ const Stars = ({ rating }) => {
   });
 
   const darkMode = useContext(DarkMode);
-
   return (
-
     <Container>
       <StarContainer>{starRating}</StarContainer>
-      <OverlayStar style={{ width: `${width}%`, backgroundColor: darkMode === 'Light Mode' ? 'rgb(254, 254, 254)' : 'grey'}}></OverlayStar>
+      <OverlayStar
+        style={{
+          width: `${width}%`,
+          backgroundColor:
+            darkMode === "Light Mode"
+              ? color || "rgb(254, 254, 254)"
+              : color || "grey",
+        }}
+      ></OverlayStar>
     </Container>
   );
 };
@@ -30,7 +36,7 @@ const Container = styled.div`
 `;
 
 const StarContainer = styled.div`
-display: flex;
+  display: flex;
 `;
 
 const OverlayStar = styled.div`
