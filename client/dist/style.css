@@ -42,10 +42,10 @@ body {
   width: 70vw;
 }
 
-.qAndASearchBar {
+/* .qAndASearchBar {
   width: 75vw;
   margin-bottom: 20px;
-}
+} */
 
 .qAndA {
   display: flex;

@@ -46,7 +46,7 @@ const Question = ({ question, product }) => {
           <b>Q:</b>
           <Qbody>{question_body}</Qbody>
         </div>
-        <small>
+        <small style={{ marginRight: "10px" }}>
           {" Helpful? "}
           {ques.helpf_click ? (
             " Yes "
