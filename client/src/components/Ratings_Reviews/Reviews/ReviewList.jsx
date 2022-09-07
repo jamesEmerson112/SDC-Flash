@@ -194,7 +194,7 @@ justify-content: center;
 
 const Container = styled.div`
 max-height: 800px;
-max-width: 800px;
+max-width: 900px;
 overflow-y: auto;
 `;
 

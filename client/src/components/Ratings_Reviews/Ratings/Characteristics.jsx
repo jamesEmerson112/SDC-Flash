@@ -170,6 +170,7 @@ const Emoji = styled.span`
   text-align: right;
   font-size: 15px
   position: relative;
+  transform: translateY(-4px);
 `;
 
 const Comfort = styled.div`
