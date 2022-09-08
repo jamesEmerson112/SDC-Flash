@@ -120,7 +120,7 @@ const ProductOverview = ({ id, product }) => {
             <div>OUT OF STOCK</div>
           </div>
         )}
-        <Description>{product.description}</Description>
+        <Description darkMode={darkMode}>{product.description}</Description>
       </div>
     </div>
   );
@@ -138,6 +138,7 @@ const Description = styled.p`
   font-size: large;
   box-sizing: content-box;
   padding: 8px;
-  border: 3px solid grey;
+  border: 3px solid
+    ${({ darkMode }) => (darkMode === "Light Mode" ? "grey" : "white")};
   border-radius: 5px;
 `;

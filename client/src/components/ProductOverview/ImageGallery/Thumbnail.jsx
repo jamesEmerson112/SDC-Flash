@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
   // if selected was set on a previous product to a thumbnail that doesnt exist, set it to the first one
-  if (selected > photos.length) {
-    setSelected(0);
-  }
+  useEffect(() => {
+    if (selected >= photos.length) {
+      setSelected(0);
+    }
+  }, [photos]);
+
   if (modal === false) {
     return photos.map((photo, i) => {
       if (photo.thumbnail_url === null) {
@@ -23,7 +26,15 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
           key={i}
           className={selected === i ? "selected" : "not_selected"}
         >
-          <img className="thumbnail" src={photo.thumbnail_url} />
+          <img
+            onError={(e) => {
+              e.target.src =
+                "https://www.cnet.com/a/img/resize/905e1d3662ccaaf4763408156c833b91a47dfd07/2020/08/31/9562c49a-8f37-434d-8070-2751fb03d683/will-smith-fresh-prince-bel-air.jpg?auto=webp&fit=crop&height=900&width=1200";
+              e.target.onError = null;
+            }}
+            className="thumbnail"
+            src={photo.thumbnail_url}
+          />
         </ThumbnailParent>
       );
     });
@@ -52,7 +63,15 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
             }}
             key={i}
           >
-            <ModalThumbnail src={photo.thumbnail_url} width="80px" />
+            <ModalThumbnail
+              onError={(e) => {
+                e.target.src =
+                  "https://www.cnet.com/a/img/resize/905e1d3662ccaaf4763408156c833b91a47dfd07/2020/08/31/9562c49a-8f37-434d-8070-2751fb03d683/will-smith-fresh-prince-bel-air.jpg?auto=webp&fit=crop&height=900&width=1200";
+                e.target.onError = null;
+              }}
+              src={photo.thumbnail_url}
+              width="80px"
+            />
           </ModalParentNotSelected>
         );
       }
@@ -72,9 +91,11 @@ const ThumbnailParent = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 2px;
-  min-width: 81px;
+  min-height: 75px;
+  min-width: 75px;
+  margin: 3px;
+  //border: 1px solid black;
   //box-shadow: 3px 3px 10px rgb(0, 0, 0);
-  // min-height: 81px;
 `;
 
 const ModalParentSelected = styled.div`

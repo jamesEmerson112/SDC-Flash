@@ -63,7 +63,7 @@ const StyleParent = styled.div`
   border-radius: 100%;
   padding: 5px;
   margin-top: 5px;
-  max-width: 100%;
+  width: 80px;
   height: 80px;
   overflow: hidden;
   justify-content: center;
@@ -81,6 +81,7 @@ const Container = styled.div`
   width: 25%;
   max-height: 125px;
   min-height: 125px;
+  justify-content: flex-end;
 `;
 
 const StyleName = styled.div`

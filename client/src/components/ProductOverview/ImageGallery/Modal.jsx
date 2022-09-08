@@ -20,17 +20,13 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
   useEffect(() => {
     setDisplayPic(mainPic);
   }, []);
-  console.log(selectedModal);
 
   useEffect(() => {
     setZoom(false);
   }, [selectedModal]);
 
   const modalClick = (e) => {
-    console.log(e);
-    console.log(window);
     const box = document.querySelector(".modal_image");
-    console.log("BOX: ", box.offsetWidth, box.offsetHeight);
     setZoom(true);
     setModalHeight(box.offsetHeight);
     setModalWidth(box.offsetWidth);
