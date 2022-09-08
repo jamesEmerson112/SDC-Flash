@@ -82,6 +82,7 @@ const Container = styled.div`
   width: 25%;
   max-height: 125px;
   min-height: 125px;
+  justify-content: flex-end;
 `;
 
 const StyleName = styled.div`
