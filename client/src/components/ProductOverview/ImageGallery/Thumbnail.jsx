@@ -68,12 +68,13 @@ const ThumbnailParent = styled.div`
   grid-column-start: 1;
   grid-row-start: 1;
   border-radius: 4px;
-  min-height: 81px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   padding: 2px;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  min-width: 81px;
+  //box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  // min-height: 81px;
 `;
 
 const ModalParentSelected = styled.div`
