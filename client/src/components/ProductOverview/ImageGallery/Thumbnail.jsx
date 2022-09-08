@@ -73,6 +73,7 @@ const ThumbnailParent = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 2px;
+  box-shadow: 3px 3px 10px rgb(0, 0, 0);
 `;
 
 const ModalParentSelected = styled.div`
