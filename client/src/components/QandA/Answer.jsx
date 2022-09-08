@@ -85,7 +85,11 @@ const Answer = ({ answer, question_id }) => {
       ) : null}
       <small>
         {"by "}
-        {answerer_name === "Seller" ? <b>{answerer_name}</b> : answerer_name}
+        {answerer_name === "Seller" ? (
+          <b style={{ fontFamily: "sans-serif" }}>{answerer_name}</b>
+        ) : (
+          answerer_name
+        )}
         {", " + hrDt + " | Helpful? "}
         {answ.helpf_click ? (
           " Yes "
