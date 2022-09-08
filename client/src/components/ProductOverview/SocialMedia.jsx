@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { DarkMode } from "../App.jsx";
 
 import { FaFacebook, FaPinterest, FaTwitterSquare } from "react-icons/fa";
 
 const SocialMedia = () => {
+  const darkMode = useContext(DarkMode);
   return (
     <div className="social_media">
       <div className="icons">
         <div className="icon">
-          <Span>
+          <Span darkMode={darkMode}>
             <a style={{ color: "inherit" }} href="https://www.facebook.com/">
               <FaFacebook />
             </a>
           </Span>
         </div>
         <div className="icon">
-          <Span>
+          <Span darkMode={darkMode}>
             <a style={{ color: "inherit" }} href="https://www.pinterest.com/">
               <FaPinterest />
             </a>
           </Span>
         </div>
         <div className="icon">
-          <Span>
+          <Span darkMode={darkMode}>
             <a style={{ color: "inherit" }} href="https://twitter.com/">
               <FaTwitterSquare />
             </a>
@@ -47,7 +49,8 @@ const Span = styled.span`
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: black;
+    background-color: ${(props) =>
+      props.darkMode === "Light Mode" ? "black" : "white"};
     transition: width 0.25s ease-out;
   }
   &:hover {

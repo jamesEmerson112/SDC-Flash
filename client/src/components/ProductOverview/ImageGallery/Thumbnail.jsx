@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
   // if selected was set on a previous product to a thumbnail that doesnt exist, set it to the first one
-  if (selected > photos.length) {
-    setSelected(0);
-  }
+  useEffect(() => {
+    if (selected >= photos.length) {
+      setSelected(0);
+    }
+  }, [photos]);
+
   if (modal === false) {
     return photos.map((photo, i) => {
       if (photo.thumbnail_url === null) {
@@ -73,8 +76,8 @@ const ThumbnailParent = styled.div`
   overflow: hidden;
   padding: 2px;
   min-width: 81px;
+  min-height: 81px;
   //box-shadow: 3px 3px 10px rgb(0, 0, 0);
-  // min-height: 81px;
 `;
 
 const ModalParentSelected = styled.div`

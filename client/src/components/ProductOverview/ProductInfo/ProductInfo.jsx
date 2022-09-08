@@ -53,6 +53,7 @@ const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
           <Stars color={color} rating={overall} />
           <Link>
             <Span
+              darkMode={darkMode}
               onClick={() => {
                 window.location.href = "#Ratings_Reviews";
                 history.pushState({}, "", window.location.origin);
@@ -117,7 +118,8 @@ const Span = styled.span`
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: black;
+    background-color: ${(props) =>
+      props.darkMode === "Light Mode" ? "black" : "white"};
     transition: width 0.25s ease-out;
   }
   &:hover {
