@@ -4,7 +4,6 @@ import { FaCheck } from "react-icons/fa";
 
 const Style = ({ photos, click }) => {
   const [selected, setSelected] = useState(0);
-  console.log(photos);
   if (selected > photos.length) {
     setSelected(0);
   }
