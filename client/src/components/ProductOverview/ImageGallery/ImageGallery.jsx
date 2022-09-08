@@ -60,7 +60,6 @@ const ImageGallery = ({
             src={mainPic}
             onClick={() => {
               setExpanded(true);
-              console.log(expanded);
             }}
             onError={(e) => {
               e.target.src =
