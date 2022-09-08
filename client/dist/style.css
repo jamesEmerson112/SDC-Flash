@@ -302,6 +302,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s;
+  margin-left: 25px;
 }
 .addtocartbtn:hover {
   background: black;

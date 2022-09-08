@@ -22,4 +22,5 @@ export default DropDown;
 const Select = styled.select`
   borer-raius: 10px;
   margin-bottom: 10px;
+  padding: 5px 0px;
 `;
