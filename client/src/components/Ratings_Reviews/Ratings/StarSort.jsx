@@ -79,6 +79,7 @@ const Span = styled.span`
   }
   &:hover {
     font-weight: bold;
+    transform: scale(1.04);
     &::before {
       width: 100%;
     }
