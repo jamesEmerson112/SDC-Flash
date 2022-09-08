@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Stars from "../../Ratings_Reviews/Stars.jsx";
 import styled from "styled-components";
 import { DarkMode } from "../../App.jsx";
+import SocialMedia from "../SocialMedia.jsx";
 
 const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
   const darkMode = useContext(DarkMode);
@@ -41,18 +42,27 @@ const ProductInfo = ({ product, style, ratings, numberOfReviews }) => {
 
   return (
     <div className="product-info">
-      <div>
-        <Stars color={color} rating={overall} />
-        <Link>
-          <Span
-            onClick={() => {
-              window.location.href = "#Ratings_Reviews";
-              history.pushState({}, "", window.location.origin);
-            }}
-          >
-            Read all {numberOfReviews} reviews
-          </Span>
-        </Link>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+        }}
+      >
+        <div>
+          <Stars color={color} rating={overall} />
+          <Link>
+            <Span
+              onClick={() => {
+                window.location.href = "#Ratings_Reviews";
+                history.pushState({}, "", window.location.origin);
+              }}
+            >
+              Read all {numberOfReviews} reviews
+            </Span>
+          </Link>
+        </div>
+        <SocialMedia></SocialMedia>
       </div>
       <Category>{product.category}</Category>
       <Title>{product.name}</Title>
@@ -77,12 +87,11 @@ const Link = styled.p`
 `;
 
 const Title = styled.h1`
-  text-decoration: underline;
-  font-style: oblique;
+  font-weight: 900;
 `;
 
 const Category = styled.h3`
-  font-style: italic;
+  font-weigth: 300;
 `;
 
 const OldPrice = styled.h2`

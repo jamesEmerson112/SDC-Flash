@@ -133,9 +133,9 @@ const AddToCart = ({ style, setSuccess, success }) => {
             onChange={selectQuantity}
           />
         )}
-        {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
+        {button}
       </div>
-      {button}
+      {!success ? <Alert>{alert}</Alert> : <Success>Added to Cart</Success>}
     </div>
   );
 };
