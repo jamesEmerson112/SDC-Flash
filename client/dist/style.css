@@ -52,6 +52,12 @@ body {
   justify-content: space-between;
 }
 
+@media (max-width: 480px) {
+  .question {
+    flex-direction: column;
+  }
+}
+
 .qAndA > * {
   margin-right: 5px;
   margin-bottom: 10px;
