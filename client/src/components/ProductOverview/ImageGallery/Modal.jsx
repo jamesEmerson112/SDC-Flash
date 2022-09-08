@@ -20,6 +20,11 @@ const ModalComponent = ({ mainPic, setExpanded, photos, selected }) => {
   useEffect(() => {
     setDisplayPic(mainPic);
   }, []);
+  console.log(selectedModal);
+
+  useEffect(() => {
+    setZoom(false);
+  }, [selectedModal]);
 
   const modalClick = (e) => {
     console.log(e);
