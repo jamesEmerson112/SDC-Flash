@@ -75,8 +75,8 @@ const ThumbnailParent = styled.div`
   align-items: center;
   overflow: hidden;
   padding: 2px;
-  min-height: 81px;
-  min-width: 81px;
+  min-height: 75px;
+  min-width: 75px;
   margin: 3px;
   //border: 1px solid black;
   //box-shadow: 3px 3px 10px rgb(0, 0, 0);
