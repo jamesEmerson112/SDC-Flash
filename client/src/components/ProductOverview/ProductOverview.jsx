@@ -121,7 +121,6 @@ const ProductOverview = ({ id, product }) => {
           </div>
         )}
         <Description>{product.description}</Description>
-        <SocialMedia></SocialMedia>
       </div>
     </div>
   );
