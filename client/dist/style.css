@@ -120,6 +120,7 @@ body {
   align-items: center;
   z-index: 0;
   border: 1px solid black;
+  border-radius: 8px;
 }
 .pic:hover {
   cursor: zoom-in;
