@@ -64,7 +64,7 @@ const StyleParent = styled.div`
   border-radius: 100%;
   padding: 5px;
   margin-top: 5px;
-  max-width: 100%;
+  width: 80px;
   height: 80px;
   overflow: hidden;
   justify-content: center;
