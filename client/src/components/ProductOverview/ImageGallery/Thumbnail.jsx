@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
+  // if selected was set on a previous product to a thumbnail that doesnt exist, set it to the first one
+  if (selected > photos.length) {
+    setSelected(0);
+  }
   if (modal === false) {
     return photos.map((photo, i) => {
       if (photo.thumbnail_url === null) {
@@ -11,6 +15,7 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
 
       return (
         <ThumbnailParent
+          style={{ height: "91px", width: "51px" }}
           onClick={() => {
             click(photo.url, i);
             setSelected(i);
@@ -18,7 +23,7 @@ const Thumbnail = ({ photos, click, selected, setSelected, modal }) => {
           key={i}
           className={selected === i ? "selected" : "not_selected"}
         >
-          <img className="thumbnail" src={photo.thumbnail_url} width="50px" />
+          <img className="thumbnail" src={photo.thumbnail_url} />
         </ThumbnailParent>
       );
     });
@@ -62,12 +67,12 @@ const ThumbnailParent = styled.div`
   box-sizing: border-box;
   grid-column-start: 1;
   grid-row-start: 1;
-  border: 1px solid black;
   border-radius: 4px;
-  padding: 5px;
   min-height: 81px;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  padding: 2px;
 `;
 
 const ModalParentSelected = styled.div`
