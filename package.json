@@ -1,7 +1,7 @@
 {
   "name": "front-end-capstone-fec",
   "version": "1.0.0",
-  "description": "",
+  "description": "Front End Capstone Project, FP Team",
   "main": "server/index.js",
   "scripts": {
     "testC": "jest --coverage --coverageReporters=\"text-summary\"",
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Timothy Loo, Blake Lenhard, Brian Pham",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",

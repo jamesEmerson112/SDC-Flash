@@ -7,6 +7,8 @@ import styled from "styled-components";
 
 
 const ReviewList = (props) => {
+
+  console.log(props.meta)
   const [reviews, setReviews] = useState([]);
   const [filterReviews, setFilterReviews] = useState([]);
   const [meta, setMeta] = useState({});
