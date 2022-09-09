@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Box } from "./styledComponents/styledComponents.jsx";
 import styled from "styled-components";
 import DropDown from "./DropDown.jsx";
 import _ from "underscore";
