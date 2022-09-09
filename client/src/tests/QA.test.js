@@ -1,29 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./App.jsx";
-import QuestionList from "../Questionlist.jsx";
-import Question from "../Question.jsx";
-import AnswerList from "../AnswerList.jsx";
-import Answer from "../Answer.jsx";
-import QuestionForm from "../QuestionForm.jsx";
-import AnswerForm from "../AnswerForm.jsx";
-import testStuff from "./testStuff.js";
-import questList from "../qAndA.js";
-
+import QuestionList from "../components/QandA/QuestionList.jsx";
+import Question from "../components/QandA/Question.jsx";
+import AnswerList from "../components/QandA/AnswerList.jsx";
+import Answer from "../components/QandA/Answer.jsx";
+import QuestionForm from "../components/QandA/QuestionForm.jsx";
+import AnswerForm from "../components/QandA/AnswerForm.jsx";
+import testObj from "./testObj.js";
+import questList from "../components/QandA/qAndA.js";
 
 const product = { name: "Test Product", id: 65631 };
-const question = testStuff.question;
+const question = testObj.question;
 questList.push(question);
 const answer = questList[0].answers["5987911"];
 const question_id = 642996;
-
-test("should render App component", () => {
-  const tree = renderer.create(<App />);
-  expect(tree).not.toBeNull();
-  tree.unmount();
-  tree.unstable_flushSync();
-});
-
 
 test("should render QuestionList component", () => {
   const tree = renderer.create(<QuestionList product={product} />);
@@ -47,7 +37,6 @@ test("should render AnswerList component", () => {
 });
 
 test("should render Answer component", () => {
-  console.log(answer);
   const tree = renderer.create(
     <Answer answer={answer} question_id={question_id} />
   );
