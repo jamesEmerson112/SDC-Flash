@@ -25,7 +25,7 @@ npm install
 
 
 Duplicate `config copy.js` in the env directory\
-Rename to `config.js`\
+Rename to `config.js`
 ```sh
 cp 'env/config copy.js' env/config.js
 ```
