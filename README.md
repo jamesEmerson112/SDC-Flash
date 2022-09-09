@@ -23,6 +23,12 @@ Ratings and Reviews: Brian Pham\
 npm install
 ```
 
+Duplicate `copy.env` in the env directory\
+Rename to `.env`
+```sh
+cp env/copy.env env/.env
+```
+
 
 Duplicate `config copy.js` in the env directory\
 Rename to `config.js`
