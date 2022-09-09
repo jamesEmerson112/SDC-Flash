@@ -139,30 +139,30 @@ const App = () => {
 export default App;
 
 const TitleHeader = styled.div`
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
+border-radius: 5px;
+display: flex;
+justify-content: space-between;
+gap: 30px;
 `;
 
 const DMContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 75vw;
-  margin-top: 10px;
+display: flex;
+justify-content: flex-end;
+width: 75vw;
+margin-top: 10px;
 `;
 
 const Icons = styled.span`
-  margin-left: 10px;
+margin-left: 10px;
 `;
 
 const LoadingContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+width: 100vw;
 `;
