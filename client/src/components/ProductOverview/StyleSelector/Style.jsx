@@ -73,6 +73,9 @@ const StyleParent = styled.div`
   z-index: 1;
   box-shadow: 3px 3px 10px rgb(0, 0, 0);
   align-self: flex-end;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Container = styled.div`

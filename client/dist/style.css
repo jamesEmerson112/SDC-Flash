@@ -193,6 +193,10 @@ body {
   margin-right: 15px;
 }
 
+.thumbnails:hover {
+  cursor: pointer;
+}
+
 .thumbnail {
   box-sizing: border-box;
   max-height: 140%;
