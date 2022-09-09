@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./App.jsx";
+import App from "../components/App.jsx";
 import QuestionList from "../Questionlist.jsx";
 import Question from "../Question.jsx";
 import AnswerList from "../AnswerList.jsx";
