@@ -51,7 +51,7 @@ To create development build:
 npm run server-dev & npm run client-dev
 ```
 
-### Demos
+## Demos
 <details><summary>Product Overview</summary>
   
 ![ProductOverview-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/ProductOverviewDemo.gif?raw=true)
@@ -61,6 +61,12 @@ npm run server-dev & npm run client-dev
 <details><summary>Questions & Answers</summary>
   
 ![QA-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/TJQAgif.gif?raw=true)
+  
+</details>
+
+<details><summary>Ratings & Reviewss</summary>
+  
+![R&R-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/BrianRRgif.gif?raw=true)
   
 </details>
 
