@@ -59,7 +59,8 @@ npm run server-dev & npm run client-dev
 </details>
 
 <details><summary>Questions & Answers</summary>
-  ![TJQAgif](https://user-images.githubusercontent.com/46430556/189738034-d5ff4d47-ff87-4df6-a45a-1b8ea216b983.gif)
+  
+![TJQAgif](https://user-images.githubusercontent.com/46430556/189738034-d5ff4d47-ff87-4df6-a45a-1b8ea216b983.gif)
 
 </details>
 
@@ -67,7 +68,6 @@ npm run server-dev & npm run client-dev
   
 ![BrianRRgif](https://user-images.githubusercontent.com/107714292/189728065-b3721791-5d65-4b2d-8106-faba53a73476.gif)
 
-  
 </details>
 
 
