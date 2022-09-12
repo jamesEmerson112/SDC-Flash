@@ -65,7 +65,7 @@ npm run server-dev & npm run client-dev
 
 <details><summary>Ratings & Reviews</summary>
   
-![R&R-Demo]![BrianRRgif](https://user-images.githubusercontent.com/107714292/189728065-b3721791-5d65-4b2d-8106-faba53a73476.gif)
+![BrianRRgif](https://user-images.githubusercontent.com/107714292/189728065-b3721791-5d65-4b2d-8106-faba53a73476.gif)
 
   
 </details>
