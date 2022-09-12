@@ -59,9 +59,7 @@ npm run server-dev & npm run client-dev
 </details>
 
 <details><summary>Questions & Answers</summary>
-  
-![QA-Demo][TJQAgif](https://user-images.githubusercontent.com/46430556/189734871-cc41a116-77e4-4279-a171-11548c9e2431.gif)
-  
+  (https://user-images.githubusercontent.com/46430556/189734871-cc41a116-77e4-4279-a171-11548c9e2431.gif)
 </details>
 
 <details><summary>Ratings & Reviews</summary>
