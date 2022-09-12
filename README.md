@@ -1,6 +1,6 @@
 # Description
 
-Developed a fully-functional front-end website that could display millions of products from an existing database. You can navigate between different styles of a product, and also create new and/or view existing reviews and questions/answers.
+Developed a fully functional front-end project to connect to an existing database that simulates an e-commerce application. Application was created by integrating the code base of each component from a team member to one product.
 
 
 ## Components and Contributers
