@@ -60,7 +60,7 @@ npm run server-dev & npm run client-dev
 
 <details><summary>Questions & Answers</summary>
   
-![QA-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/TJQAgif.gif?raw=true)
+![QA-Demo][TJQAgif](https://user-images.githubusercontent.com/46430556/189734871-cc41a116-77e4-4279-a171-11548c9e2431.gif)
   
 </details>
 
