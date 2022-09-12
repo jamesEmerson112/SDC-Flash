@@ -66,7 +66,8 @@ npm run server-dev & npm run client-dev
 
 <details><summary>Ratings & Reviewss</summary>
   
-![R&R-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/BrianRRgif.gif?raw=true)
+![R&R-Demo]![BrianRRgif](https://user-images.githubusercontent.com/107714292/189728065-b3721791-5d65-4b2d-8106-faba53a73476.gif)
+
   
 </details>
 
@@ -90,3 +91,6 @@ npm run server-dev & npm run client-dev
 **Dev Environment:** &nbsp;&nbsp;
   ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
   ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+  
+
+  
