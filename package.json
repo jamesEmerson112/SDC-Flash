@@ -9,7 +9,7 @@
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "webpack --config webpack.config.js -w",
     "start": "npx webpack & node server/index.js",
-    "lint" : "./node_modules/.bin/eslint"
+    "lint": "./node_modules/.bin/eslint"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,12 @@
     "axios": "^0.27.2",
     "cloudinary-core": "^2.13.0",
     "cloudinary-react": "^1.8.1",
+    "cors": "^2.8.5",
     "date-fns": "^2.29.2",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "fast-csv": "^4.3.6",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "pg": "^8.8.0",
