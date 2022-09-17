@@ -4,9 +4,3 @@ config.js
 .env
 TJQAgif.gif
 .csv
-
-<<<<<<< HEAD
-.csv
-=======
-.DS_Store
->>>>>>> 6569df1 (Successfully parse the csv file
