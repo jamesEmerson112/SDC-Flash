@@ -4,3 +4,4 @@ config.js
 .env
 TJQAgif.gif
 .csv
+*.csv
