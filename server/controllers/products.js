@@ -10,15 +10,72 @@ module.exports = {
             data = data.rows || {};
             return data;
           });
-      console.log('data in controllers ', data);
       res.status(200).json(data);
-    } catch {
-      console.error('Get Products goes wrong');
-      res.status(400).json({err: 'Bad request'});
+    } catch (e) {
+      res.status(400).json({err: e.message});
     }
   },
 
   getProduct: async (req, res) => {
-    console.log('do something here');
+    const {id} = req.params;
+    let data = null;
+    try {
+      data = await models.products.getProduct(id)
+          .then((data) => {
+            data = data.rows || {};
+            return data;
+          });
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({err: e.message});
+    }
+  },
+
+  getProductStyles: async (req, res) => {
+    // console.log('req params ', req.params);
+    const {product_id} = req.params;
+    let data = null;
+    try {
+      data = await models.products.getProductStyles(product_id)
+          .then((data) => {
+            // transform data
+            data = data.rows || {};
+            console.log('BEFORE', data);
+            data.map((product) => {
+              product['default?'] = product['default?'] ? true : false;
+            });
+            console.log(data);
+            return data;
+          });
+      const productObj = {
+        'product_id': product_id,
+        'results': data,
+      };
+      res.status(200).json(productObj);
+    } catch (e) {
+      res.status(400).json({error: e.message});
+    }
+  },
+
+  getProductRelated: async (req, res) => {
+    const {product_id} = req.params;
+    let data = null;
+    try {
+      data = await models.products.getProductRelated(product_id)
+          .then((data) => {
+            // transform data
+            data = data.rows || {};
+            const newData = [];
+            data.map((relatedProduct) => {
+              if (relatedProduct !== null || relatedProduct !== undefined) {
+                newData.push(relatedProduct['related_product_id']);
+              };
+            });
+            return newData.sort();
+          });
+      res.status(200).json(data);
+    } catch (e) {
+      res.status(400).json({err: e.stack});
+    }
   },
 };
