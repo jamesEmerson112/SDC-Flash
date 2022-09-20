@@ -13,12 +13,6 @@ module.exports = {
   },
 
   getProductStyles: async (productId) => {
-    // console.log(productId);
-    // "style_id": 404892,
-    // "name": "Grey",
-    // "original_price": "65.00",
-    // "sale_price": null,
-    // "default?": false,
     const queryStr = `SELECT
     id AS "style_id",
     name,
@@ -30,8 +24,18 @@ module.exports = {
     return db.query(queryStr);
   },
 
+  getProductPhotos: async (styleId) => {
+    // console.log('getProductPhotos style Id ', styleId);
+    // return db.query();
+    const queryStr = `SELECT
+    "thumbnail_url",
+    "url"
+    FROM public."Photos"
+    WHERE styleid = ${styleId}`;
+    return db.query(queryStr);
+  },
+
   getProductRelated: async (productId) => {
-    console.log(productId);
     const queryStr = `SELECT
     related_product_id
     FROM public."Related"

@@ -34,22 +34,32 @@ module.exports = {
   getProductStyles: async (req, res) => {
     // console.log('req params ', req.params);
     const {product_id} = req.params;
-    let data = null;
+    let dataStyle = null;
+    let dataPhotos = null;
     try {
-      data = await models.products.getProductStyles(product_id)
+      dataStyle = await models.products.getProductStyles(product_id)
           .then((data) => {
             // transform data
             data = data.rows || {};
-            console.log('BEFORE', data);
-            data.map((product) => {
+            data.map(async (product) => {
               product['default?'] = product['default?'] ? true : false;
+              console.log('product style id ', product['style_id']);
+
+              // grab the data photo to merge it with the current product
+              dataPhotos = await
+              models.products.getProductPhotos(product['style_id'])
+                  .then((dataPhoto) => {
+                    dataPhoto = dataPhoto.rows || {};
+                    console.log('dataPhoto ', dataPhoto);
+                  });
             });
-            console.log(data);
+            // console.log(data);
             return data;
           });
+
       const productObj = {
         'product_id': product_id,
-        'results': data,
+        'results': dataStyle,
       };
       res.status(200).json(productObj);
     } catch (e) {

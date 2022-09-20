@@ -15,6 +15,8 @@ const pool = new Pool(config);
 const productFile = path.resolve(__dirname, '../Data/product.csv');
 const relatedFile = path.resolve(__dirname, '../Data/related.csv');
 const styleFile = path.resolve(__dirname, '../Data/styles.csv');
+const photosFile = path.resolve(__dirname, '../Data/photos.csv');
+
 
 console.log(relatedFile);
 console.log(styleFile);
@@ -24,17 +26,6 @@ const createTable = (tableName) => {
 };
 
 const runQuery = async () => {
-  // const queryStr = createTable('Product1') + `(id SERIAL,
-  //   name VARCHAR(500),
-  //   slogan VARCHAR(500), description text, category VARCHAR(500),
-  //   default_price DOUBLE PRECISION, PRIMARY KEY(id))`;
-
-  // // table name + columns
-  // const copyProduct = `COPY "Product1" (id,name,slogan,description
-  //            ,category,default_price)
-  //            FROM '${productFile}'
-  //            DELIMITER ','
-  //            CSV HEADER;`;
   const copyTables = async (tableName,
       columnNameType,
       columnName,
@@ -57,7 +48,7 @@ const runQuery = async () => {
                 console.log(`done copying "${tableName}"`);
               })
               .catch((err) => {
-                // console.log(err.message);
+                console.log(err.message);
               });
         })
         .catch((err) => {
@@ -92,11 +83,18 @@ const runQuery = async () => {
       `(id,productId,name,sale_price,original_price,default_style)`,
       styleFile);
 
+  copyTables('Photos',
+      `(id SERIAL,
+        styleId SERIAL,
+        url TEXT,
+        thumbnail_url TEXT,
+        PRIMARY KEY(id))`,
+      `(id,styleId,url,thumbnail_url)`,
+      photosFile);
+
   // copyTables('Features1', `(id,product_id,feature,value)`,
   // `(id,product_id,feature,value)`);
 };
-
-// runQuery();
 
 module.exports = runQuery;
 
