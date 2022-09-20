@@ -3,17 +3,20 @@ require('dotenv').config();
 const V = require('./Utility/utility.js');
 
 // Router
-var router = require('./routes.js');
-var db = require('./Database');
+const router = require('./routes.js');
+const db = require('./Database');
+
+// ETL
+const ETL = require('./ETL');
 
 // Middleware
-var morgan = require('morgan');
-var cors = require('cors');
+const morgan = require('morgan');
+const cors = require('cors');
 
 // DECLARE EXPRESS
-const express = require("express");
+const express = require('express');
 const app = express();
-const path = require("path");
+const path = require('path');
 
 // logging and parsing
 // app.use(morgan('dev'));
@@ -22,7 +25,7 @@ const path = require("path");
 // SETTING UP MIDDLE WARE
 app.use(express.json());
 // app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // DECLARING PORT
 const PORT = process.env.PORT || 3000;
@@ -32,11 +35,10 @@ app.listen(PORT);
 console.log(`Listening at http://localhost:${PORT}`);
 
 
-
 // ============== ROUTES ===============
 // app.use('https://localhost:3000/api/fec2/rfp', router);
 app.use(router);
 
 
 // ==============DATABASE================
-
+ETL();
