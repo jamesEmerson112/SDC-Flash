@@ -20,50 +20,65 @@ module.exports = {
     const {id} = req.params;
     let data = null;
     try {
-      data = await models.products.getProduct(id)
-          .then((data) => {
-            data = data.rows || {};
-            return data;
-          });
+      data = await models.products.getProduct(id);
+      data = data.rows || {};
       res.status(200).json(data);
     } catch (e) {
       res.status(400).json({err: e.message});
     }
   },
 
-  getProductStyles: async (req, res) => {
-    // console.log('req params ', req.params);
+  // getProductStyles: async (req, res) => {
+  //   // console.log('req params ', req.params);
+  //   const {product_id} = req.params;
+  //   let productsStyle = null;
+  //   try {
+  //     productsStyle = await models.products.getProductStyles(product_id);
+  //     productsStyle = productsStyle.rows || {};
+  //     const test = await productsStyle.map(async (product) => {
+  //       product['default?'] = product['default?'] ? true : false;
+  //       // grab the data photo to merge it with the current product
+  //       let productPhotos = await models.products.getProductPhotos(
+  //           product['style_id'],
+  //       );
+  //       productPhotos = productPhotos.rows || {};
+  //       if (!product.hasOwnProperty('photos')) {
+  //         product.photos = productPhotos;
+  //       }
+  //       return product;
+  //     });
+
+  //     // confirm before setTimeout
+  //     console.log('productsStyle ', test);
+
+  //     const productObj = {
+  //       'product_id': product_id,
+  //       'results': test,
+  //     };
+
+  //     // after setTimeout
+  //     setTimeout(() => {
+  //       console.log('Delayed productsStyle ', productsStyle);
+  //     }, 5000);
+
+  //     res.status(200).json(productObj);
+  //   } catch (e) {
+  //     res.status(400).json({error: e.message});
+  //   }
+  // },
+
+  getProductStylesAndPhotos: async (req, res) => {
     const {product_id} = req.params;
-    let dataStyle = null;
-    let dataPhotos = null;
+    let data = null;
     try {
-      dataStyle = await models.products.getProductStyles(product_id)
-          .then((data) => {
-            // transform data
-            data = data.rows || {};
-            data.map(async (product) => {
-              product['default?'] = product['default?'] ? true : false;
-              console.log('product style id ', product['style_id']);
-
-              // grab the data photo to merge it with the current product
-              dataPhotos = await
-              models.products.getProductPhotos(product['style_id'])
-                  .then((dataPhoto) => {
-                    dataPhoto = dataPhoto.rows || {};
-                    console.log('dataPhoto ', dataPhoto);
-                  });
-            });
-            // console.log(data);
-            return data;
-          });
-
-      const productObj = {
-        'product_id': product_id,
-        'results': dataStyle,
-      };
-      res.status(200).json(productObj);
+      data = await models.products.getProductStylesAndPhotos(product_id);
+      data = {'product_id': product_id, ...data.rows[0]} || {};
+      // if (!data.hasOwnProperty('product_id')) {
+      //   data.product_id = product_id;
+      // }
+      res.status(200).json(data);
     } catch (e) {
-      res.status(400).json({error: e.message});
+      res.status(400).json({err: e.stack});
     }
   },
 

@@ -16,10 +16,8 @@ const productFile = path.resolve(__dirname, '../Data/product.csv');
 const relatedFile = path.resolve(__dirname, '../Data/related.csv');
 const styleFile = path.resolve(__dirname, '../Data/styles.csv');
 const photosFile = path.resolve(__dirname, '../Data/photos.csv');
+const skusFile = path.resolve(__dirname, '../Data/skus.csv');
 
-
-console.log(relatedFile);
-console.log(styleFile);
 
 const createTable = (tableName) => {
   return `CREATE TABLE IF NOT EXISTS "${tableName}" `;
@@ -91,6 +89,15 @@ const runQuery = async () => {
         PRIMARY KEY(id))`,
       `(id,styleId,url,thumbnail_url)`,
       photosFile);
+
+  copyTables('Skus',
+      `(id SERIAL,
+        styleId SERIAL,
+        size VARCHAR(500),
+        quantity SMALLINT,
+        PRIMARY KEY(id))`,
+      `(id,styleId,size,quantity)`,
+      skusFile);
 
   // copyTables('Features1', `(id,product_id,feature,value)`,
   // `(id,product_id,feature,value)`);

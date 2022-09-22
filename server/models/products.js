@@ -12,21 +12,42 @@ module.exports = {
     // console.log(id);
   },
 
-  getProductStyles: async (productId) => {
-    const queryStr = `SELECT
-    id AS "style_id",
-    name,
-    original_price,
-    sale_price,
-    default_style AS "default?"
+  getProductStylesAndPhotos: async (productId) => {
+    const queryStr =
+    `SELECT json_agg(
+      json_build_object(
+        'style_id', id,
+        'name', name,
+        'original_price', original_price,
+        'sale_price', sale_price,
+        'default?', default_style,
+        'photos', (
+              SELECT json_agg(
+              json_build_object(
+                'thumbnail_url', thumbnail_url,
+                'url', url
+              )
+            ) FROM public."Photos" WHERE styleid = public."Styles".id
+        ),
+        'skus', (
+            SELECT json_object_agg(
+            id::varchar(255), json_build_object(
+              'quantity', quantity,
+              'size', size
+            )
+          ) FROM public."Skus" WHERE styleid = public."Styles".id
+        )
+      )
+    ) AS results
     FROM public."Styles"
     WHERE productid = ${productId}`;
+
     return db.query(queryStr);
   },
 
+
+
   getProductPhotos: async (styleId) => {
-    // console.log('getProductPhotos style Id ', styleId);
-    // return db.query();
     const queryStr = `SELECT
     "thumbnail_url",
     "url"

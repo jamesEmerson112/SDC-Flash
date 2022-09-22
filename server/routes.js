@@ -7,7 +7,7 @@ router.get('/products', controller.products.get);
 router.get('/products/:id', controller.products.getProduct);
 
 router.get('/products/:product_id/styles',
-    controller.products.getProductStyles);
+    controller.products.getProductStylesAndPhotos);
 
 
 router.get('/products/:product_id/related',
