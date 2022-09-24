@@ -7,7 +7,7 @@ const router = require('./routes.js');
 const db = require('./Database');
 
 // ETL
-const ETL = require('./ETL');
+// const ETL = require('./ETL');
 
 // Middleware
 const morgan = require('morgan');
@@ -34,6 +34,13 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 console.log(`Listening at http://localhost:${PORT}`);
 
+// TESTING
+const randomNumber = Math.floor(Math.random() * 1000000);
+
+app.get('/', (req, res) => {
+  res.send('Hello! This server\'s random number is: ' + randomNumber + '\n');
+});
+
 
 // ============== ROUTES ===============
 // app.use('https://localhost:3000/api/fec2/rfp', router);
@@ -41,4 +48,4 @@ app.use(router);
 
 
 // ==============DATABASE================
-ETL();
+// ETL();

@@ -6,7 +6,7 @@
   "scripts": {
     "testC": "jest --coverage --coverageReporters=\"text-summary\"",
     "test": "jest",
-    "server-dev": "npx nodemon --watch server server/index.js",
+    "server-dev": "nodemon server/index.js",
     "client-dev": "webpack --config webpack.config.js -w",
     "start": "npx webpack & node server/index.js",
     "lint": "./node_modules/.bin/eslint"
@@ -17,6 +17,7 @@
   },
   "keywords": [],
   "author": "Timothy Loo, Blake Lenhard, Brian Pham",
+  "backend author": "James Emerson Vo",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
