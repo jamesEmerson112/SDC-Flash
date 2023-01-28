@@ -4,6 +4,10 @@ Developed a fully functional front-end project to connect to an existing databas
 
 
 ## Components and Contributers
+Back-end/Server: An Thien Vo (James)\
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/blake-lenhard/)](https://www.linkedin.com/in/blake-lenhard/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Dieogenes)](https://github.com/Dieogenes)
+
 Product Overview: Blake Lenhard\
 [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/blake-lenhard/)](https://www.linkedin.com/in/blake-lenhard/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Dieogenes)](https://github.com/Dieogenes)
@@ -53,19 +57,19 @@ npm run server-dev & npm run client-dev
 
 ## Demos
 <details><summary>Product Overview</summary>
-  
+
 ![ProductOverview-Demo](https://github.com/freshprincefecflamongos2/Front-End-Capstone-FEC/blob/master/ProductOverviewDemo.gif?raw=true)
-  
+
 </details>
 
 <details><summary>Questions & Answers</summary>
-  
+
 ![TJQAgif](https://user-images.githubusercontent.com/46430556/189738034-d5ff4d47-ff87-4df6-a45a-1b8ea216b983.gif)
 
 </details>
 
 <details><summary>Ratings & Reviews</summary>
-  
+
 ![BrianRRgif](https://user-images.githubusercontent.com/107714292/189728065-b3721791-5d65-4b2d-8106-faba53a73476.gif)
 
 </details>
@@ -86,10 +90,10 @@ npm run server-dev & npm run client-dev
 
 **Deployment:** &nbsp;&nbsp;
   ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-  
+
 **Dev Environment:** &nbsp;&nbsp;
   ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
   ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
-  
 
-  
+
+

@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 3000;
 
 // LISTENING TO THE ASSIGNED PORT
 app.listen(PORT);
-console.log(`Listening at http://localhost:${PORT}`);
+console.log(`Listening at http://${process.env.LOCAHOST}:${PORT}`);
 
 // TESTING
 const randomNumber = Math.floor(Math.random() * 1000000);
