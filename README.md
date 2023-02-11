@@ -5,8 +5,8 @@ Developed a fully functional front-end project to connect to an existing databas
 
 ## Components and Contributers
 Back-end/Server: An Thien Vo (James)\
-[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/blake-lenhard/)](https://www.linkedin.com/in/blake-lenhard/)
-[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Dieogenes)](https://github.com/Dieogenes)
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/james-vo/)](https://www.linkedin.com/in/james-vo/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/jamesEmerson112)](https://github.com/jamesEmerson112)
 
 Product Overview: Blake Lenhard\
 [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/blake-lenhard/)](https://www.linkedin.com/in/blake-lenhard/)
